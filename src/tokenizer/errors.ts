@@ -1,6 +1,15 @@
 import { Token, TokenType } from './token'
 
 /**
+ * Thrown when an input is given for which a token type cannot be determined.
+ */
+export class UnknownTokenTypeError extends Error {
+  constructor () {
+    super('unable to determine token type')
+  }
+}
+
+/**
  * Thrown when a string token is detected, but there is no closing quote.
  */
 export class UnterminatedStringError extends Error {

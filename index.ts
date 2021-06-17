@@ -1,9 +1,4 @@
-import { tokenize as tokenizerTokenize } from './src/tokenizer/tokenizer'
-import { TokenStream } from './src/tokenizer/token-stream'
-
-export function tokenize (input: string): TokenStream {
-  return tokenizerTokenize(input)
-}
+export { tokenize } from './src/tokenizer/tokenizer'
 
 export function parse (input: string): any {
 }
