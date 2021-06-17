@@ -34,4 +34,19 @@ describe('src/util/regexp-index-of.ts', function () {
       expect(regexpIndexOf('hello world', /\s+/, 7)).to.equal(-1)
     })
   })
+
+  describe('regexpIndexOf() with out-of-bounds positions', function () {
+    it('treats negative positions like 0', function () {
+      expect(regexpIndexOf('hello world', /h/, -3)).to.equal(0)
+      expect(regexpIndexOf('hello world', /world/, -3)).to.equal(6)
+      expect(regexpIndexOf('hello world', /./, -3)).to.equal(0)
+      expect(regexpIndexOf('hello world', /\s+/, -3)).to.equal(5)
+    })
+
+    it('treats too large positions like string.length', function () {
+      expect(regexpIndexOf('hello world', /x/, 100)).to.equal(-1)
+      expect(regexpIndexOf('hello world', /\s*/, 100)).to.equal(11)
+      expect(regexpIndexOf('hello world', /h/, 100)).to.equal(-1)
+    })
+  })
 })
