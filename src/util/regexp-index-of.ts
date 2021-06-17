@@ -13,7 +13,7 @@ export function regexpIndexOf (str: string, regexp: RegExp, position?: number): 
     return str.search(regexp)
   }
   // string.indexOf() treats positions greater than str.length as equal to str.length
-  const offset = Math.min(offset, str.length)
+  const offset = Math.min(position, str.length)
   const subIndex = str.slice(offset).search(regexp)
   if (subIndex < 0) {
     return subIndex
