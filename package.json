@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/meyfa/lifeline#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.19",
     "@types/mocha": "^8.2.2",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "chai": "^4.3.4",
