@@ -1,5 +1,12 @@
 import { Message, MessageStyle } from './message'
 
+function isReplyValid (message: Message, reply: Message): boolean {
+  if (reply.style !== MessageStyle.REPLY) {
+    return false
+  }
+  return reply.from === message.to && reply.to === message.from
+}
+
 /**
  * Represents an Activation of an object, based on a message and with an optional reply.
  * Note that not all message types can be replied to in a meaningful way.
@@ -10,13 +17,8 @@ export class Activation {
   readonly children: Activation[]
 
   constructor (message: Message, reply: Message | undefined, children: Activation[]) {
-    if (reply != null) {
-      if (reply.style !== MessageStyle.REPLY) {
-        throw new Error('reply message does not have reply style')
-      }
-      if (reply.from !== message.to || reply.to !== message.from) {
-        throw new Error('invalid source or target of reply, does not match message')
-      }
+    if (reply != null && !isReplyValid(message, reply)) {
+      throw new Error('invalid reply message, check message type and from/to')
     }
 
     this.message = message
