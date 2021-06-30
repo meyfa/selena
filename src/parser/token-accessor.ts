@@ -51,14 +51,20 @@ export class TokenAccessor {
   /**
    * Obtain the next token and advance the stream, but only if the token matches the given type.
    * If the type does not match, this returns undefined and the stream does not change state.
+   * Optionally, the token value can be checked in the same manner.
+   *
+   * If no token remains (empty stream), this will return undefined.
    *
    * @param {TokenType} type The type of token to pop off.
+   * @param {?string} value The value the token is expected to have.
    * @returns {Token | undefined} The next token in the stream, or undefined.
-   * @throws {EndOfStreamError} If there is no remaining token.
    */
-  popOptional (type: TokenType): Token | undefined {
+  popOptional (type: TokenType, value?: string): Token | undefined {
+    if (!this.hasNext()) {
+      return undefined
+    }
     const token = this.peek()
-    if (token.type !== type) {
+    if (token.type !== type || (value != null && token.value !== value)) {
       return undefined
     }
     return this.stream.next()
@@ -75,12 +81,9 @@ export class TokenAccessor {
    * @throws {UnexpectedTokenError} If the token type mismatches, or a value was specified and it mismatches.
    */
   pop (type: TokenType, value?: string): Token {
-    const optToken = this.popOptional(type)
+    const optToken = this.popOptional(type, value)
     if (optToken == null) {
-      throw new UnexpectedTokenError(this.peek(), type)
-    }
-    if (value != null && optToken.value !== value) {
-      throw new UnexpectedTokenError(optToken, type, value)
+      throw new UnexpectedTokenError(this.peek(), type, value)
     }
     return optToken
   }
