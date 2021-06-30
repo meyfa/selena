@@ -65,6 +65,12 @@ describe('src/tokenizer/tokenizer.ts', function () {
       expect(() => tokenize('"string" "unterminated string')).to.throw(UnterminatedStringError)
     })
 
+    it('throws for strings broken by newline', function () {
+      expect(() => tokenize('"unterminated\nstring"')).to.throw(UnterminatedStringError)
+      expect(() => tokenize('"unterminated\rstring"')).to.throw(UnterminatedStringError)
+      expect(() => tokenize('"unterminated\r\nstring"')).to.throw(UnterminatedStringError)
+    })
+
     it('detects arrows', function () {
       const result = tokenize('->')
       expect(result).to.be.an.instanceOf(TokenStream)
