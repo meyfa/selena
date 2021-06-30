@@ -2,6 +2,7 @@ import { Token, TokenType } from './token'
 import { TokenStream } from './token-stream'
 import { UnknownTokenTypeError, UnterminatedStringError } from './errors'
 import { regexpIndexOf } from '../util/regexp-index-of'
+import { findEndOfLine } from '../util/find-end-of-line'
 
 /**
  * This record stores the values of each of the fixed token types.
@@ -32,13 +33,7 @@ const TOKEN_END_REGEXP = /[\s=(){}:"]|->/
  */
 function tryMatchComment (str: string, start: number): Token | undefined {
   if (str[start] === '#') {
-    const nPos = str.indexOf('\n', start)
-    const rPos = str.indexOf('\r', start)
-    const end = Math.min(
-      str.length,
-      nPos >= 0 ? nPos : str.length,
-      rPos >= 0 ? rPos : str.length
-    )
+    const end = findEndOfLine(str, start)
     return new Token(TokenType.COMMENT, start, str.slice(start, end))
   }
   return undefined
@@ -73,7 +68,8 @@ function tryMatchFixed (str: string, start: number): Token | undefined {
 function tryMatchString (str: string, start: number): Token | undefined {
   if (str[start] === '"') {
     const closing = str.indexOf('"', start + 1)
-    if (closing < 0) {
+    const end = findEndOfLine(str, start)
+    if (closing < 0 || closing > end) {
       throw new UnterminatedStringError(start)
     }
     return new Token(TokenType.STRING, start, str.slice(start, closing + 1))
