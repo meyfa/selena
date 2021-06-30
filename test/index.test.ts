@@ -13,9 +13,9 @@ describe('index.ts', function () {
     it('performs tokenization', function () {
       const result = index.tokenize('foo : "bar"')
       expect(result).to.be.an.instanceOf(TokenStream)
-      expect(result.pop(TokenType.WORD).value).to.equal('foo')
-      expect(result.pop(TokenType.COLON).value).to.equal(':')
-      expect(result.pop(TokenType.STRING).value).to.equal('"bar"')
+      expect(result.next()).to.include({ type: TokenType.WORD, value: 'foo' })
+      expect(result.next()).to.include({ type: TokenType.COLON, value: ':' })
+      expect(result.next()).to.include({ type: TokenType.STRING, value: '"bar"' })
     })
   })
 
@@ -26,10 +26,10 @@ describe('index.ts', function () {
 
     it('performs parsing', function () {
       const tokens = new TokenStream([
-        new Token(TokenType.WORD, 'object'),
-        new Token(TokenType.WORD, 'foo'),
-        new Token(TokenType.EQUALS, '='),
-        new Token(TokenType.STRING, '"bar"')
+        new Token(TokenType.WORD, 0, 'object'),
+        new Token(TokenType.WORD, 7, 'foo'),
+        new Token(TokenType.EQUALS, 10, '='),
+        new Token(TokenType.STRING, 11, '"bar"')
       ])
 
       const result = index.parse(tokens)

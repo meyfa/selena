@@ -5,14 +5,14 @@ import { expect } from 'chai'
 
 describe('src/parser/unquote.ts', function () {
   it('throws for tokens that are not strings', function () {
-    expect(() => unquote(new Token(TokenType.WORD, '"foo"'))).to.throw()
+    expect(() => unquote(new Token(TokenType.WORD, 0, '"foo"'))).to.throw()
   })
 
   it('returns the token value without beginning and end quote', function () {
-    expect(unquote(new Token(TokenType.STRING, '"foo"'))).to.equal('foo')
+    expect(unquote(new Token(TokenType.STRING, 0, '"foo"'))).to.equal('foo')
   })
 
   it('ignores all other quotes', function () {
-    expect(unquote(new Token(TokenType.STRING, '"foo " \\" "" "'))).to.equal('foo " \\" "" ')
+    expect(unquote(new Token(TokenType.STRING, 0, '"foo " \\" "" "'))).to.equal('foo " \\" "" ')
   })
 })

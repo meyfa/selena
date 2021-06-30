@@ -1,8 +1,8 @@
 import { TokenStream } from '../../src/tokenizer/token-stream'
 import { Token, TokenType } from '../../src/tokenizer/token'
-import { UnexpectedTokenTypeError, UnexpectedTokenValueError } from '../../src/tokenizer/errors'
 
 import { expect } from 'chai'
+import { EndOfStreamError } from '../../src/tokenizer/errors'
 
 describe('src/tokenizer/token-stream.ts', function () {
   describe('#hasNext()', function () {
@@ -12,7 +12,7 @@ describe('src/tokenizer/token-stream.ts', function () {
 
     it('returns true for non-empty stream', function () {
       const tokens = [
-        new Token(TokenType.WORD, 'test')
+        new Token(TokenType.WORD, 0, 'test')
       ]
       expect(new TokenStream(tokens).hasNext()).to.be.true
     })
@@ -25,14 +25,14 @@ describe('src/tokenizer/token-stream.ts', function () {
 
     it('returns first token', function () {
       const tokens = [
-        new Token(TokenType.WORD, 'test')
+        new Token(TokenType.WORD, 0, 'test')
       ]
       expect(new TokenStream(tokens).peek()).to.equal(tokens[0])
     })
 
     it('does not advance the stream', function () {
       const tokens = [
-        new Token(TokenType.WORD, 'test')
+        new Token(TokenType.WORD, 0, 'test')
       ]
       const obj = new TokenStream(tokens)
       expect(obj.peek()).to.equal(obj.peek())
@@ -40,93 +40,28 @@ describe('src/tokenizer/token-stream.ts', function () {
     })
   })
 
-  describe('#popOptional()', function () {
+  describe('#next()', function () {
     it('throws an error if called on empty stream', function () {
-      expect(() => new TokenStream([]).popOptional(TokenType.WORD)).to.throw()
+      expect(() => new TokenStream([]).next()).to.throw()
     })
 
-    it('returns token if type matches', function () {
+    it('returns token', function () {
       const tokens = [
-        new Token(TokenType.WORD, 'test')
+        new Token(TokenType.WORD, 0, 'test')
       ]
-      expect(new TokenStream(tokens).popOptional(TokenType.WORD)).to.equal(tokens[0])
-    })
-
-    it('returns undefined if type does not match', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test')
-      ]
-      expect(new TokenStream(tokens).popOptional(TokenType.PAREN_LEFT)).to.be.undefined
-    })
-
-    it('advances the stream, but only on a match', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test')
-      ]
-      const stream = new TokenStream(tokens)
-      stream.popOptional(TokenType.PAREN_LEFT)
-      expect(stream.hasNext()).to.be.true
-      stream.popOptional(TokenType.WORD)
-      expect(stream.hasNext()).to.be.false
-    })
-
-    it('works multiple times in a row', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test'),
-        new Token(TokenType.PAREN_LEFT, '('),
-        new Token(TokenType.PAREN_RIGHT, '(')
-      ]
-      const stream = new TokenStream(tokens)
-      expect(stream.popOptional(TokenType.EQUALS)).to.be.undefined
-      expect(stream.popOptional(TokenType.WORD)).to.equal(tokens[0])
-      expect(stream.popOptional(TokenType.EQUALS)).to.be.undefined
-      expect(stream.popOptional(TokenType.PAREN_LEFT)).to.equal(tokens[1])
-      expect(stream.popOptional(TokenType.EQUALS)).to.be.undefined
-      expect(stream.popOptional(TokenType.PAREN_RIGHT)).to.equal(tokens[2])
-      expect(stream.hasNext()).to.be.false
-    })
-  })
-
-  describe('#pop()', function () {
-    it('throws an error if called on empty stream', function () {
-      expect(() => new TokenStream([]).pop(TokenType.WORD)).to.throw()
-    })
-
-    it('returns token if type matches', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test')
-      ]
-      expect(new TokenStream(tokens).pop(TokenType.WORD)).to.equal(tokens[0])
-    })
-
-    it('returns token if type and value match', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test')
-      ]
-      expect(new TokenStream(tokens).pop(TokenType.WORD, 'test')).to.equal(tokens[0])
-    })
-
-    it('throws if type does not match', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test')
-      ]
-      expect(() => new TokenStream(tokens).pop(TokenType.PAREN_LEFT)).to.throw(UnexpectedTokenTypeError)
-    })
-
-    it('throws if type matches, but value does not', function () {
-      const tokens = [
-        new Token(TokenType.WORD, 'test')
-      ]
-      expect(() => new TokenStream(tokens).pop(TokenType.WORD, 'foo')).to.throw(UnexpectedTokenValueError)
+      expect(new TokenStream(tokens).next()).to.equal(tokens[0])
     })
 
     it('advances the stream on a match', function () {
       const tokens = [
-        new Token(TokenType.WORD, 'test')
+        new Token(TokenType.WORD, 0, 'test'),
+        new Token(TokenType.STRING, 4, '"foo"')
       ]
       const stream = new TokenStream(tokens)
-      stream.pop(TokenType.WORD)
+      expect(stream.next()).to.equal(tokens[0])
+      expect(stream.next()).to.equal(tokens[1])
       expect(stream.hasNext()).to.be.false
+      expect(() => stream.next()).to.throw(EndOfStreamError)
     })
   })
 })

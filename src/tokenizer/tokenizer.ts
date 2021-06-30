@@ -23,6 +23,28 @@ const FIXED_TYPES: Readonly<Record<string, TokenType>> = {
 const TOKEN_END_REGEXP = /[\s=(){}:"]|->/
 
 /**
+ * Try matching the input as a comment.
+ * Anything is considered a comment that starts with the hash character ('#').
+ *
+ * @param {string} str The input.
+ * @param {number} start The current position in the input string (start of the token to match).
+ * @returns {Token | undefined} The matched token, or undefined if not of the correct format.
+ */
+function tryMatchComment (str: string, start: number): Token | undefined {
+  if (str[start] === '#') {
+    const nPos = str.indexOf('\n', start)
+    const rPos = str.indexOf('\r', start)
+    const end = Math.min(
+      str.length,
+      nPos >= 0 ? nPos : str.length,
+      rPos >= 0 ? rPos : str.length
+    )
+    return new Token(TokenType.COMMENT, start, str.slice(start, end))
+  }
+  return undefined
+}
+
+/**
  * Try matching the input against the fixed token types.
  * A token type is considered "fixed" if its tokens can only ever have one specific value.
  *
@@ -33,7 +55,7 @@ const TOKEN_END_REGEXP = /[\s=(){}:"]|->/
 function tryMatchFixed (str: string, start: number): Token | undefined {
   for (const fixed of Object.keys(FIXED_TYPES)) {
     if (str.indexOf(fixed, start) === start) {
-      return new Token(FIXED_TYPES[fixed], fixed)
+      return new Token(FIXED_TYPES[fixed], start, fixed)
     }
   }
   return undefined
@@ -41,7 +63,7 @@ function tryMatchFixed (str: string, start: number): Token | undefined {
 
 /**
  * Try matching the input as a string.
- * Anything is considered a string that starts with a quotation mark.
+ * Anything is considered a string that starts with a quotation mark ('"').
  *
  * @param {string} str The input.
  * @param {number} start The current position in the input string (start of the token to match).
@@ -52,9 +74,9 @@ function tryMatchString (str: string, start: number): Token | undefined {
   if (str[start] === '"') {
     const closing = str.indexOf('"', start + 1)
     if (closing < 0) {
-      throw new UnterminatedStringError()
+      throw new UnterminatedStringError(start)
     }
-    return new Token(TokenType.STRING, str.slice(start, closing + 1))
+    return new Token(TokenType.STRING, start, str.slice(start, closing + 1))
   }
   return undefined
 }
@@ -72,7 +94,7 @@ function tryMatchWord (str: string, start: number): Token | undefined {
   if (end < 0) {
     end = str.length
   }
-  return new Token(TokenType.WORD, str.slice(start, end))
+  return new Token(TokenType.WORD, start, str.slice(start, end))
 }
 
 /**
@@ -85,12 +107,13 @@ function tryMatchWord (str: string, start: number): Token | undefined {
  * @throws {UnterminatedStringError} If the matched token is a string that is left unterminated.
  */
 function matchToken (str: string, start: number): Token {
-  const match = tryMatchFixed(str, start) ??
+  const match = tryMatchComment(str, start) ??
+    tryMatchFixed(str, start) ??
     tryMatchString(str, start) ??
     tryMatchWord(str, start)
 
   if (match == null) {
-    throw new UnknownTokenTypeError()
+    throw new UnknownTokenTypeError(start)
   }
 
   return match
