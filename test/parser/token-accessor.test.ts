@@ -81,17 +81,17 @@ describe('src/parser/token-accessor.ts', function () {
   })
 
   describe('#popOptional()', function () {
-    it('throws an error if called on empty stream', function () {
+    it('returns undefined if called on empty stream', function () {
       const stream = new TokenStream([])
-      expect(() => new TokenAccessor(stream).popOptional(TokenType.WORD)).to.throw()
+      expect(new TokenAccessor(stream).popOptional(TokenType.WORD)).to.be.undefined
     })
 
-    it('throws an error if called on streams containing only skipped tokens', function () {
+    it('returns undefined if called on streams containing only skipped tokens', function () {
       const stream = new TokenStream([
         new Token(TokenType.COMMENT, 0, '#test'),
         new Token(TokenType.COMMENT, 7, '#test')
       ])
-      expect(() => new TokenAccessor(stream, [TokenType.COMMENT]).popOptional(TokenType.COMMENT)).to.throw()
+      expect(new TokenAccessor(stream, [TokenType.COMMENT]).popOptional(TokenType.COMMENT)).to.be.undefined
     })
 
     it('returns undefined when requesting a skipped token', function () {
@@ -111,12 +111,28 @@ describe('src/parser/token-accessor.ts', function () {
       expect(new TokenAccessor(stream).popOptional(TokenType.WORD)).to.equal(tokens[0])
     })
 
+    it('returns token if type and value match', function () {
+      const tokens = [
+        new Token(TokenType.WORD, 0, 'test')
+      ]
+      const stream = new TokenStream(tokens)
+      expect(new TokenAccessor(stream).popOptional(TokenType.WORD, 'test')).to.equal(tokens[0])
+    })
+
     it('returns undefined if type does not match', function () {
       const tokens = [
         new Token(TokenType.WORD, 0, 'test')
       ]
       const stream = new TokenStream(tokens)
       expect(new TokenAccessor(stream).popOptional(TokenType.PAREN_LEFT)).to.be.undefined
+    })
+
+    it('returns undefined if type matches, but value does not', function () {
+      const tokens = [
+        new Token(TokenType.WORD, 0, 'test')
+      ]
+      const stream = new TokenStream(tokens)
+      expect(new TokenAccessor(stream).popOptional(TokenType.WORD, 'foo')).to.be.undefined
     })
 
     it('advances the stream, but only on a match', function () {
