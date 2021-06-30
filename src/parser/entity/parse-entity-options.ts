@@ -1,26 +1,27 @@
-import { TokenStream } from '../../tokenizer/token-stream'
 import { Token, TokenType } from '../../tokenizer/token'
 import { DuplicateOptionError, UnsupportedOptionError } from '../errors'
 import { entityOptions } from '../strings'
 import { defaultEntityOptions, EntityOptions } from './entity-options'
+import { TokenAccessor } from '../token-accessor'
 
-function applyOption (option: string, obj: EntityOptions): void {
+function applyOption (token: Token, option: string, obj: EntityOptions): void {
   if (option === entityOptions.actor) {
     obj.isActor = true
     return
   }
-  throw new UnsupportedOptionError(option, [entityOptions.actor])
+  throw new UnsupportedOptionError(token, option, [entityOptions.actor])
 }
 
-function getOptions (tokens: TokenStream): EntityOptions {
+function getOptions (tokens: TokenAccessor): EntityOptions {
   const set = new Set<string>()
   const options: EntityOptions = { ...defaultEntityOptions }
-  for (let option; (option = tokens.popOptional(TokenType.WORD)?.value) != null;) {
-    if (set.has(option)) {
-      throw new DuplicateOptionError(option)
+  for (let optToken; (optToken = tokens.popOptional(TokenType.WORD)) != null;) {
+    const opt = optToken.value
+    if (set.has(opt)) {
+      throw new DuplicateOptionError(optToken, opt)
     }
-    applyOption(option, options)
-    set.add(option)
+    applyOption(optToken, opt, options)
+    set.add(opt)
   }
   return options
 }
@@ -39,10 +40,10 @@ export function detectEntityOptions (token: Token): boolean {
 /**
  * Force-parse entity options from the given stream.
  *
- * @param {TokenStream} tokens The input stream.
+ * @param {TokenAccessor} tokens The input stream.
  * @returns {EntityOptions} The parsed options.
  */
-export function parseEntityOptions (tokens: TokenStream): EntityOptions {
+export function parseEntityOptions (tokens: TokenAccessor): EntityOptions {
   tokens.pop(TokenType.PAREN_LEFT)
   const options = getOptions(tokens)
   tokens.pop(TokenType.PAREN_RIGHT)

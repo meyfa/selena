@@ -14,14 +14,14 @@ describe('src/parser/parser.ts', function () {
 
   it('parses objects into entities', function () {
     const tokens = new TokenStream([
-      new Token(TokenType.WORD, 'object'),
-      new Token(TokenType.WORD, 'foo'),
-      new Token(TokenType.EQUALS, '='),
-      new Token(TokenType.STRING, '"Foo"'),
-      new Token(TokenType.WORD, 'object'),
-      new Token(TokenType.WORD, 'bar'),
-      new Token(TokenType.EQUALS, '='),
-      new Token(TokenType.STRING, '"Bar"')
+      new Token(TokenType.WORD, 0, 'object'),
+      new Token(TokenType.WORD, 7, 'foo'),
+      new Token(TokenType.EQUALS, 10, '='),
+      new Token(TokenType.STRING, 11, '"Foo"'),
+      new Token(TokenType.WORD, 16, 'object'),
+      new Token(TokenType.WORD, 24, 'bar'),
+      new Token(TokenType.EQUALS, 27, '='),
+      new Token(TokenType.STRING, 28, '"Bar"')
     ])
     const parsed = parse(tokens)
     expect(parsed.entities).to.have.lengthOf(2)
@@ -31,8 +31,23 @@ describe('src/parser/parser.ts', function () {
 
   it('throws for unexpected token (global level)', function () {
     const tokens = new TokenStream([
-      new Token(TokenType.WORD, '"hello world"')
+      new Token(TokenType.WORD, 0, '"hello world"')
     ])
     expect(() => parse(tokens)).to.throw()
+  })
+
+  it('ignores comments', function () {
+    const tokens = new TokenStream([
+      new Token(TokenType.COMMENT, 0, '# comment'),
+      new Token(TokenType.WORD, 12, 'object'),
+      new Token(TokenType.WORD, 19, 'foo'),
+      new Token(TokenType.COMMENT, 22, '# comment'),
+      new Token(TokenType.EQUALS, 30, '='),
+      new Token(TokenType.STRING, 31, '"Foo"')
+    ])
+    const parsed = parse(tokens)
+    expect(parsed.entities).to.have.lengthOf(1)
+    expect(parsed.entities[0].id).to.equal('foo')
+    expect(parsed.activations).to.have.lengthOf(0)
   })
 })

@@ -1,8 +1,10 @@
 import { TokenStream } from '../tokenizer/token-stream'
 import { Sequence } from '../sequence/sequence'
 import { ParserState } from './parser-state'
-import { UnexpectedTokenError } from './errors'
 import { detectEntity, parseEntity } from './entity/parse-entity'
+import { UnexpectedTokenError } from './errors'
+import { TokenAccessor } from './token-accessor'
+import { TokenType } from '../tokenizer/token'
 
 /**
  * Parse the given stream of tokens into a sequence.
@@ -11,14 +13,17 @@ import { detectEntity, parseEntity } from './entity/parse-entity'
  *
  * @param {TokenStream} tokens The input token stream as produced by the tokenizer.
  * @returns {Sequence} The parsed sequence.
+ * @throws {ParserError} If an error occurs during parsing.
  */
 export function parse (tokens: TokenStream): Sequence {
   const state = new ParserState()
 
-  while (tokens.hasNext()) {
+  const accessor = new TokenAccessor(tokens, [TokenType.COMMENT])
+
+  while (accessor.hasNext()) {
     const token = tokens.peek()
     if (detectEntity(token)) {
-      state.insertEntity(parseEntity(tokens))
+      state.insertEntity(parseEntity(accessor))
       continue
     }
     throw new UnexpectedTokenError(token)

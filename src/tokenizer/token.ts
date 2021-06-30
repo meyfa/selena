@@ -1,4 +1,5 @@
 export enum TokenType {
+  COMMENT = 'comment',
   WORD = 'word',
   EQUALS = 'equals',
   COLON = 'colon',
@@ -15,10 +16,12 @@ export enum TokenType {
  */
 export class Token {
   readonly type: TokenType
+  readonly position: number
   readonly value: string
 
-  constructor (type: TokenType, value: string) {
+  constructor (type: TokenType, position: number, value: string) {
     this.type = type
+    this.position = position
     this.value = value
   }
 }

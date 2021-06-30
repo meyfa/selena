@@ -1,10 +1,10 @@
-import { TokenStream } from '../../tokenizer/token-stream'
 import { Entity, EntityType } from '../../sequence/entity'
 import { Token, TokenType } from '../../tokenizer/token'
 import { unquote } from '../unquote'
 import { detectEntityOptions, parseEntityOptions } from './parse-entity-options'
 import { keywords } from '../strings'
 import { defaultEntityOptions } from './entity-options'
+import { TokenAccessor } from '../token-accessor'
 
 /**
  * Determine whether the given token marks the beginning of an entity definition.
@@ -20,10 +20,10 @@ export function detectEntity (token: Token): boolean {
 /**
  * Force-parse an entity definition from the given stream.
  *
- * @param {TokenStream} tokens The input stream.
+ * @param {TokenAccessor} tokens The input stream.
  * @returns {Entity} The parsed entity.
  */
-export function parseEntity (tokens: TokenStream): Entity {
+export function parseEntity (tokens: TokenAccessor): Entity {
   tokens.pop(TokenType.WORD, keywords.object)
 
   const options = detectEntityOptions(tokens.peek())
