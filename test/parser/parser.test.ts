@@ -25,8 +25,28 @@ describe('src/parser/parser.ts', function () {
     ])
     const parsed = parse(tokens)
     expect(parsed.entities).to.have.lengthOf(2)
+    expect(parsed.entities[0]).to.include({ id: 'foo', name: 'Foo' })
+    expect(parsed.entities[1]).to.include({ id: 'bar', name: 'Bar' })
+  })
+
+  it('parses found messages', function () {
+    const tokens = new TokenStream([
+      new Token(TokenType.WORD, 0, 'object'),
+      new Token(TokenType.WORD, 7, 'foo'),
+      new Token(TokenType.EQUALS, 10, '='),
+      new Token(TokenType.STRING, 11, '"Foo"'),
+      new Token(TokenType.WORD, 18, '*'),
+      new Token(TokenType.ARROW, 19, '->'),
+      new Token(TokenType.WORD, 21, 'foo'),
+      new Token(TokenType.STRING, 25, '"message"')
+    ])
+    const parsed = parse(tokens)
+    expect(parsed.entities).to.have.lengthOf(1)
     expect(parsed.entities[0].id).to.equal('foo')
-    expect(parsed.entities[1].id).to.equal('bar')
+    expect(parsed.activations).to.have.lengthOf(1)
+    expect(parsed.activations[0].message.from).to.be.undefined
+    expect(parsed.activations[0].message.to).to.equal(parsed.entities[0])
+    expect(parsed.activations[0].message.label).to.equal('message')
   })
 
   it('throws for unexpected token (global level)', function () {

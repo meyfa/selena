@@ -54,3 +54,48 @@ export class DuplicateOptionError extends ParserError {
     super(token, `duplicate option ${option}`)
   }
 }
+
+/**
+ * Thrown when a message block is specified for a message that cannot have one.
+ */
+export class UnexpectedMessageBlockError extends ParserError {
+  constructor (token: Token) {
+    super(token, 'this message type cannot have a message block')
+  }
+}
+
+/**
+ * Thrown when a message requires a target entity to be specified but none was given.
+ */
+export class MissingTargetError extends ParserError {
+  constructor (token: Token) {
+    super(token, 'expected object target for this message')
+  }
+}
+
+/**
+ * Thrown when an entity is referenced that was not defined.
+ */
+export class UnknownObjectError extends ParserError {
+  constructor (token: Token, objectId: string) {
+    super(token, `object "${objectId}" not defined`)
+  }
+}
+
+/**
+ * Thrown when a message block was already returned from, yet there is more code in it.
+ */
+export class AlreadyReturnedError extends ParserError {
+  constructor (token: Token) {
+    super(token, 'there cannot be any code after a return statement')
+  }
+}
+
+/**
+ * Thrown when a return value is specified on a message that cannot have one.
+ */
+export class UnsupportedReturnError extends ParserError {
+  constructor (token: Token) {
+    super(token, 'return is not supported on this message')
+  }
+}
