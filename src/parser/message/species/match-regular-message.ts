@@ -1,79 +1,84 @@
-import { MessageBlock, MessageDescription, MessageType } from '../message-description'
+import { MessageDescription, MessageType } from '../message-description'
 import { UnexpectedMessageBlockError, UnexpectedTokenError } from '../../errors'
 import { Activation } from '../../../sequence/activation'
-import { AsyncMessage, CreateMessage, DestroyMessage, ReplyMessage, SyncMessage } from '../../../sequence/message'
+import {
+  AsyncMessage,
+  CreateMessage,
+  DestroyMessage,
+  Message,
+  ReplyMessage,
+  SyncMessage
+} from '../../../sequence/message'
 import { Entity } from '../../../sequence/entity'
 
-const DEFAULT_CREATE_MESSAGE = '«create»'
-const DEFAULT_DESTROY_MESSAGE = '«destroy»'
-
-interface ActivationConstructor {
+/**
+ * Regular messages follow a general schema, but they differ in a few aspects.
+ * This interface encapsulates those differences and makes each type of message easily constructable.
+ */
+interface ActivationDefinition {
   allowBlock: boolean
-  construct: (active: Entity, target: Entity, label: string, block?: MessageBlock) => Activation
+  defaultLabel: string
+  constructor: new (from: Entity, to: Entity, label: string) => Message
+  includeReply: (active: Entity, target: Entity, returnValue?: string) => boolean
 }
 
-// constructor for SYNC messages
-const syncConstructor: ActivationConstructor = {
+// definition for SYNC messages
+const syncDefinition: ActivationDefinition = {
   allowBlock: true,
-  construct (active: Entity, target: Entity, label: string, block?: MessageBlock): Activation {
-    const msg = new SyncMessage(active, target, label)
-    // do not include a reply for self-calls unless they have an explicit return value
-    const reply = target.id !== active.id || block?.returnValue != null
-      ? new ReplyMessage(target, active, block?.returnValue ?? '')
-      : undefined
-    return new Activation(msg, reply, block?.activations ?? [])
+  defaultLabel: '',
+  constructor: SyncMessage,
+  includeReply (active: Entity, target: Entity, returnValue?: string) {
+    // do not include a reply for self-calls unless they have an explicit return value,
+    // but do include replies for everything else even without return value
+    return target.id !== active.id || returnValue != null
   }
 }
 
-// constructor for ASYNC messages
-const asyncConstructor: ActivationConstructor = {
+// definition for ASYNC messages
+const asyncDefinition: ActivationDefinition = {
   allowBlock: true,
-  construct (active: Entity, target: Entity, label: string, block?: MessageBlock): Activation {
-    const msg = new AsyncMessage(active, target, label)
+  defaultLabel: '',
+  constructor: AsyncMessage,
+  includeReply (active: Entity, target: Entity, returnValue?: string) {
     // do not include a reply for async unless they have an explicit return value
-    const reply = block?.returnValue != null
-      ? new ReplyMessage(target, active, block?.returnValue ?? '')
-      : undefined
-    return new Activation(msg, reply, block?.activations ?? [])
+    return returnValue != null
   }
 }
 
-// constructor for CREATE messages
-const createConstructor: ActivationConstructor = {
+// definition for CREATE messages
+const createDefinition: ActivationDefinition = {
   allowBlock: false,
-  construct (active: Entity, target: Entity, label: string): Activation {
-    const msg = new CreateMessage(active, target, label !== '' ? label : DEFAULT_CREATE_MESSAGE)
-    return new Activation(msg, undefined, [])
-  }
+  defaultLabel: '«create»',
+  constructor: CreateMessage,
+  includeReply: () => false
 }
 
-// constructor for DESTROY messages
-const destroyConstructor: ActivationConstructor = {
+// definition for DESTROY messages
+const destroyDefinition: ActivationDefinition = {
   allowBlock: false,
-  construct (active: Entity, target: Entity, label: string): Activation {
-    const msg = new DestroyMessage(active, target, label !== '' ? label : DEFAULT_DESTROY_MESSAGE)
-    return new Activation(msg, undefined, [])
-  }
+  defaultLabel: '«destroy»',
+  constructor: DestroyMessage,
+  includeReply: () => false
 }
 
 /**
  * Depending on the message type, activations have to be created differently.
- * This function chooses the correct constructor for the given type.
+ * This function chooses the correct definition for the given type.
  *
  * @param {MessageType} messageType The message type.
- * @returns {object} The constructor for that type.
+ * @returns {object} The definition for that type.
  */
-function lookupConstructor (messageType: MessageType): ActivationConstructor {
+function lookupDefinition (messageType: MessageType): ActivationDefinition {
   // this switch is complete, otherwise TypeScript would complain
   switch (messageType) {
     case MessageType.SYNC:
-      return syncConstructor
+      return syncDefinition
     case MessageType.ASYNC:
-      return asyncConstructor
+      return asyncDefinition
     case MessageType.CREATE:
-      return createConstructor
+      return createDefinition
     case MessageType.DESTROY:
-      return destroyConstructor
+      return destroyDefinition
   }
 }
 
@@ -99,10 +104,16 @@ export function matchRegularMessage (desc: MessageDescription, active: Entity | 
     throw new UnexpectedTokenError(evidence.fromOutside)
   }
 
-  // find the appropriate constructor for the type of message (sync, async, ...)
-  const constructor = lookupConstructor(type)
-  if (!constructor.allowBlock && block != null) {
+  // find the appropriate definition for the type of message (sync, async, ...)
+  // and construct the activation
+  const definition = lookupDefinition(type)
+  if (!definition.allowBlock && block != null) {
     throw new UnexpectedMessageBlockError(evidence.block)
   }
-  return constructor.construct(active, target, label, block)
+
+  const msg = new definition.constructor(active, target, label)
+  const reply = definition.includeReply(active, target, block?.returnValue)
+    ? new ReplyMessage(target, active, block?.returnValue ?? '')
+    : undefined
+  return new Activation(msg, reply, block?.activations ?? [])
 }
