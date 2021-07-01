@@ -3,7 +3,8 @@
  */
 export const keywords = {
   object: 'object',
-  outside: '*'
+  outside: '*',
+  return: 'return'
 }
 
 /**
@@ -11,4 +12,14 @@ export const keywords = {
  */
 export const entityOptions = {
   actor: 'actor'
+}
+
+/**
+ * Available options when specifying a regular message (not found message).
+ */
+export const messageOptions = {
+  sync: 'sync',
+  async: 'async',
+  create: 'create',
+  destroy: 'destroy'
 }

@@ -5,6 +5,7 @@ import { detectEntity, parseEntity } from './entity/parse-entity'
 import { UnexpectedTokenError } from './errors'
 import { TokenAccessor } from './token-accessor'
 import { TokenType } from '../tokenizer/token'
+import { detectMessage, parseMessage } from './message/parse-message'
 
 /**
  * Parse the given stream of tokens into a sequence.
@@ -20,10 +21,16 @@ export function parse (tokens: TokenStream): Sequence {
 
   const accessor = new TokenAccessor(tokens, [TokenType.COMMENT])
 
+  // On global level, the script can contain either entity definitions or messages.
+
   while (accessor.hasNext()) {
     const token = tokens.peek()
     if (detectEntity(token)) {
       state.insertEntity(parseEntity(accessor))
+      continue
+    }
+    if (detectMessage(token)) {
+      state.insertActivation(parseMessage(accessor, state, undefined))
       continue
     }
     throw new UnexpectedTokenError(token)
