@@ -153,6 +153,31 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
     check(MessageType.DESTROY)
   })
 
+  it('applies default label for CREATE and DESTROY if none specified', function () {
+    const check = (type: MessageType, expectedLabel: string): void => {
+      const desc: MessageDescription = {
+        type: type,
+        fromOutside: false,
+        target: target,
+        label: '',
+        block: undefined,
+        evidence: {
+          type: evidenceToken,
+          fromOutside: evidenceToken,
+          target: evidenceToken,
+          label: evidenceToken,
+          block: evidenceToken
+        }
+      }
+      const result = matchRegularMessage(desc, active)
+      expect(result).to.be.an('object')
+      const activation = result as Activation
+      expect(activation.message.label).to.equal(expectedLabel)
+    }
+    check(MessageType.CREATE, '«create»')
+    check(MessageType.DESTROY, '«destroy»')
+  })
+
   it('throws if active is undefined', function () {
     const evidenceToken = new Token(TokenType.ARROW, 0, '->')
     const desc: MessageDescription = {

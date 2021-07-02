@@ -111,7 +111,7 @@ export function matchRegularMessage (desc: MessageDescription, active: Entity | 
     throw new UnexpectedMessageBlockError(evidence.block)
   }
 
-  const msg = new definition.constructor(active, target, label)
+  const msg = new definition.constructor(active, target, label !== '' ? label : definition.defaultLabel)
   const reply = definition.includeReply(active, target, block?.returnValue)
     ? new ReplyMessage(target, active, block?.returnValue ?? '')
     : undefined
