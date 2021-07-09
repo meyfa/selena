@@ -1,0 +1,47 @@
+import { Drawable } from './drawable'
+import { Size } from '../../util/geometry/size'
+import { Point } from '../../util/geometry/point'
+import { RenderAttributes, Renderer } from '../../renderer/renderer'
+
+/**
+ * A Drawable that draws a rectangular box with a strong outline.
+ */
+export class BoxDrawable implements Drawable {
+  private size: Size = Size.ZERO
+  private start: Point = Point.ORIGIN
+
+  constructor (size?: Size, start?: Point) {
+    if (size != null) this.size = size
+    if (start != null) this.start = start
+  }
+
+  /**
+   * Set the size of the rectangle.
+   * This needs to be called before measurement.
+   *
+   * @param {Size} size The size.
+   */
+  setSize (size: Size): void {
+    this.size = size
+  }
+
+  /**
+   * Set the position of this rectangle via the top-left corner.
+   * The box expands downwards and to the right from this location.
+   *
+   * @param {Point} start The position.
+   */
+  setTopLeft (start: Point): void {
+    this.start = start
+  }
+
+  measure (_attr: RenderAttributes): Size {
+    return this.size
+  }
+
+  draw (renderer: Renderer): void {
+    renderer.renderBox(this.start, this.size, {
+      lineWidth: 2
+    })
+  }
+}
