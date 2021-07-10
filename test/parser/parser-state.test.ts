@@ -1,9 +1,9 @@
+import { expect } from 'chai'
+
 import { ParserState } from '../../src/parser/parser-state'
 import { Entity, EntityType } from '../../src/sequence/entity'
 import { Activation } from '../../src/sequence/activation'
 import { SyncMessage } from '../../src/sequence/message'
-
-import { expect } from 'chai'
 
 describe('src/parser/parser-state.ts', function () {
   it('has empty entities and activations at first', function () {

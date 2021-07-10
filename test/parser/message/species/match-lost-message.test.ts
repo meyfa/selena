@@ -1,3 +1,5 @@
+import { expect } from 'chai'
+
 import { matchLostMessage } from '../../../../src/parser/message/species/match-lost-message'
 import { MessageDescription, MessageType } from '../../../../src/parser/message/message-description'
 import { Entity, EntityType } from '../../../../src/sequence/entity'
@@ -5,8 +7,6 @@ import { ParserError } from '../../../../src/parser/errors'
 import { Token, TokenType } from '../../../../src/tokenizer/token'
 import { Activation } from '../../../../src/sequence/activation'
 import { MessageStyle } from '../../../../src/sequence/message'
-
-import { expect } from 'chai'
 
 describe('src/parser/message/species/match-lost-message.ts', function () {
   const evidenceToken = new Token(TokenType.ARROW, 0, '->')

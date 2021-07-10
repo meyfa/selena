@@ -1,9 +1,9 @@
+import { expect } from 'chai'
+
 import { tokenize } from '../../src/tokenizer/tokenizer'
 import { TokenStream } from '../../src/tokenizer/token-stream'
 import { TokenType } from '../../src/tokenizer/token'
 import { UnterminatedStringError } from '../../src/tokenizer/errors'
-
-import { expect } from 'chai'
 
 describe('src/tokenizer/tokenizer.ts', function () {
   describe('tokenize()', function () {
