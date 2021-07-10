@@ -13,8 +13,8 @@ import { matchRegularMessage } from './species/match-regular-message'
  * Determine whether the given token marks the beginning of a message.
  * This will only produce valid results when on global level or inside a message block.
  *
- * @param {Token} token The next token in the input stream.
- * @returns {boolean} Whether the token (and what follows) could be parsed as a message.
+ * @param token The next token in the input stream.
+ * @returns Whether the token (and what follows) could be parsed as a message.
  */
 export function detectMessage (token: Token): boolean {
   return detectMessageDescription(token)
@@ -24,11 +24,11 @@ export function detectMessage (token: Token): boolean {
  * Force-parse a message including full validity and type checks.
  * This can parse found messages, lost messages, and regular messages (with two participating entities).
  *
- * @param {TokenAccessor} tokens The token stream.
- * @param {EntityLookup} entities A way of resolving entity ids.
- * @param {Entity | undefined} active The entity that was targeted by the parent message, if any.
- * @returns {object} The parsed message description.
- * @throws {ParserError} If a check fails.
+ * @param tokens The token stream.
+ * @param entities A way of resolving entity ids.
+ * @param active The entity that was targeted by the parent message, if any.
+ * @returns The parsed message description.
+ * @throws If a check fails.
  */
 export function parseMessage (tokens: TokenAccessor, entities: EntityLookup, active: Entity | undefined): Activation {
   /*

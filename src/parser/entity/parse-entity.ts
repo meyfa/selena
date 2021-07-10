@@ -10,8 +10,8 @@ import { TokenAccessor } from '../token-accessor'
  * Determine whether the given token marks the beginning of an entity definition.
  * This will only produce valid results for tokens at global scope.
  *
- * @param {Token} token The next token in the input stream.
- * @returns {boolean} Whether the token could be parsed as an entity definition.
+ * @param token The next token in the input stream.
+ * @returns Whether the token could be parsed as an entity definition.
  */
 export function detectEntity (token: Token): boolean {
   return token.type === TokenType.WORD && token.value === keywords.object
@@ -20,8 +20,8 @@ export function detectEntity (token: Token): boolean {
 /**
  * Force-parse an entity definition from the given stream.
  *
- * @param {TokenAccessor} tokens The input stream.
- * @returns {Entity} The parsed entity.
+ * @param tokens The input stream.
+ * @returns The parsed entity.
  */
 export function parseEntity (tokens: TokenAccessor): Entity {
   tokens.pop(TokenType.WORD, keywords.object)

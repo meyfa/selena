@@ -3,9 +3,9 @@
  * If no such character exists, the line is assumed to end at the string end, and str.length is returned.
  *
  *
- * @param {string} str The subject.
- * @param {?number} position Optionally, a start index.
- * @returns {number} The position of the next end-of-line character, or, in absence of one, str.length.
+ * @param str The subject.
+ * @param position Optionally, a start index.
+ * @returns The position of the next end-of-line character, or, in absence of one, str.length.
  */
 export function findEndOfLine (str: string, position?: number): number {
   const nPos = str.indexOf('\n', position)

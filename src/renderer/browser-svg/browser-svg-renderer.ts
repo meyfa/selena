@@ -4,10 +4,23 @@ import { Point } from '../../util/geometry/point'
 
 type AttributeValue = string | number | undefined
 
+/**
+ * Create an XML element for the SVG namespace.
+ *
+ * @param tagName The tag name for the element to create.
+ * @returns The created element.
+ */
 function createSvgElement (tagName: string): SVGElement {
   return document.createElementNS('http://www.w3.org/2000/svg', tagName)
 }
 
+/**
+ * Apply a set of attributes to the given element.
+ * The attribute values (when present) will be converted to strings.
+ *
+ * @param element The SVG element.
+ * @param attrs The attributes to apply.
+ */
 function applyAttributes (element: SVGElement, attrs: Record<string, AttributeValue>): void {
   for (const key of Object.keys(attrs)) {
     const value = attrs[key]
@@ -16,6 +29,14 @@ function applyAttributes (element: SVGElement, attrs: Record<string, AttributeVa
   }
 }
 
+/**
+ * Obtain the size of the given piece of text in SVG pixels.
+ * This is potentially an expensive operation.
+ *
+ * @param text The text to measure.
+ * @param fontSize The font size to use while measuring.
+ * @returns The size of the text in the SVG context.
+ */
 function measureText (text: string, fontSize: number): Size {
   const element = createSvgElement('text') as SVGTextElement
   applyAttributes(element, {
@@ -33,6 +54,14 @@ function measureText (text: string, fontSize: number): Size {
   return new Size(box.width, box.height)
 }
 
+/**
+ * Create a viewBox attribute string from the given canvas size and external padding.
+ *
+ * @param size The canvas size.
+ * @param hPadding The padding to apply on the left and right sides.
+ * @param vPadding The padding to apply on the top and bottom sides.
+ * @returns A viewBox string that matches the specifications.
+ */
 function getViewBox (size: Size, hPadding: number, vPadding: number): string {
   const minX = -hPadding
   const minY = -vPadding
@@ -42,6 +71,12 @@ function getViewBox (size: Size, hPadding: number, vPadding: number): string {
   return `${minX} ${minY} ${width} ${height}`
 }
 
+/**
+ * Given a StrokeOptions specification, compute the required attributes to apply.
+ *
+ * @param options The stroke options.
+ * @returns The attributes that need to be applied to achieve that stroke.
+ */
 function convertStrokeToAttributes (options?: StrokeOptions): Record<string, AttributeValue> {
   return {
     'stroke-width': options?.lineWidth ?? 1,
@@ -83,9 +118,8 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
    * Any CSS color value can be used.
    * The background is used for rendering boxes, and the foreground for strokes and texts.
    *
-   * @param {string} foreground The foreground color.
-   * @param {string} background The background color.
-   * @returns {void}
+   * @param foreground The foreground color.
+   * @param background The background color.
    */
   setColors (foreground: string, background: string): void {
     this.foregroundColor = foreground

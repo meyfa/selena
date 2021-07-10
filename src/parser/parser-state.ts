@@ -27,8 +27,7 @@ export class ParserState implements EntityLookup {
   /**
    * Add the given entity to this state.
    *
-   * @param {Entity} entity The entity.
-   * @returns {void}
+   * @param entity The entity.
    */
   insertEntity (entity: Entity): void {
     if (this.entityMap.has(entity.id)) {
@@ -42,8 +41,7 @@ export class ParserState implements EntityLookup {
    * Add the given activation to this state. The activation must be a top-level activation,
    * in other words, child activations should not be added with this.
    *
-   * @param {Activation} activation The activation.
-   * @returns {void}
+   * @param activation The activation.
    */
   insertActivation (activation: Activation): void {
     this.rootActivations.push(activation)
@@ -52,7 +50,7 @@ export class ParserState implements EntityLookup {
   /**
    * Retrieve all entities currently added to this state object.
    *
-   * @returns {Entity[]} The entities.
+   * @returns The entities.
    */
   getEntities (): Entity[] {
     return this.entities
@@ -62,7 +60,7 @@ export class ParserState implements EntityLookup {
    * Retrieve all activations currently added to this state object.
    * This does not consider child activations, but gives a flat view of just the root activations.
    *
-   * @returns {Activation[]} The activations.
+   * @returns The activations.
    */
   getRootActivations (): Activation[] {
     return this.rootActivations

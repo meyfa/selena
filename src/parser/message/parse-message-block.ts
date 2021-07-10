@@ -49,8 +49,8 @@ class MessageBlockBuilder {
  * Determine whether the given token marks the beginning of a message block.
  * This will only produce valid results when right at the end of a message description.
  *
- * @param {Token} token The next token in the input stream.
- * @returns {boolean} Whether the token (and what follows) could be parsed as a message block.
+ * @param token The next token in the input stream.
+ * @returns Whether the token (and what follows) could be parsed as a message block.
  */
 export function detectMessageBlock (token: Token): boolean {
   return token.type === TokenType.BLOCK_LEFT
@@ -64,11 +64,11 @@ export function detectMessageBlock (token: Token): boolean {
  * for the specific message type. It does, however, include "evidence" (a token) for the return value if one exists so
  * meaningful error messages can be created later.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @param {EntityLookup} entities A way of resolving entity ids.
- * @param {Entity} active The entity that was targeted by the message to which this block belongs.
- * @returns {object} The parsed message description.
- * @throws {ParserError} If a check fails.
+ * @param tokens The token stream.
+ * @param entities A way of resolving entity ids.
+ * @param active The entity that was targeted by the message to which this block belongs.
+ * @returns The parsed message description.
+ * @throws If a check fails.
  */
 export function parseMessageBlock (tokens: TokenAccessor, entities: EntityLookup, active: Entity): MessageBlock {
   tokens.pop(TokenType.BLOCK_LEFT)
