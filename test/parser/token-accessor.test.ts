@@ -1,9 +1,9 @@
+import { expect } from 'chai'
+
 import { TokenAccessor } from '../../src/parser/token-accessor'
 import { Token, TokenType } from '../../src/tokenizer/token'
 import { UnexpectedTokenError } from '../../src/parser/errors'
 import { TokenStream } from '../../src/tokenizer/token-stream'
-
-import { expect } from 'chai'
 
 describe('src/parser/token-accessor.ts', function () {
   describe('#hasNext()', function () {

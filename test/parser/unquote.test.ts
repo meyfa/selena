@@ -1,7 +1,7 @@
+import { expect } from 'chai'
+
 import { unquote } from '../../src/parser/unquote'
 import { Token, TokenType } from '../../src/tokenizer/token'
-
-import { expect } from 'chai'
 
 describe('src/parser/unquote.ts', function () {
   it('throws for tokens that are not strings', function () {

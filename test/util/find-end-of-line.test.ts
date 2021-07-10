@@ -1,6 +1,6 @@
-import { findEndOfLine } from '../../src/util/find-end-of-line'
-
 import { expect } from 'chai'
+
+import { findEndOfLine } from '../../src/util/find-end-of-line'
 
 describe('src/util/regexp-index-of.ts', function () {
   describe('findEndOfLine() without position', function () {

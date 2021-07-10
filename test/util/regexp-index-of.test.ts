@@ -1,6 +1,6 @@
-import { regexpIndexOf } from '../../src/util/regexp-index-of'
-
 import { expect } from 'chai'
+
+import { regexpIndexOf } from '../../src/util/regexp-index-of'
 
 describe('src/util/regexp-index-of.ts', function () {
   describe('regexpIndexOf() without position', function () {

@@ -1,3 +1,5 @@
+import { expect } from 'chai'
+
 import { detectMessageDescription, parseMessageDescription } from '../../../src/parser/message/parse-message-description'
 import { Token, TokenType } from '../../../src/tokenizer/token'
 import { TokenStream } from '../../../src/tokenizer/token-stream'
@@ -6,8 +8,6 @@ import { Entity, EntityType } from '../../../src/sequence/entity'
 import { EntityLookup } from '../../../src/parser/parser-state'
 import { MessageBlock, MessageType } from '../../../src/parser/message/message-description'
 import { ParserError } from '../../../src/parser/errors'
-
-import { expect } from 'chai'
 
 describe('src/parser/message/parse-message-description.ts', function () {
   describe('detectMessageDescription()', function () {

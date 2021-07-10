@@ -1,8 +1,8 @@
+import { expect } from 'chai'
+
 import { ReplyMessage, SyncMessage } from '../../src/sequence/message'
 import { Entity, EntityType } from '../../src/sequence/entity'
 import { Activation } from '../../src/sequence/activation'
-
-import { expect } from 'chai'
 
 describe('src/sequence/activation.ts', function () {
   it('has a working constructor', function () {

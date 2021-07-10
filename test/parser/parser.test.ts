@@ -1,8 +1,8 @@
+import { expect } from 'chai'
+
 import { parse } from '../../src/parser/parser'
 import { TokenStream } from '../../src/tokenizer/token-stream'
 import { Token, TokenType } from '../../src/tokenizer/token'
-
-import { expect } from 'chai'
 
 describe('src/parser/parser.ts', function () {
   it('parses empty token stream as empty sequence', function () {

@@ -1,8 +1,8 @@
+import { expect } from 'chai'
+
 import { detectEntityOptions, parseEntityOptions } from '../../../src/parser/entity/parse-entity-options'
 import { Token, TokenType } from '../../../src/tokenizer/token'
 import { TokenStream } from '../../../src/tokenizer/token-stream'
-
-import { expect } from 'chai'
 import { TokenAccessor } from '../../../src/parser/token-accessor'
 
 describe('src/parser/entity/parse-entity-options.ts', function () {
