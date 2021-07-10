@@ -27,9 +27,9 @@ const TOKEN_END_REGEXP = /[\s=(){}:"]|->/
  * Try matching the input as a comment.
  * Anything is considered a comment that starts with the hash character ('#').
  *
- * @param {string} str The input.
- * @param {number} start The current position in the input string (start of the token to match).
- * @returns {Token | undefined} The matched token, or undefined if not of the correct format.
+ * @param str The input.
+ * @param start The current position in the input string (start of the token to match).
+ * @returns The matched token, or undefined if not of the correct format.
  */
 function tryMatchComment (str: string, start: number): Token | undefined {
   if (str[start] === '#') {
@@ -43,9 +43,9 @@ function tryMatchComment (str: string, start: number): Token | undefined {
  * Try matching the input against the fixed token types.
  * A token type is considered "fixed" if its tokens can only ever have one specific value.
  *
- * @param {string} str The input.
- * @param {number} start The current position in the input string (start of the token to match).
- * @returns {Token | undefined} The matched token, or undefined if not of the correct format.
+ * @param str The input.
+ * @param start The current position in the input string (start of the token to match).
+ * @returns The matched token, or undefined if not of the correct format.
  */
 function tryMatchFixed (str: string, start: number): Token | undefined {
   for (const fixed of Object.keys(FIXED_TYPES)) {
@@ -60,10 +60,10 @@ function tryMatchFixed (str: string, start: number): Token | undefined {
  * Try matching the input as a string.
  * Anything is considered a string that starts with a quotation mark ('"').
  *
- * @param {string} str The input.
- * @param {number} start The current position in the input string (start of the token to match).
- * @returns {Token | undefined} The matched token, or undefined if not of the correct format.
- * @throws {UnterminatedStringError} If the matched string is left unterminated.
+ * @param str The input.
+ * @param start The current position in the input string (start of the token to match).
+ * @returns The matched token, or undefined if not of the correct format.
+ * @throws If the matched string is left unterminated.
  */
 function tryMatchString (str: string, start: number): Token | undefined {
   if (str[start] === '"') {
@@ -81,9 +81,9 @@ function tryMatchString (str: string, start: number): Token | undefined {
  * Try matching the input as a word.
  * A word is any sequence of regular characters up until the next whitespace, string token, or fixed token.
  *
- * @param {string} str The input.
- * @param {number} start The current position in the input string (start of the token to match).
- * @returns {Token | undefined} The matched token, or undefined if not of the correct format.
+ * @param str The input.
+ * @param start The current position in the input string (start of the token to match).
+ * @returns The matched token, or undefined if not of the correct format.
  */
 function tryMatchWord (str: string, start: number): Token | undefined {
   let end = regexpIndexOf(str, TOKEN_END_REGEXP, start)
@@ -96,11 +96,11 @@ function tryMatchWord (str: string, start: number): Token | undefined {
 /**
  * Match the next token form the input string, starting at the given position.
  *
- * @param {string} str The input.
- * @param {number} start The current position in the input string (start of the token to match).
- * @returns {Token} The matched token.
- * @throws {UnknownTokenTypeError} If the type of token could not be determined.
- * @throws {UnterminatedStringError} If the matched token is a string that is left unterminated.
+ * @param str The input.
+ * @param start The current position in the input string (start of the token to match).
+ * @returns The matched token.
+ * @throws If the type of token could not be determined.
+ * @throws If the matched token is a string that is left unterminated.
  */
 function matchToken (str: string, start: number): Token {
   const match = tryMatchComment(str, start) ??
@@ -118,10 +118,10 @@ function matchToken (str: string, start: number): Token {
 /**
  * Convert the given string into a stream of tokens.
  *
- * @param {string} str The input.
- * @returns {TokenStream} The tokenize result.
- * @throws {UnknownTokenTypeError} If the string includes a token whose type cannot be determined.
- * @throws {UnterminatedStringError} If the string includes a token that is left unterminated.
+ * @param str The input.
+ * @returns The tokenize result.
+ * @throws If the string includes a token whose type cannot be determined.
+ * @throws If the string includes a token that is left unterminated.
  */
 export function tokenize (str: string): TokenStream {
   const tokens: Token[] = []

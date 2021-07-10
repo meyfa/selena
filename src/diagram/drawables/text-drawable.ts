@@ -21,6 +21,13 @@ interface Offset {
   y: number
 }
 
+/**
+ * Determine how far the text position should be offset to account for its alignment.
+ *
+ * @param align The text alignment.
+ * @param textSize The size of the text.
+ * @returns The computed offset.
+ */
 function getOffsetForAlignment (align: TextAlignment, textSize: Size): Offset {
   switch (align) {
     case TextAlignment.CENTER_ABOVE:
@@ -54,8 +61,8 @@ export class TextDrawable implements Drawable {
    * The alignment might have the text centered around the given point,
    * aligned flush to one of its edges, etc.
    *
-   * @param {Point} pos The position.
-   * @param {TextAlignment} align The alignment specifier.
+   * @param pos The position.
+   * @param align The alignment specifier.
    */
   setPosition (pos: Point, align: TextAlignment): void {
     this.position = pos

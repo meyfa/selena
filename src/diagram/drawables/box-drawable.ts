@@ -19,7 +19,7 @@ export class BoxDrawable implements Drawable {
    * Set the size of the rectangle.
    * This needs to be called before measurement.
    *
-   * @param {Size} size The size.
+   * @param size The size.
    */
   setSize (size: Size): void {
     this.size = size
@@ -29,7 +29,7 @@ export class BoxDrawable implements Drawable {
    * Set the position of this rectangle via the top-left corner.
    * The box expands downwards and to the right from this location.
    *
-   * @param {Point} start The position.
+   * @param start The position.
    */
   setTopLeft (start: Point): void {
     this.start = start

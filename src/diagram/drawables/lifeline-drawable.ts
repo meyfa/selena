@@ -24,7 +24,7 @@ export class LifelineDrawable implements Drawable {
    * The y coordinate determines the height below which the head (and, later, the lifeline line) appear.
    * The x coordinate determines the center location of the lifeline.
    *
-   * @param {Point} position The position.
+   * @param position The position.
    */
   setTopCenter (position: Point): void {
     this.position = position
@@ -34,7 +34,7 @@ export class LifelineDrawable implements Drawable {
    * Set the y coordinate at which the lifeline stops. This is an absolute coordinate,
    * independent of the lifeline's anchor position.
    *
-   * @param {number} endHeight The absolute height at which the lifeline stops.
+   * @param endHeight The absolute height at which the lifeline stops.
    */
   setEndHeight (endHeight: number): void {
     this.endHeight = endHeight
@@ -44,7 +44,8 @@ export class LifelineDrawable implements Drawable {
    * Measure just the head portion of this lifeline.
    * This is useful for laying out the lifeline, because #measure() would include the line length.
    *
-   * @param {object} attr The rendering attributes.
+   * @param attr The rendering attributes.
+   * @returns The head size.
    */
   measureHead (attr: RenderAttributes): Size {
     return this.head.measure(attr)

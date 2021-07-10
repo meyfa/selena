@@ -1,5 +1,12 @@
 import { Message, MessageStyle } from './message'
 
+/**
+ * Determine whether the given reply is a valid reply to the given original message.
+ *
+ * @param message The original message.
+ * @param reply The assumed reply to that message.
+ * @returns Whether the reply makes sense in the context of the given message.
+ */
 function isReplyValid (message: Message, reply: Message): boolean {
   if (reply.style !== MessageStyle.REPLY) {
     return false

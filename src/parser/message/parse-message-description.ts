@@ -26,8 +26,8 @@ interface OptionalValueWithEvidence<T> {
 /**
  * Determine whether the message begins with '*'. If yes, value will be true, and false otherwise.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @returns {object} The Boolean value and evidence for it if possible.
+ * @param tokens The token stream.
+ * @returns The Boolean value and evidence for it if possible.
  */
 function determineFromOutside (tokens: TokenAccessor): OptionalValueWithEvidence<boolean> {
   const evidence = tokens.popOptional(TokenType.WORD, keywords.outside)
@@ -38,8 +38,8 @@ function determineFromOutside (tokens: TokenAccessor): OptionalValueWithEvidence
  * Determine the type of message (sync, async, ...) specified in parentheses.
  * If no type was specified, value will be undefined.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @returns {object} The message type and evidence for it if possible.
+ * @param tokens The token stream.
+ * @returns The message type and evidence for it if possible.
  */
 function determineType (tokens: TokenAccessor): OptionalValueWithEvidence<MessageType> {
   if (tokens.popOptional(TokenType.PAREN_LEFT) != null) {
@@ -57,9 +57,9 @@ function determineType (tokens: TokenAccessor): OptionalValueWithEvidence<Messag
 /**
  * Determine the message target. This will be an entity if one was specified, and undefined if '*' was given.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @param {EntityLookup} entities A way of resolving entity ids.
- * @returns {object} The target and evidence for it if possible.
+ * @param tokens The token stream.
+ * @param entities A way of resolving entity ids.
+ * @returns The target and evidence for it if possible.
  */
 function determineTarget (tokens: TokenAccessor, entities: EntityLookup): OptionalValueWithEvidence<Entity> {
   const evidence = tokens.pop(TokenType.WORD)
@@ -76,8 +76,8 @@ function determineTarget (tokens: TokenAccessor, entities: EntityLookup): Option
 /**
  * Determine the message label. If no label was specified, the value will be undefined.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @returns {object} The message label and evidence for it if possible.
+ * @param tokens The token stream.
+ * @returns The message label and evidence for it if possible.
  */
 function determineLabel (tokens: TokenAccessor): OptionalValueWithEvidence<string> {
   const evidence = tokens.popOptional(TokenType.STRING)
@@ -91,10 +91,10 @@ function determineLabel (tokens: TokenAccessor): OptionalValueWithEvidence<strin
  * Determine the message block (nested messages). If no block exists, the value will be undefined.
  * If a block exists but the target is null, this will throw an error.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @param {EntityLookup} entities A way of resolving entity ids.
- * @param {Entity | undefined} target The already-resolved message target.
- * @returns {object} The message label and evidence for it if possible.
+ * @param tokens The token stream.
+ * @param entities A way of resolving entity ids.
+ * @param target The already-resolved message target.
+ * @returns The message label and evidence for it if possible.
  */
 function determineBlock (tokens: TokenAccessor, entities: EntityLookup, target: Entity | undefined): OptionalValueWithEvidence<MessageBlock> {
   const evidence = tokens.hasNext() ? tokens.peek() : undefined
@@ -111,8 +111,8 @@ function determineBlock (tokens: TokenAccessor, entities: EntityLookup, target: 
  * Determine whether the given token marks the beginning of a message description.
  * This will only produce valid results when on global level or inside a message block.
  *
- * @param {Token} token The next token in the input stream.
- * @returns {boolean} Whether the token (and what follows) could be parsed as a message description.
+ * @param token The next token in the input stream.
+ * @returns Whether the token (and what follows) could be parsed as a message description.
  */
 export function detectMessageDescription (token: Token): boolean {
   return token.type === TokenType.ARROW || (token.type === TokenType.WORD && token.value === keywords.outside)
@@ -128,10 +128,10 @@ export function detectMessageDescription (token: Token): boolean {
  * This is the token that caused that value to be detected (or not to be detected) and allows for meaningful error
  * messages to be created later.
  *
- * @param {TokenAccessor} tokens The token stream.
- * @param {EntityLookup} entities A way of resolving entity ids.
- * @returns {object} The parsed message description.
- * @throws {ParserError} If a check fails.
+ * @param tokens The token stream.
+ * @param entities A way of resolving entity ids.
+ * @returns The parsed message description.
+ * @throws If a check fails.
  */
 export function parseMessageDescription (tokens: TokenAccessor, entities: EntityLookup): MessageDescription {
   // parse the following format, where [...] indicates optionality and target is an entity or '*':

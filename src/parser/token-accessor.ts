@@ -30,7 +30,7 @@ export class TokenAccessor {
   /**
    * Check stream state.
    *
-   * @returns {boolean} Whether there are any more tokens left.
+   * @returns Whether there are any more tokens left.
    */
   hasNext (): boolean {
     this.advanceSkippedTokens()
@@ -40,8 +40,8 @@ export class TokenAccessor {
   /**
    * Retrieve the next token without advancing the stream.
    *
-   * @returns {Token} The next token in the stream.
-   * @throws {EndOfStreamError} If there is no remaining token.
+   * @returns The next token in the stream.
+   * @throws If there is no remaining token.
    */
   peek (): Token {
     this.advanceSkippedTokens()
@@ -55,9 +55,9 @@ export class TokenAccessor {
    *
    * If no token remains (empty stream), this will return undefined.
    *
-   * @param {TokenType} type The type of token to pop off.
-   * @param {?string} value The value the token is expected to have.
-   * @returns {Token | undefined} The next token in the stream, or undefined.
+   * @param type The type of token to pop off.
+   * @param value The value the token is expected to have.
+   * @returns The next token in the stream, or undefined.
    */
   popOptional (type: TokenType, value?: string): Token | undefined {
     if (!this.hasNext()) {
@@ -74,11 +74,11 @@ export class TokenAccessor {
    * Obtain the next token and advance the stream. The token must be of the given type,
    * otherwise an error will be thrown. Optionally, the token value can be asserted in the same manner.
    *
-   * @param {TokenType} type The type of token to pop off.
-   * @param {?string} value The value the token is expected to have.
-   * @returns {Token} The next token.
-   * @throws {EndOfStreamError} If there is no remaining token.
-   * @throws {UnexpectedTokenError} If the token type mismatches, or a value was specified and it mismatches.
+   * @param type The type of token to pop off.
+   * @param value The value the token is expected to have.
+   * @returns The next token.
+   * @throws If there is no remaining token.
+   * @throws If the token type mismatches, or a value was specified and it mismatches.
    */
   pop (type: TokenType, value?: string): Token {
     const optToken = this.popOptional(type, value)

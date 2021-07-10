@@ -65,8 +65,8 @@ const destroyDefinition: ActivationDefinition = {
  * Depending on the message type, activations have to be created differently.
  * This function chooses the correct definition for the given type.
  *
- * @param {MessageType} messageType The message type.
- * @returns {object} The definition for that type.
+ * @param messageType The message type.
+ * @returns The definition for that type.
  */
 function lookupDefinition (messageType: MessageType): ActivationDefinition {
   // this switch is complete, otherwise TypeScript would complain
@@ -88,9 +88,9 @@ function lookupDefinition (messageType: MessageType): ActivationDefinition {
  * Errors will be thrown if further constraints are violated.
  * If it does not match (message has no source or no target), undefined will be returned.
  *
- * @param {object} desc The message description to match.
- * @param {Entity} active The entity that is the target of the parent message, if any.
- * @returns {Activation | undefined} The activation created as a result of the match, or undefined.
+ * @param desc The message description to match.
+ * @param active The entity that is the target of the parent message, if any.
+ * @returns The activation created as a result of the match, or undefined.
  */
 export function matchRegularMessage (desc: MessageDescription, active: Entity | undefined): Activation | undefined {
   const { type, fromOutside, target, label, block, evidence } = desc

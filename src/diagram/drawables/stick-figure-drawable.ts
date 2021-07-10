@@ -16,7 +16,7 @@ export class StickFigureDrawable implements Drawable {
    * The position specifies the y-height for the top edge of the pictogram
    * and the x position for the center of the pictogram.
    *
-   * @param {Point} topCenter The position.
+   * @param topCenter The position.
    */
   setTopCenter (topCenter: Point): void {
     this.topCenter = topCenter

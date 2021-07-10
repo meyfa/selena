@@ -12,9 +12,9 @@ import { detectMessage, parseMessage } from './message/parse-message'
  * This expects the stream to contain a completely valid document, otherwise an error will be thrown when there
  * is a token mismatch.
  *
- * @param {TokenStream} tokens The input token stream as produced by the tokenizer.
- * @returns {Sequence} The parsed sequence.
- * @throws {ParserError} If an error occurs during parsing.
+ * @param tokens The input token stream as produced by the tokenizer.
+ * @returns The parsed sequence.
+ * @throws If an error occurs during parsing.
  */
 export function parse (tokens: TokenStream): Sequence {
   const state = new ParserState()

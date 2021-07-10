@@ -10,8 +10,8 @@ import { FoundMessage } from '../../../sequence/message'
  * Errors will be thrown if further constraints are violated.
  * If it does not match (message has no source or has a target), undefined will be returned.
  *
- * @param {object} desc The message description to match.
- * @returns {Activation | undefined} The activation created as a result of the match, or undefined.
+ * @param desc The message description to match.
+ * @returns The activation created as a result of the match, or undefined.
  */
 export function matchFoundMessage (desc: MessageDescription): Activation | undefined {
   const { type, fromOutside, target, label, block, evidence } = desc

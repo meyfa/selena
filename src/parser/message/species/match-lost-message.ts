@@ -11,9 +11,9 @@ import { messageOptions } from '../../strings'
  * Errors will be thrown if further constraints are violated.
  * If it does not match (message has no source or has a target), undefined will be returned.
  *
- * @param {object} desc The message description to match.
- * @param {Entity} active The entity that is the target of the parent message, if any.
- * @returns {Activation | undefined} The activation created as a result of the match, or undefined.
+ * @param desc The message description to match.
+ * @param active The entity that is the target of the parent message, if any.
+ * @returns The activation created as a result of the match, or undefined.
  */
 export function matchLostMessage (desc: MessageDescription, active: Entity | undefined): Activation | undefined {
   const { type, fromOutside, target, label, block, evidence } = desc

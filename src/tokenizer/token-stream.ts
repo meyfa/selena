@@ -17,7 +17,7 @@ export class TokenStream {
   /**
    * Check stream state.
    *
-   * @returns {boolean} Whether there are any more tokens left.
+   * @returns Whether there are any more tokens left.
    */
   hasNext (): boolean {
     return this.nextPointer < this.tokens.length
@@ -26,7 +26,7 @@ export class TokenStream {
   /**
    * Retrieve the next token without advancing the stream.
    *
-   * @returns {Token} The next token in the stream.
+   * @returns The next token in the stream.
    * @throws {EndOfStreamError} If there is no remaining token.
    */
   peek (): Token {
@@ -39,7 +39,7 @@ export class TokenStream {
   /**
    * Obtain the next token in the stream, consuming it.
    *
-   * @returns {Token} The next token in the stream.
+   * @returns The next token in the stream.
    * @throws {EndOfStreamError} If there is no remaining token.
    */
   next (): Token {

@@ -15,9 +15,9 @@ export class Point {
   /**
    * Create a new point whose coordinates are the sum of this one's and the given deltas.
    *
-   * @param {number} dx The amount to add on the x-axis.
-   * @param {number} dy The amount to add on the y-axis.
-   * @returns {Point} A new Point object with the shifted coordinates.
+   * @param dx The amount to add on the x-axis.
+   * @param dy The amount to add on the y-axis.
+   * @returns A new Point object with the shifted coordinates.
    */
   translate (dx: number, dy: number): Point {
     return new Point(this.x + dx, this.y + dy)
@@ -26,8 +26,8 @@ export class Point {
   /**
    * Create a copy of this point where the Y coordinate is the same, but the X coordinate is set to the one given.
    *
-   * @param {number} x The new x coordinate.
-   * @returns {Point} A new Point with the coordinates set as described above.
+   * @param x The new x coordinate.
+   * @returns A new Point with the coordinates set as described above.
    */
   withX (x: number): Point {
     return new Point(x, this.y)
@@ -36,8 +36,8 @@ export class Point {
   /**
    * Create a copy of this point where the X coordinate is the same, but the Y coordinate is set to the one given.
    *
-   * @param {number} y The new y coordinate.
-   * @returns {Point} A new Point with the coordinates set as described above.
+   * @param y The new y coordinate.
+   * @returns A new Point with the coordinates set as described above.
    */
   withY (y: number): Point {
     return new Point(this.x, y)

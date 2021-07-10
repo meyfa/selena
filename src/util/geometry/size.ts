@@ -18,9 +18,9 @@ export class Size {
   /**
    * Create a new object that is the sum of this one and the given deltas.
    *
-   * @param {number} dWidth The amount by which to grow this size width-wise.
-   * @param {number} dHeight The amount by which to grow this size height-wise.
-   * @returns {Size} A new Size object with the combined dimensions.
+   * @param dWidth The amount by which to grow this size width-wise.
+   * @param dHeight The amount by which to grow this size height-wise.
+   * @returns A new Size object with the combined dimensions.
    */
   add (dWidth: number, dHeight: number): Size {
     return new Size(this.width + dWidth, this.height + dHeight)
