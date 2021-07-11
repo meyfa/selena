@@ -25,21 +25,20 @@ export abstract class ActivationWalker<S> {
 
   private walkRecursively (node: Activation, levels: CountMap<string>): void {
     // determine levels and potentially increment toLevel
-    const fromLevel = node.message.from != null ? levels.get(node.message.from.id) : 0
-    let activate = false
-    let toLevel = 0
-    if (node.message.to != null) {
-      activate = this.shouldActivate(node)
-      toLevel = activate ? levels.incrementAndGet(node.message.to.id) : 0
-    }
+    const fromLevel = node.message.from != null
+      ? levels.get(node.message.from.id)
+      : 0
+    const toLevel = node.message.to != null && this.shouldActivate(node)
+      ? levels.incrementAndGet(node.message.to.id)
+      : 0
 
     // pre -> (recurse) -> post
-    const state = this.pre(node, fromLevel, toLevel, activate)
+    const state = this.pre(node, fromLevel, toLevel, toLevel > 0)
     node.children.forEach(child => this.walkRecursively(child, levels))
     this.post(node, fromLevel, toLevel, state)
 
-    // if level was incremented, decrement it again
-    if (node.message.to != null && activate) {
+    // if level was incremented, decrement it again (make use of the fact that toLevel===0 iff it was not activated)
+    if (node.message.to != null && toLevel > 0) {
       levels.decrement(node.message.to.id)
     }
   }
