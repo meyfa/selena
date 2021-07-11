@@ -1,3 +1,6 @@
+/**
+ * Specifies the different kinds of tokens that can be lexed.
+ */
 export enum TokenType {
   COMMENT = 'comment',
   WORD = 'word',

@@ -1,3 +1,6 @@
+/**
+ * Base class for errors that occur during tokenization.
+ */
 export class TokenizerError extends Error {
   readonly position: number
 

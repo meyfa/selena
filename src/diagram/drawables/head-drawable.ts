@@ -14,7 +14,7 @@ export interface HeadDrawable extends Drawable {
    *
    * This does not affect measurement but it does affect drawing.
    *
-   * @param {Point} topCenter The position of this head.
+   * @param topCenter The position of this head.
    */
   setTopCenter: (topCenter: Point) => void
 }
