@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+
 import { Diagram } from '../../src/diagram/diagram'
 import { Sequence } from '../../src/sequence/sequence'
 import { Renderer } from '../../src/renderer/renderer'
