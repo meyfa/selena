@@ -12,14 +12,14 @@ export interface Drawable {
    * This is not a stateful operation (i.e., no layout is computed).
    * In other words, it is not necessary to call this before calling #draw().
    *
-   * @param {object} attr The rendering attributes used to determine e.g. the sizes of strings.
+   * @param attr The rendering attributes used to determine e.g. the sizes of strings.
    */
   measure: (attr: RenderAttributes) => Size
 
   /**
    * Draw this Drawable to the given renderer.
    *
-   * @param {object} renderer The renderer.
+   * @param renderer The renderer.
    */
   draw: (renderer: Renderer) => void
 }

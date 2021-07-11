@@ -18,6 +18,9 @@ const TYPE_OPTIONS: ReadonlyMap<string, MessageType> = new Map([
   [messageOptions.destroy, MessageType.DESTROY]
 ])
 
+/**
+ * Represents a value that may or may not be present, and which may or may not be caused by a token (the evidence).
+ */
 interface OptionalValueWithEvidence<T> {
   value: T | undefined
   evidence: Token | undefined

@@ -16,6 +16,9 @@ export enum TextAlignment {
   CENTER_BELOW
 }
 
+/**
+ * Specifies a 2D translation amount.
+ */
 interface Offset {
   x: number
   y: number

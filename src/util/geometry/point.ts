@@ -1,3 +1,6 @@
+/**
+ * A 2D point.
+ */
 export class Point {
   /**
    * The point (0, 0).

@@ -8,8 +8,8 @@ export interface EntityLookup {
   /**
    * Obtain the entity with the given id, if it exists.
    *
-   * @param {string} id The entity id.
-   * @returns {Entity|undefined} The lookup result.
+   * @param id The entity id.
+   * @returns The lookup result.
    */
   lookupEntity: (id: string) => Entity | undefined
 }

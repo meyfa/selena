@@ -17,9 +17,9 @@ export interface RenderAttributes {
   /**
    * Measure the size of a piece of text, if it were to be rendered using this configuration.
    *
-   * @param {string} str The text to be measured.
-   * @param {number} fontSize The font size (in pixels) to use.
-   * @returns {Size} The measured size.
+   * @param str The text to be measured.
+   * @param fontSize The font size (in pixels) to use.
+   * @returns The measured size.
    */
   measureText: (str: string, fontSize: number) => Size
 }
@@ -31,20 +31,18 @@ export interface Renderer extends RenderAttributes {
   /**
    * Render a rectangular box, starting at the given coordinates and extending for a given size.
    *
-   * @param {Point} start The upper-left corner location.
-   * @param {Size} size The box size.
-   * @param {?object} options Options for stroking the box. If not provided, sensible defaults will be used.
-   * @returns {void}
+   * @param start The upper-left corner location.
+   * @param size The box size.
+   * @param options Options for stroking the box. If not provided, sensible defaults will be used.
    */
   renderBox: (start: Point, size: Size, options?: StrokeOptions) => void
 
   /**
    * Render a simple line from one point to another.
    *
-   * @param {Point} start The first point.
-   * @param {Point} end The second point.
-   * @param {?object} options Options for stroking the line. If not provided, sensible defaults will be used.
-   * @returns {void}
+   * @param start The first point.
+   * @param end The second point.
+   * @param options Options for stroking the line. If not provided, sensible defaults will be used.
    */
   renderLine: (start: Point, end: Point, options?: StrokeOptions) => void
 
@@ -52,20 +50,20 @@ export interface Renderer extends RenderAttributes {
    * Render a path (SVG path data format).
    * The path coordinates are shifted by the given offset (offset added to path coordinates).
    *
-   * @param {string} data The path data.
-   * @param {Point} offset The location of the origin of this path.
-   * @param {?object} options Options for stroking the path. If not provided, sensible defaults will be used.
-   * @returns {void}
+   * @param data The path data.
+   * @param offset The location of the origin of this path.
+   * @param options Options for stroking the path. If not provided, sensible defaults will be used.
    */
   renderPath: (data: string, offset: Point, options?: StrokeOptions) => void
+
+  renderArrow: (points: Point[], end1: LineMarker, end2: LineMarker, options?: StrokeOptions) => void
 
   /**
    * Render a text at the given position.
    *
-   * @param {string} text The text to render.
-   * @param {Point} offset The starting coordinate (beginning of line, baseline height).
-   * @param {number} fontSize The font size (in pixels) to use for rendering.
-   * @returns {void}
+   * @param text The text to render.
+   * @param offset The starting coordinate (beginning of line, baseline height).
+   * @param fontSize The font size (in pixels) to use for rendering.
    */
   renderText: (text: string, position: Point, fontSize: number) => void
 }
@@ -85,15 +83,14 @@ export interface DirectRenderer<OutputType> extends Renderer {
    * Set up this renderer for a drawing of the given size.
    * This needs to be called before any rendering can happen.
    *
-   * @param {Size} canvasSize The coordinate range in which rendering will occur.
-   * @returns {void}
+   * @param canvasSize The coordinate range in which rendering will occur.
    */
   prepare: (canvasSize: Size) => void
 
   /**
    * Finish rendering and produce the result.
    *
-   * @returns {object} The rendered result.
+   * @returns The rendered result.
    */
   finish: () => OutputType
 }
