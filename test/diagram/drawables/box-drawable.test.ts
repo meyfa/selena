@@ -1,9 +1,9 @@
+import { expect } from 'chai'
+
 import { BoxDrawable } from '../../../src/diagram/drawables/box-drawable'
 import { Size } from '../../../src/util/geometry/size'
 import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
 import { Point } from '../../../src/util/geometry/point'
-
-import { expect } from 'chai'
 
 describe('src/diagram/drawables/box-drawable.ts', function () {
   describe('#measure()', function () {
