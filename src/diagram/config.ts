@@ -1,3 +1,5 @@
+export const ENTITY_SPACING = 16
+
 export const COMPONENT_HEAD_PADDING_H = 8
 export const COMPONENT_HEAD_PADDING_V = 12
 
