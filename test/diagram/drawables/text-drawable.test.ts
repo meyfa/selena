@@ -1,9 +1,9 @@
+import { expect } from 'chai'
+
 import { TextAlignment, TextDrawable } from '../../../src/diagram/drawables/text-drawable'
 import { Size } from '../../../src/util/geometry/size'
 import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
 import { Point } from '../../../src/util/geometry/point'
-
-import { expect } from 'chai'
 
 describe('src/diagram/drawables/text-drawable.ts', function () {
   describe('#measure()', function () {

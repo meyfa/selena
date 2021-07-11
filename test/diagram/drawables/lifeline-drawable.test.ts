@@ -1,10 +1,10 @@
+import { expect } from 'chai'
+
 import { LifelineDrawable } from '../../../src/diagram/drawables/lifeline-drawable'
 import { Size } from '../../../src/util/geometry/size'
 import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
 import { Point } from '../../../src/util/geometry/point'
 import { HeadDrawable } from '../../../src/diagram/drawables/head-drawable'
-
-import { expect } from 'chai'
 
 describe('src/diagram/drawables/lifeline-drawable.ts', function () {
   describe('#measure()', function () {
