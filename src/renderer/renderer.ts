@@ -56,8 +56,6 @@ export interface Renderer extends RenderAttributes {
    */
   renderPath: (data: string, offset: Point, options?: StrokeOptions) => void
 
-  renderArrow: (points: Point[], end1: LineMarker, end2: LineMarker, options?: StrokeOptions) => void
-
   /**
    * Render a text at the given position.
    *
