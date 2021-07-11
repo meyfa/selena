@@ -145,6 +145,23 @@ describe('src/diagram/layout/indexed-constraint-layout.ts', function () {
     check(layout => layout.applyBetween(2, 0, 300))
   })
 
+  it('does nothing when setting space between item and itself', function () {
+    const layout = new IndexedConstraintLayout(3, {
+      itemMargin: 10
+    })
+    layout.applyDimension(0, 20)
+    layout.applyDimension(1, 40)
+    layout.applyDimension(2, 80)
+    layout.applyBetween(0, 0, 1000)
+    layout.applyBetween(1, 1, 1000)
+    layout.applyBetween(2, 2, 1000)
+    const computed = layout.compute()
+    expect(computed.totalDimensions).to.equal(160)
+    expect((computed.items.get(0) as any).start).to.equal(0)
+    expect((computed.items.get(1) as any).start).to.equal(30)
+    expect((computed.items.get(2) as any).start).to.equal(80)
+  })
+
   it('uses the largest constraints ever set (applyBefore)', function () {
     const layout = new IndexedConstraintLayout(3, {
       itemMargin: 10
