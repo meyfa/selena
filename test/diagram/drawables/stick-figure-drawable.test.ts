@@ -22,6 +22,7 @@ describe('src/diagram/drawables/stick-figure-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: (data) => {
           expect(data).to.be.a('string').with.length.greaterThan(0)
           done()
@@ -39,6 +40,7 @@ describe('src/diagram/drawables/stick-figure-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: (data, pos) => {
           expect(pos).to.deep.equal(position)
         },

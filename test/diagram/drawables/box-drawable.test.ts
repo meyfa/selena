@@ -35,6 +35,7 @@ describe('src/diagram/drawables/box-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => done(),
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),
         measureText: () => Size.ZERO
@@ -50,6 +51,7 @@ describe('src/diagram/drawables/box-drawable.ts', function () {
             expect(start).to.deep.equal(position)
           },
           renderLine: () => expect.fail(),
+          renderPolyline: () => expect.fail(),
           renderPath: () => expect.fail(),
           renderText: () => expect.fail(),
           measureText: () => Size.ZERO
