@@ -2,6 +2,17 @@ import { Size } from '../util/geometry/size'
 import { Point } from '../util/geometry/point'
 
 /**
+ * Represents markers that can be applied to the ends of lines.
+ */
+export enum LineMarker {
+  NONE,
+  ARROW_FULL,
+  ARROW_OPEN,
+  CIRCLE_FULL,
+  ARROW_INTO_CIRCLE_FULL
+}
+
+/**
  * This interface defines how stroke should be applied to a shape when rendering.
  */
 export interface StrokeOptions {
@@ -47,6 +58,16 @@ export interface Renderer extends RenderAttributes {
   renderLine: (start: Point, end: Point, options?: StrokeOptions) => void
 
   /**
+   * Render a polyline, potentially with markers at the end, useful for arrows.
+   *
+   * @param points The points of the polyline (first point, [intermediate points, ..., ], last point).
+   * @param end1 The marker to place at the first point.
+   * @param end2 The marker to place at the last point.
+   * @param options Options for stroking the path. If not provided, sensible defaults will be used.
+   */
+  renderPolyline: (points: Point[], end1: LineMarker, end2: LineMarker, options?: StrokeOptions) => void
+
+  /**
    * Render a path (SVG path data format).
    * The path coordinates are shifted by the given offset (offset added to path coordinates).
    *
@@ -60,7 +81,7 @@ export interface Renderer extends RenderAttributes {
    * Render a text at the given position.
    *
    * @param text The text to render.
-   * @param offset The starting coordinate (beginning of line, baseline height).
+   * @param position The starting coordinate (beginning of line, baseline height).
    * @param fontSize The font size (in pixels) to use for rendering.
    */
   renderText: (text: string, position: Point, fontSize: number) => void

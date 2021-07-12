@@ -1,33 +1,8 @@
-import { DirectRenderer, StrokeOptions } from '../renderer'
+import { DirectRenderer, LineMarker, StrokeOptions } from '../renderer'
 import { Size } from '../../util/geometry/size'
 import { Point } from '../../util/geometry/point'
-
-type AttributeValue = string | number | undefined
-
-/**
- * Create an XML element for the SVG namespace.
- *
- * @param tagName The tag name for the element to create.
- * @returns The created element.
- */
-function createSvgElement (tagName: string): SVGElement {
-  return document.createElementNS('http://www.w3.org/2000/svg', tagName)
-}
-
-/**
- * Apply a set of attributes to the given element.
- * The attribute values (when present) will be converted to strings.
- *
- * @param element The SVG element.
- * @param attrs The attributes to apply.
- */
-function applyAttributes (element: SVGElement, attrs: Record<string, AttributeValue>): void {
-  for (const key of Object.keys(attrs)) {
-    const value = attrs[key]
-    if (value == null) continue
-    element.setAttribute(key, String(value))
-  }
-}
+import { applyAttributes, AttributeValue, createSvgElement } from './svg-dom'
+import { SvgMarkerManager } from './svg-marker-manager'
 
 /**
  * Obtain the size of the given piece of text in SVG pixels.
@@ -96,6 +71,7 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
   private backgroundColor: string = '#FFF'
 
   private svg: SVGSVGElement | undefined
+  private markers: SvgMarkerManager | undefined
 
   constructor (hPadding: number, vPadding: number) {
     if (window == null || window.document == null) {
@@ -133,6 +109,11 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
       width: canvasSize.width + 2 * this.hPadding,
       height: canvasSize.height + 2 * this.vPadding
     })
+
+    const defs = createSvgElement('defs') as SVGDefsElement
+    this.svg.appendChild(defs)
+
+    this.markers = new SvgMarkerManager(defs, this.foregroundColor)
   }
 
   finish (): SVGSVGElement {
@@ -171,6 +152,21 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
       ...convertStrokeToAttributes(options)
     })
     this.addToRender(element)
+  }
+
+  renderPolyline (points: Point[], end1: LineMarker, end2: LineMarker, options?: StrokeOptions): void {
+    if (points.length < 2) return
+
+    const line = createSvgElement('polyline')
+    applyAttributes(line, {
+      points: points.map(p => `${p.x},${p.y}`).join(' '),
+      'marker-start': this.markers?.referenceMarker(end1),
+      'marker-end': this.markers?.referenceMarker(end2),
+      fill: 'none',
+      stroke: this.foregroundColor,
+      ...convertStrokeToAttributes(options)
+    })
+    this.addToRender(line)
   }
 
   renderPath (data: string, offset: Point, options?: StrokeOptions): void {
