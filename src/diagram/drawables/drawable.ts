@@ -13,6 +13,7 @@ export interface Drawable {
    * In other words, it is not necessary to call this before calling #draw().
    *
    * @param attr The rendering attributes used to determine e.g. the sizes of strings.
+   * @returns The measured size.
    */
   measure: (attr: RenderAttributes) => Size
 
