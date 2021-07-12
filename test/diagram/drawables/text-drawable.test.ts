@@ -34,6 +34,7 @@ describe('src/diagram/drawables/text-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: (text: string, position: Point, fontSize: number) => {
           expect(text).to.equal(' foo bar ')
@@ -51,6 +52,7 @@ describe('src/diagram/drawables/text-drawable.ts', function () {
         const renderer: Renderer = {
           renderBox: () => expect.fail(),
           renderLine: () => expect.fail(),
+          renderPolyline: () => expect.fail(),
           renderPath: () => expect.fail(),
           renderText: (text: string, position: Point) => {
             expect(position).to.deep.equal(expected)

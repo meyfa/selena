@@ -30,6 +30,7 @@ describe('src/diagram/drawables/component-head-drawable.ts', function () {
           boxCalled = true
         },
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: (text: string) => {
           expect(boxCalled).to.be.true
@@ -57,6 +58,7 @@ describe('src/diagram/drawables/component-head-drawable.ts', function () {
           expect(size).to.deep.equal(expectedSize)
         },
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: (text: string, pos: Point) => {
           expect(pos).to.deep.equal(expectedTextPosition)

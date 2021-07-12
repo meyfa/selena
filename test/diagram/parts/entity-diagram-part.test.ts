@@ -40,6 +40,7 @@ describe('src/diagram/parts/entity-diagram-part.ts', function () {
           expect(end.x).to.equal(150)
           expect(end.y).to.equal(700)
         },
+        renderPolyline: () => {},
         renderPath: () => {},
         renderText: () => {}
       }

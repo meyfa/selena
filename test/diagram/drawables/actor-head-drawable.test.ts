@@ -31,6 +31,7 @@ describe('src/diagram/drawables/actor-head-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: () => {
           expect(pathCalled).to.be.false
           pathCalled = true
@@ -52,6 +53,7 @@ describe('src/diagram/drawables/actor-head-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderLine: () => expect.fail(),
+        renderPolyline: () => expect.fail(),
         renderPath: (data, pos) => {
           expect(pos).to.deep.equal(position)
         },

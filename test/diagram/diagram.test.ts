@@ -14,6 +14,7 @@ describe('src/diagram/diagram.ts', function () {
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
         renderLine: () => {},
+        renderPolyline: () => {},
         renderBox: () => {},
         renderPath: () => {},
         renderText: () => {}
@@ -37,6 +38,7 @@ describe('src/diagram/diagram.ts', function () {
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
         renderLine: () => {},
+        renderPolyline: () => {},
         renderBox: () => {},
         renderPath: () => {},
         renderText: () => {}
@@ -52,6 +54,7 @@ describe('src/diagram/diagram.ts', function () {
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
         renderLine: () => {},
+        renderPolyline: () => {},
         renderBox: () => {},
         renderPath: () => {},
         renderText: (text: string, position: Point) => {

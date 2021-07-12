@@ -41,6 +41,7 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
           expect(headCalled).to.be.true
           done()
         },
+        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),
         measureText: () => Size.ZERO
@@ -68,6 +69,7 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
           expect(pos1).to.deep.equal(new Point(50, 115))
           expect(pos2).to.deep.equal(new Point(50, 185))
         },
+        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),
         measureText: () => Size.ZERO
