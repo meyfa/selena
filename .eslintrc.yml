@@ -12,3 +12,6 @@ rules:
   'jsdoc/require-returns-type': off
   # forbid types everywhere, and also in the context of function properties (such as those in interfaces)
   'jsdoc/no-types': ['error', {contexts: ['TSPropertySignature']}]
+  # explicitly check for returns and params description on interface functions
+  'jsdoc/require-returns-description': ['error', {contexts: ['TSPropertySignature']}]
+  'jsdoc/require-param-description': ['error', {contexts: ['TSPropertySignature']}]
