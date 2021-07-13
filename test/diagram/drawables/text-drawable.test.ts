@@ -1,6 +1,11 @@
 import { expect } from 'chai'
 
-import { TextAlignment, TextDrawable } from '../../../src/diagram/drawables/text-drawable'
+import {
+  HorizontalTextAlignment,
+  TextAlignment,
+  TextDrawable,
+  VerticalTextAlignment
+} from '../../../src/diagram/drawables/text-drawable'
 import { Size } from '../../../src/util/geometry/size'
 import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
 import { Point } from '../../../src/util/geometry/point'
@@ -63,9 +68,15 @@ describe('src/diagram/drawables/text-drawable.ts', function () {
         obj.setPosition(new Point(50, 100), align)
         obj.draw(renderer)
       }
-      check(TextAlignment.CENTER_CENTER, new Point(30, 107.5))
-      check(TextAlignment.CENTER_ABOVE, new Point(30, 100))
-      check(TextAlignment.CENTER_BELOW, new Point(30, 115))
+      check({ h: HorizontalTextAlignment.CENTER, v: VerticalTextAlignment.MIDDLE }, new Point(30, 107.5))
+      check({ h: HorizontalTextAlignment.CENTER, v: VerticalTextAlignment.ABOVE }, new Point(30, 100))
+      check({ h: HorizontalTextAlignment.CENTER, v: VerticalTextAlignment.BELOW }, new Point(30, 115))
+      check({ h: HorizontalTextAlignment.LEFT, v: VerticalTextAlignment.MIDDLE }, new Point(10, 107.5))
+      check({ h: HorizontalTextAlignment.LEFT, v: VerticalTextAlignment.ABOVE }, new Point(10, 100))
+      check({ h: HorizontalTextAlignment.LEFT, v: VerticalTextAlignment.BELOW }, new Point(10, 115))
+      check({ h: HorizontalTextAlignment.RIGHT, v: VerticalTextAlignment.MIDDLE }, new Point(50, 107.5))
+      check({ h: HorizontalTextAlignment.RIGHT, v: VerticalTextAlignment.ABOVE }, new Point(50, 100))
+      check({ h: HorizontalTextAlignment.RIGHT, v: VerticalTextAlignment.BELOW }, new Point(50, 115))
     })
   })
 })

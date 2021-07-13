@@ -5,41 +5,57 @@ import { Size } from '../../util/geometry/size'
 import { FONT_SIZE } from '../config'
 
 /**
- * Enum specifying how to align text around the set position.
+ * Enum specifying horizontal positioning of text relative to a given point.
+ * "Left" means the text will extend only to the left of the point (i.e., the text's
+ * right edge will be at the point's x coordinate).
+ * "Right" means the text will extend only to the right of the point.
+ * "Center" means the text will extend to the left and right in equal amounts.
+ */
+export enum HorizontalTextAlignment {
+  LEFT,
+  CENTER,
+  RIGHT
+}
+
+/**
+ * Enum specifying vertical positioning of text relative to a given point.
+ * "Above" means the text's baseline will be at the point (the text will extend upwards from there).
+ * "Below" means the baseline will be shifted downwards so that the text stays just below the point.
+ * "Middle" means the baseline will be located right between "above" and "below" positions.
+ */
+export enum VerticalTextAlignment {
+  ABOVE,
+  MIDDLE,
+  BELOW
+}
+
+/**
+ * Interface for objects specifying how to align text around the set position.
  *
  * For example, the text could be fully centered around that point,
  * or only centered on the x-axis but with the baseline located at the point's y coordinate, etc.
  */
-export enum TextAlignment {
-  CENTER_CENTER,
-  CENTER_ABOVE,
-  CENTER_BELOW
+export interface TextAlignment {
+  readonly h: HorizontalTextAlignment
+  readonly v: VerticalTextAlignment
 }
 
 /**
- * Specifies a 2D translation amount.
+ * How far the text has to be shifted horizontally in terms of its width, for a given alignment.
  */
-interface Offset {
-  x: number
-  y: number
+const HORIZONTAL_RELATIVE: Readonly<Record<HorizontalTextAlignment, number>> = {
+  [HorizontalTextAlignment.LEFT]: -1,
+  [HorizontalTextAlignment.CENTER]: -0.5,
+  [HorizontalTextAlignment.RIGHT]: 0
 }
 
 /**
- * Determine how far the text position should be offset to account for its alignment.
- *
- * @param align The text alignment.
- * @param textSize The size of the text.
- * @returns The computed offset.
+ * How far the text has to be shifted vertically in terms of its height, for a given alignment.
  */
-function getOffsetForAlignment (align: TextAlignment, textSize: Size): Offset {
-  switch (align) {
-    case TextAlignment.CENTER_ABOVE:
-      return { x: -textSize.width / 2, y: 0 }
-    case TextAlignment.CENTER_CENTER:
-      return { x: -textSize.width / 2, y: textSize.height / 2 }
-    case TextAlignment.CENTER_BELOW:
-      return { x: -textSize.width / 2, y: textSize.height }
-  }
+const VERTICAL_RELATIVE: Readonly<Record<VerticalTextAlignment, number>> = {
+  [VerticalTextAlignment.BELOW]: 1,
+  [VerticalTextAlignment.MIDDLE]: 0.5,
+  [VerticalTextAlignment.ABOVE]: 0
 }
 
 /**
@@ -50,7 +66,10 @@ export class TextDrawable implements Drawable {
   private readonly text: string
   private readonly fontSize: number
   private position: Point = Point.ORIGIN
-  private align: TextAlignment = TextAlignment.CENTER_CENTER
+  private align: TextAlignment = {
+    h: HorizontalTextAlignment.CENTER,
+    v: VerticalTextAlignment.MIDDLE
+  }
 
   constructor (text: string, fontSize: number = FONT_SIZE) {
     this.text = text
@@ -77,8 +96,10 @@ export class TextDrawable implements Drawable {
   }
 
   draw (renderer: Renderer): void {
-    const offset = getOffsetForAlignment(this.align, this.measure(renderer))
-    const pos = this.position.translate(offset.x, offset.y)
+    const size = this.measure(renderer)
+    const offsetX = HORIZONTAL_RELATIVE[this.align.h] * size.width
+    const offsetY = VERTICAL_RELATIVE[this.align.v] * size.height
+    const pos = this.position.translate(offsetX, offsetY)
     renderer.renderText(this.text, pos, this.fontSize)
   }
 }

@@ -1,9 +1,14 @@
 import { HeadDrawable } from './head-drawable'
-import { TextAlignment, TextDrawable } from './text-drawable'
+import { HorizontalTextAlignment, TextAlignment, TextDrawable, VerticalTextAlignment } from './text-drawable'
 import { StickFigureDrawable } from './stick-figure-drawable'
 import { Point } from '../../util/geometry/point'
 import { RenderAttributes, Renderer } from '../../renderer/renderer'
 import { Size } from '../../util/geometry/size'
+
+const TEXT_ALIGN: TextAlignment = {
+  h: HorizontalTextAlignment.CENTER,
+  v: VerticalTextAlignment.BELOW
+}
 
 /**
  * An entity head Drawable for entities of type "Actor".
@@ -40,7 +45,7 @@ export class ActorHeadDrawable implements HeadDrawable {
     const figureSize = this.figure.measure(renderer)
 
     this.figure.setTopCenter(this.topCenter)
-    this.text.setPosition(this.topCenter.translate(0, figureSize.height), TextAlignment.CENTER_BELOW)
+    this.text.setPosition(this.topCenter.translate(0, figureSize.height), TEXT_ALIGN)
 
     this.figure.draw(renderer)
     this.text.draw(renderer)
