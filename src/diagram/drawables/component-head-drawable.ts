@@ -1,10 +1,15 @@
 import { HeadDrawable } from './head-drawable'
-import { TextAlignment, TextDrawable } from './text-drawable'
+import { HorizontalTextAlignment, TextAlignment, TextDrawable, VerticalTextAlignment } from './text-drawable'
 import { Point } from '../../util/geometry/point'
 import { RenderAttributes, Renderer } from '../../renderer/renderer'
 import { Size } from '../../util/geometry/size'
 import { BoxDrawable } from './box-drawable'
 import { COMPONENT_HEAD_PADDING_H, COMPONENT_HEAD_PADDING_V } from '../config'
+
+const TEXT_ALIGN: TextAlignment = {
+  h: HorizontalTextAlignment.CENTER,
+  v: VerticalTextAlignment.MIDDLE
+}
 
 /**
  * An entity head Drawable for entities of type "Component".
@@ -36,7 +41,7 @@ export class ComponentHeadDrawable implements HeadDrawable {
     this.box.setSize(size)
 
     const boxCenter = this.topCenter.translate(0, size.height / 2)
-    this.text.setPosition(boxCenter, TextAlignment.CENTER_CENTER)
+    this.text.setPosition(boxCenter, TEXT_ALIGN)
 
     this.box.draw(renderer)
     this.text.draw(renderer)
