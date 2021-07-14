@@ -62,9 +62,10 @@ function getStartMarker (messageStyle: MessageStyle): LineMarker {
  */
 function getEndMarker (messageStyle: MessageStyle): LineMarker {
   switch (messageStyle) {
+    case MessageStyle.ASYNC:
     case MessageStyle.REPLY:
     case MessageStyle.CREATE:
-    case MessageStyle.ASYNC:
+    case MessageStyle.DESTROY:
       return LineMarker.ARROW_OPEN
     case MessageStyle.LOST:
       return LineMarker.ARROW_INTO_CIRCLE_FULL
@@ -172,6 +173,8 @@ export class MessageDiagramPart implements DiagramPart {
    * @returns The required horizontal space.
    */
   computeMinimumWidth (attr: RenderAttributes): number {
+    if (this.hidden) return 0
+
     const naturalMinWidth = this.message.style === MessageStyle.LOST || this.message.style === MessageStyle.FOUND
       ? MESSAGE_FOUND_WIDTH
       : 0
@@ -222,9 +225,7 @@ export class MessageDiagramPart implements DiagramPart {
   }
 
   draw (renderer: Renderer): void {
-    if (this.hidden) {
-      return
-    }
+    if (this.hidden) return
 
     const fromBar = this.message.from != null ? { x: this.fromX, level: this.fromLevel } : undefined
     const toBar = this.message.to != null ? { x: this.toX, level: this.toLevel } : undefined
