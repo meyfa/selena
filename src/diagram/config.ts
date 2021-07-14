@@ -8,3 +8,10 @@ export const LINE_WIDTH_LIFELINES = 1
 export const LINE_WIDTH_ARROWS = 2
 
 export const ACTIVATION_THICKNESS = 15
+
+export const MESSAGE_SPACING = 40
+export const MESSAGE_PADDING = 4
+
+export const MESSAGE_FOUND_WIDTH = 80
+export const MESSAGE_SELF_WIDTH = 30
+export const MESSAGE_SELF_HEIGHT = 30
