@@ -5,5 +5,6 @@ export const COMPONENT_HEAD_PADDING_V = 12
 
 export const FONT_SIZE = 16
 export const LINE_WIDTH_LIFELINES = 1
+export const LINE_WIDTH_ARROWS = 2
 
 export const ACTIVATION_THICKNESS = 15
