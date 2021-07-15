@@ -6,6 +6,10 @@ import { ENTITY_SPACING } from './config'
 import { ConstraintLayout } from './layout/constraint-layout'
 import { TypedConstraintLayout } from './layout/typed-constraint-layout'
 import { Point } from '../util/geometry/point'
+import { DiagramBuilder } from './diagram-builder'
+import { DiagramActivationWalker } from './diagram-activation-walker'
+import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part'
+import { MessageDiagramPart } from './parts/message-diagram-part'
 
 /**
  * Represents a visual diagram based on some sequence.
@@ -15,12 +19,16 @@ import { Point } from '../util/geometry/point'
  */
 export class Diagram {
   private readonly entities: EntityDiagramPart[]
+  private readonly messages: MessageDiagramPart[]
+  private readonly activationBars: ActivationBarDiagramPart[]
 
   private readonly horizontalLayout: ConstraintLayout<string>
   private computedSize: Size | undefined
 
-  private constructor (entities: EntityDiagramPart[]) {
+  private constructor (entities: EntityDiagramPart[], messages: MessageDiagramPart[], activationBars: ActivationBarDiagramPart[]) {
     this.entities = entities
+    this.messages = messages
+    this.activationBars = activationBars
 
     const entityIds = entities.map(e => e.entity.id)
     this.horizontalLayout = new TypedConstraintLayout<string>(entityIds, {
@@ -35,8 +43,14 @@ export class Diagram {
    * @returns The diagram that was built.
    */
   static create (sequence: Sequence): Diagram {
-    const entities = sequence.entities.map(e => new EntityDiagramPart(e))
-    return new Diagram(entities)
+    const builder = new DiagramBuilder()
+    sequence.entities.forEach(e => builder.addEntity(e))
+
+    const walker = new DiagramActivationWalker(builder)
+    sequence.activations.forEach(a => walker.walk(a))
+
+    const { entities, messages, activationBars } = builder.build()
+    return new Diagram(entities, messages, activationBars)
   }
 
   /**
@@ -86,5 +100,7 @@ export class Diagram {
       throw new Error('layout not yet computed')
     }
     this.entities.forEach(obj => obj.draw(renderer))
+    // this.activationBars.forEach(obj => obj.draw(renderer))
+    // this.messages.forEach(obj => obj.draw(renderer))
   }
 }
