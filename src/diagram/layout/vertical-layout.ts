@@ -42,11 +42,11 @@ export interface ComputedVerticalLayout {
 }
 
 /**
- * Vertical offset and height for a single message item, as computed by a vertical layout.
+ * Vertical offset of top and bottom edges for a single message item, as computed by a vertical layout.
  */
 export interface MessagePosition {
   top: number
-  height: number
+  bottom: number
 }
 
 /**
@@ -149,12 +149,27 @@ export class VerticalLayout {
       const headHeight = this.getEntityHeadHeight(info.creating)
       result.push({
         top: y + headHeight / 2,
-        height: info.height
+        bottom: y + headHeight / 2 + info.height
       })
       y += headHeight + info.height + this.messageSpacing
     }
 
     return result
+  }
+
+  private computeTotalHeight (messagePositions: MessagePosition[], entityOffsets: Map<string, number>): number {
+    // total height is at least the bottom edge of the largest entity
+    let max = 0
+    for (const entityId of this.entityInfo.keys()) {
+      max = Math.max(max, (entityOffsets.get(entityId) ?? 0) + this.getEntityHeadHeight(entityId))
+    }
+    // if messages are present, the final message might be further down than any entity
+    // (the case where the last message is a CREATE message is already handled by the loop above)
+    if (messagePositions.length > 0) {
+      const last = messagePositions[messagePositions.length - 1]
+      max = Math.max(max, last.bottom)
+    }
+    return max
   }
 
   /**
@@ -167,11 +182,7 @@ export class VerticalLayout {
     const messagePositions = this.computeMessagePositions(messageY)
     const entityOffsets = this.computeEntityOffsets(messagePositions)
 
-    let totalHeight = messageY
-    if (messagePositions.length > 0) {
-      const last = messagePositions[messagePositions.length - 1]
-      totalHeight = Math.max(totalHeight, last.top + last.height)
-    }
+    const totalHeight = Math.max(messageY, this.computeTotalHeight(messagePositions, entityOffsets))
 
     return { totalHeight, messagePositions, entityOffsets }
   }
