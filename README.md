@@ -5,9 +5,81 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/38ab87695968c1832c45/maintainability)](https://codeclimate.com/github/meyfa/lifeline/maintainability)
 
 **Lifeline** is a textual language that compiles to UML sequence diagrams.
+It is written in (mostly) object-oriented TypeScript.
+
+This package contains all the fundamental logic for making the system work.
+This includes: a lexer (tokenizer), a parser, the sequence data structures,
+diagram data structures, diagram layout computation, renderer interface
+and renderer implementations.
+This package does _not_ contain any user interface.
+
+The design of this system is extremely flexible overall:
+
+- Information flows one-way: input to tokenizer, tokenizer to parser,
+  to diagram construction, to renderer.
+- There are very few token types used in the custom-built lexer, and the
+  parser is a recursive-descent parser that is simple to understand and reason
+  about.
+- The horizontal and vertical layout algorithms work independently of each
+  other and can easily be swapped out.
+- The horizontal layout algorithm is based on an abstract system of
+  constraints that is, in my opinion, quite elegant.
+- The renderer interface is rather minimal, so that a wide range of rendering
+  targets could be supported without changing anything about the diagram
+  structure.
 
 
-## Syntax
+## Installation and Usage
+
+Install with NPM:
+
+```
+npm install lifeline-lib
+```
+
+The installed package contains the transpiled JavaScript sources and
+TypeScript typings, if you need them.
+
+### How to Use
+
+The Lifeline script is first compiled to a `Sequence` object via the exported
+function `compileToSequence`.
+This `Sequence` can then be converted into a `Diagram`, which can be rendered
+to any target.
+When rendering, the diagram needs to be laid out, then its size needs to be
+measured and the renderer prepared for that size, at which point the diagram's
+`draw` method can be called.
+
+Currently, only one renderer is available:
+
+- `BrowserSvgRenderer`: renders into an `<svg>` element in a browser
+  environment.
+
+### Example
+
+The following code shows how to parse some input, create the diagram and
+render it inside a browser environment:
+
+```ts
+import { compileToSequence, Diagram, BrowserSvgRenderer } from 'lifeline-lib'
+
+const input = '(the input source code would be here)'
+const sequence = compileToSequence(input)
+const diagram = Diagram.create(sequence)
+
+// the following must run in the browser
+// use horizontal and vertical padding: 50 extra pixels on each side
+const svgRenderer = new BrowserSvgRenderer(50, 50)
+diag.layout(svgRenderer)
+svgRenderer.prepare(diag.getComputedSize())
+diag.draw(svgRenderer)
+
+const element = svgRenderer.finish()
+// you can now append element to the DOM
+```
+
+
+## Language Guide
 
 Every Lifeline script consists of an Object Definition Section followed by a
 Message Section.
