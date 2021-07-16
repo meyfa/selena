@@ -2,14 +2,12 @@ import { Size } from '../util/geometry/size'
 import { Sequence } from '../sequence/sequence'
 import { RenderAttributes, Renderer } from '../renderer/renderer'
 import { EntityDiagramPart } from './parts/entity-diagram-part'
-import { ENTITY_SPACING } from './config'
-import { ConstraintLayout } from './layout/constraint-layout'
-import { TypedConstraintLayout } from './layout/typed-constraint-layout'
-import { Point } from '../util/geometry/point'
+import { ENTITY_SPACING, MESSAGE_SPACING } from './config'
 import { DiagramBuilder } from './diagram-builder'
 import { DiagramActivationWalker } from './diagram-activation-walker'
 import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part'
 import { MessageDiagramPart } from './parts/message-diagram-part'
+import { LayoutManager } from './layout/layout-manager'
 
 /**
  * Represents a visual diagram based on some sequence.
@@ -22,8 +20,7 @@ export class Diagram {
   private readonly messages: MessageDiagramPart[]
   private readonly activationBars: ActivationBarDiagramPart[]
 
-  private readonly horizontalLayout: ConstraintLayout<string>
-  private computedSize: Size | undefined
+  private readonly layoutManager: LayoutManager
 
   private constructor (entities: EntityDiagramPart[], messages: MessageDiagramPart[], activationBars: ActivationBarDiagramPart[]) {
     this.entities = entities
@@ -31,8 +28,9 @@ export class Diagram {
     this.activationBars = activationBars
 
     const entityIds = entities.map(e => e.entity.id)
-    this.horizontalLayout = new TypedConstraintLayout<string>(entityIds, {
-      itemMargin: ENTITY_SPACING
+    this.layoutManager = new LayoutManager(entityIds, messages.length, {
+      entityMargin: ENTITY_SPACING,
+      messageSpacing: MESSAGE_SPACING
     })
   }
 
@@ -59,21 +57,7 @@ export class Diagram {
    * @param attr The rendering attributes used to determine e.g. the sizes of strings.
    */
   layout (attr: RenderAttributes): void {
-    for (const entity of this.entities) {
-      const head = entity.measureHead(attr)
-      this.horizontalLayout.applyDimension(entity.entity.id, head.width)
-    }
-
-    const computedLayout = this.horizontalLayout.compute()
-
-    // TODO replace with actual height once we have a vertical layout
-    this.computedSize = new Size(computedLayout.totalDimensions, 200)
-
-    for (const entity of this.entities) {
-      const posH = computedLayout.items.get(entity.entity.id)
-      if (posH == null) throw new Error('missing entity position')
-      entity.setTopCenter(new Point(posH.center, 0))
-    }
+    this.layoutManager.layout(attr, this.entities, this.messages, this.activationBars)
   }
 
   /**
@@ -83,10 +67,7 @@ export class Diagram {
    * @returns The diagram size.
    */
   getComputedSize (): Size {
-    if (this.computedSize == null) {
-      throw new Error('layout not yet computed')
-    }
-    return this.computedSize
+    return this.layoutManager.getComputedSize()
   }
 
   /**
@@ -96,11 +77,11 @@ export class Diagram {
    * @param renderer The renderer.
    */
   draw (renderer: Renderer): void {
-    if (this.computedSize == null) {
+    if (!this.layoutManager.isComputed()) {
       throw new Error('layout not yet computed')
     }
     this.entities.forEach(obj => obj.draw(renderer))
-    // this.activationBars.forEach(obj => obj.draw(renderer))
-    // this.messages.forEach(obj => obj.draw(renderer))
+    this.activationBars.forEach(obj => obj.draw(renderer))
+    this.messages.forEach(obj => obj.draw(renderer))
   }
 }

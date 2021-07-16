@@ -6,6 +6,8 @@ import { Renderer } from '../../src/renderer/renderer'
 import { Size } from '../../src/util/geometry/size'
 import { Entity, EntityType } from '../../src/sequence/entity'
 import { Point } from '../../src/util/geometry/point'
+import { Activation } from '../../src/sequence/activation'
+import { AsyncMessage, LostMessage, SyncMessage } from '../../src/sequence/message'
 
 describe('src/diagram/diagram.ts', function () {
   describe('#layout()', function () {
@@ -66,6 +68,35 @@ describe('src/diagram/diagram.ts', function () {
       }
       diag.layout(renderer)
       diag.draw(renderer)
+    })
+
+    it('draws messages and activation bars', function () {
+      const foo = new Entity(EntityType.ACTOR, 'foo', 'Foo')
+      const bar = new Entity(EntityType.ACTOR, 'bar', 'Bar')
+      const diag = Diagram.create(new Sequence([foo, bar], [
+        new Activation(new SyncMessage(foo, bar, '0'), undefined, [
+          new Activation(new AsyncMessage(bar, foo, '1'), undefined, [])
+        ]),
+        new Activation(new LostMessage(foo, '2'), undefined, [])
+      ]))
+      let arrowCount = 0
+      let barCount = 0
+      const renderer: Renderer = {
+        measureText: () => Size.ZERO,
+        renderLine: () => {},
+        renderPolyline: () => {
+          ++arrowCount
+        },
+        renderBox: () => {
+          ++barCount
+        },
+        renderPath: () => {},
+        renderText: () => {}
+      }
+      diag.layout(renderer)
+      diag.draw(renderer)
+      expect(arrowCount).to.equal(3)
+      expect(barCount).to.equal(2)
     })
   })
 })
