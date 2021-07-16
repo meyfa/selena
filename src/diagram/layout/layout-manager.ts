@@ -5,8 +5,9 @@ import { MessageDiagramPart } from '../parts/message-diagram-part'
 import { ActivationBarDiagramPart } from '../parts/activation-bar-diagram-part'
 import { Size } from '../../util/geometry/size'
 import { TypedConstraintLayout } from './typed-constraint-layout'
-import { ComputedConstraints, ConstraintLayout } from './constraint-layout'
+import { ComputedConstraints, ComputedConstraintsItem, ConstraintLayout } from './constraint-layout'
 import { Point } from '../../util/geometry/point'
+import { Message } from '../../sequence/message'
 
 /**
  * Options for a layout manager.
@@ -109,21 +110,22 @@ export class LayoutManager {
 
   private layoutMessages (attr: RenderAttributes, messages: MessageDiagramPart[]): void {
     for (const message of messages) {
+      this.vertical.applyMessageHeight(message.index, message.getHeight())
       const create = message.getCreate()
       if (create != null) {
         this.vertical.applyCreator(create, message.index)
       }
-      this.vertical.applyMessageHeight(message.index, message.getHeight())
+      this.applySpacingFromMessage(message.message, message.computeMinimumWidth(attr))
+    }
+  }
 
-      const minWidth = message.computeMinimumWidth(attr)
-      const msg = message.message
-      if (msg.from != null && msg.to != null) {
-        this.horizontal.applyBetween(msg.from.id, msg.to.id, minWidth)
-      } else if (msg.to != null) {
-        this.horizontal.applyBefore(msg.to.id, minWidth)
-      } else if (msg.from != null) {
-        this.horizontal.applyBefore(msg.from.id, minWidth)
-      }
+  private applySpacingFromMessage (msg: Message, minWidth: number): void {
+    if (msg.from != null && msg.to != null) {
+      this.horizontal.applyBetween(msg.from.id, msg.to.id, minWidth)
+    } else if (msg.to != null) {
+      this.horizontal.applyBefore(msg.to.id, minWidth)
+    } else if (msg.from != null) {
+      this.horizontal.applyBefore(msg.from.id, minWidth)
     }
   }
 
@@ -131,9 +133,8 @@ export class LayoutManager {
     const { h, v } = this.requireComputed()
 
     for (const e of entities) {
-      const posH = h.items.get(e.entity.id)
-      const posV = v.entityOffsets.get(e.entity.id)
-      if (posH == null || posV == null) throw new Error('missing entity position')
+      const posH = h.items.get(e.entity.id) as ComputedConstraintsItem
+      const posV = v.entityOffsets.get(e.entity.id) ?? 0
       e.setTopCenter(new Point(posH.center, posV))
       e.setLifelineEnd(v.totalHeight)
     }
@@ -142,20 +143,17 @@ export class LayoutManager {
   private applyToMessages (messages: MessageDiagramPart[]): void {
     const { h, v } = this.requireComputed()
 
-    for (let i = 0; i < messages.length; ++i) {
-      const m = messages[i]
+    for (const m of messages) {
+      m.setTop(v.messagePositions[m.index].top)
       if (m.message.from != null) {
-        const pos = h.items.get(m.message.from.id)
-        if (pos == null) throw new Error('missing entity position')
+        const pos = h.items.get(m.message.from.id) as ComputedConstraintsItem
         m.setSourceLifelineX(pos.center)
       }
       if (m.message.to != null) {
-        const pos = h.items.get(m.message.to.id)
-        if (pos == null) throw new Error('missing entity position')
+        const pos = h.items.get(m.message.to.id) as ComputedConstraintsItem
         m.setTargetLifelineX(pos.center)
         m.setTargetHeadWidth(pos.dimension)
       }
-      m.setTop(v.messagePositions[i].top)
     }
   }
 
@@ -163,8 +161,7 @@ export class LayoutManager {
     const { h, v } = this.requireComputed()
 
     for (const a of activations) {
-      const pos = h.items.get(a.entityId)
-      if (pos == null) throw new Error('missing entity position')
+      const pos = h.items.get(a.entityId) as ComputedConstraintsItem
       a.setLifelineX(pos.center)
       a.setTop(v.messagePositions[a.startMessageId].bottom)
       if (a.endMessageId != null) {
