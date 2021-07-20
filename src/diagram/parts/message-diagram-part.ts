@@ -13,11 +13,6 @@ const SELFCALL_ALIGN: TextAlignment = {
   v: VerticalTextAlignment.MIDDLE
 }
 
-const LOST_FOUND_ALIGN: TextAlignment = {
-  h: HorizontalTextAlignment.LEFT,
-  v: VerticalTextAlignment.ABOVE
-}
-
 const DEFAULT_ALIGN: TextAlignment = {
   h: HorizontalTextAlignment.CENTER,
   v: VerticalTextAlignment.ABOVE
@@ -32,9 +27,6 @@ const DEFAULT_ALIGN: TextAlignment = {
 function getLabelAlignment (message: Message): TextAlignment {
   if (message.from?.id === message.to?.id) {
     return SELFCALL_ALIGN
-  }
-  if (message.style === MessageStyle.LOST || message.style === MessageStyle.FOUND) {
-    return LOST_FOUND_ALIGN
   }
   return DEFAULT_ALIGN
 }
