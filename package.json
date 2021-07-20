@@ -1,5 +1,5 @@
 {
-  "name": "lifeline-lib",
+  "name": "selena",
   "version": "0.0.0",
   "description": "A textual language that compiles to UML sequence diagrams.",
   "type": "commonjs",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meyfa/lifeline.git"
+    "url": "git+https://github.com/meyfa/selena.git"
   },
   "keywords": [
     "compiler",
@@ -30,9 +30,9 @@
   "author": "Fabian Meyer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/meyfa/lifeline/issues"
+    "url": "https://github.com/meyfa/selena/issues"
   },
-  "homepage": "https://github.com/meyfa/lifeline#readme",
+  "homepage": "https://github.com/meyfa/selena#readme",
   "devDependencies": {
     "@types/chai": "^4.2.19",
     "@types/mocha": "^8.2.2",
