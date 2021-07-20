@@ -1,10 +1,10 @@
-# lifeline
+# Selena
 
-[![CI](https://github.com/meyfa/lifeline/actions/workflows/main.yml/badge.svg)](https://github.com/meyfa/lifeline/actions/workflows/main.yml)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/38ab87695968c1832c45/test_coverage)](https://codeclimate.com/github/meyfa/lifeline/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/38ab87695968c1832c45/maintainability)](https://codeclimate.com/github/meyfa/lifeline/maintainability)
+[![CI](https://github.com/meyfa/selena/actions/workflows/main.yml/badge.svg)](https://github.com/meyfa/selena/actions/workflows/main.yml)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6179ac4c66d16f325fb6/test_coverage)](https://codeclimate.com/github/meyfa/selena/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6179ac4c66d16f325fb6/maintainability)](https://codeclimate.com/github/meyfa/selena/maintainability)
 
-**Lifeline** is a textual language that compiles to UML sequence diagrams.
+**Selena** is a textual language that compiles to UML sequence diagrams.
 It is written in (mostly) object-oriented TypeScript.
 
 This package contains all the fundamental logic for making the system work.
@@ -34,7 +34,7 @@ The design of this system is extremely flexible overall:
 Install with NPM:
 
 ```
-npm install lifeline-lib
+npm install selena
 ```
 
 The installed package contains the transpiled JavaScript sources and
@@ -42,7 +42,7 @@ TypeScript typings, if you need them.
 
 ### How to Use
 
-The Lifeline script is first compiled to a `Sequence` object via the exported
+The Selena script is first compiled to a `Sequence` object via the exported
 function `compileToSequence`.
 This `Sequence` can then be converted into a `Diagram`, which can be rendered
 to any target.
@@ -61,7 +61,7 @@ The following code shows how to parse some input, create the diagram and
 render it inside a browser environment:
 
 ```ts
-import { compileToSequence, Diagram, BrowserSvgRenderer } from 'lifeline-lib'
+import { compileToSequence, Diagram, BrowserSvgRenderer } from 'selena'
 
 const input = '(the input source code would be here)'
 const sequence = compileToSequence(input)
@@ -81,7 +81,7 @@ const element = svgRenderer.finish()
 
 ## Language Guide
 
-Every Lifeline script consists of an Object Definition Section followed by a
+Every Selena script consists of an Object Definition Section followed by a
 Message Section.
 There can be many object definitions and many messages.
 The language includes support for comments (pieces of text not to be included
@@ -219,7 +219,7 @@ No other type of message (lost, found, `create`, `destroy`) may have a
 
 ### Comments
 
-Comments can be used to include notes in the Lifeline script that should not
+Comments can be used to include notes in the Selena script that should not
 appear in the diagram.
 They can be positioned anywhere (except inside of strings) and begin with the
 hash symbol `#`.
