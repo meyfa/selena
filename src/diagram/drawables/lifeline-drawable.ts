@@ -4,6 +4,7 @@ import { Point } from '../../util/geometry/point'
 import { RenderAttributes, Renderer } from '../../renderer/renderer'
 import { Size } from '../../util/geometry/size'
 import { LINE_WIDTH_LIFELINES } from '../config'
+import { DestructionDrawable } from './destruction-drawable'
 
 /**
  * A drawable for a complete entity lifeline, including a configurable head and the line itself.
@@ -13,6 +14,7 @@ export class LifelineDrawable implements Drawable {
 
   private position: Point = Point.ORIGIN
   private endHeight: number = 0
+  private endDrawable: DestructionDrawable | undefined
 
   constructor (head: HeadDrawable) {
     this.head = head
@@ -31,13 +33,15 @@ export class LifelineDrawable implements Drawable {
   }
 
   /**
-   * Set the y coordinate at which the lifeline stops. This is an absolute coordinate,
-   * independent of the lifeline's anchor position.
+   * Set the y coordinate at which the lifeline stops, and the mode of stopping.
+   * The coordinate is absolute, independent of the lifeline's anchor position.
    *
    * @param endHeight The absolute height at which the lifeline stops.
+   * @param destroy Whether the lifeline ends with a destruction, or simply ends.
    */
-  setEndHeight (endHeight: number): void {
+  setEnd (endHeight: number, destroy: boolean): void {
     this.endHeight = endHeight
+    this.endDrawable = destroy ? new DestructionDrawable() : undefined
   }
 
   /**
@@ -72,5 +76,10 @@ export class LifelineDrawable implements Drawable {
       lineWidth: LINE_WIDTH_LIFELINES,
       dashed: true
     })
+
+    if (this.endDrawable != null) {
+      this.endDrawable.setPosition(lineEnd)
+      this.endDrawable.draw(renderer)
+    }
   }
 }
