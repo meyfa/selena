@@ -7,7 +7,7 @@ import { Size } from '../../util/geometry/size'
 import { TypedConstraintLayout } from './typed-constraint-layout'
 import { ComputedConstraints, ComputedConstraintsItem, ConstraintLayout } from './constraint-layout'
 import { Point } from '../../util/geometry/point'
-import { Message } from '../../sequence/message'
+import { Message, MessageStyle } from '../../sequence/message'
 
 /**
  * Options for a layout manager.
@@ -68,7 +68,7 @@ export class LayoutManager {
       v: this.vertical.compute()
     }
 
-    this.applyToEntities(entities)
+    this.applyToEntities(entities, messages)
     this.applyToMessages(messages)
     this.applyToActivations(activations)
   }
@@ -129,15 +129,26 @@ export class LayoutManager {
     }
   }
 
-  private applyToEntities (entities: EntityDiagramPart[]): void {
+  private applyToEntities (entities: EntityDiagramPart[], messages: MessageDiagramPart[]): void {
     const { h, v } = this.requireComputed()
 
     for (const e of entities) {
       const posH = h.items.get(e.entity.id) as ComputedConstraintsItem
       const posV = v.entityOffsets.get(e.entity.id) ?? 0
+      const destroyedAt = this.findDestroyHeight(messages, e.entity.id)
       e.setTopCenter(new Point(posH.center, posV))
-      e.setLifelineEnd(v.totalHeight)
+      e.setLifelineEnd(destroyedAt ?? v.totalHeight, destroyedAt != null)
     }
+  }
+
+  private findDestroyHeight (messages: MessageDiagramPart[], entityId: string): number | undefined {
+    const { v } = this.requireComputed()
+    for (const msg of messages) {
+      if (msg.message.style === MessageStyle.DESTROY && msg.message.to?.id === entityId) {
+        return v.messagePositions[msg.index].bottom
+      }
+    }
+    return undefined
   }
 
   private applyToMessages (messages: MessageDiagramPart[]): void {

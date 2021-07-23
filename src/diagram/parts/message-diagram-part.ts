@@ -221,7 +221,8 @@ export class MessageDiagramPart implements DiagramPart {
 
     const fromBar = this.message.from != null ? { x: this.fromX, level: this.fromLevel } : undefined
     const toBar = this.message.to != null ? { x: this.toX, level: this.toLevel } : undefined
-    const points = computeArrowPoints(this.offsetY, fromBar, toBar, this.toHeadWidth)
+    const headWidth = this.message.style === MessageStyle.DESTROY ? 0 : this.toHeadWidth
+    const points = computeArrowPoints(this.offsetY, fromBar, toBar, headWidth)
     this.drawable.setPoints(points)
 
     this.drawable.draw(renderer)

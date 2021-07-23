@@ -30,6 +30,7 @@ export class EntityDiagramPart implements DiagramPart {
   private readonly drawable: LifelineDrawable
   private topCenter: Point = Point.ORIGIN
   private lifelineEndY: number = 0
+  private destroy: boolean = false
 
   constructor (entity: Entity) {
     this.entity = entity
@@ -59,18 +60,20 @@ export class EntityDiagramPart implements DiagramPart {
   }
 
   /**
-   * Set the y coordinate at which the lifeline stops. This is an absolute coordinate,
-   * independent of the lifeline's anchor position.
+   * Set the y coordinate at which the lifeline stops, and the mode of stopping.
+   * The coordinate is absolute, independent of the lifeline's anchor position.
    *
    * @param endHeight The absolute height at which the lifeline stops.
+   * @param destroy Whether the lifeline ends with a destruction, or simply ends.
    */
-  setLifelineEnd (endHeight: number): void {
+  setLifelineEnd (endHeight: number, destroy: boolean): void {
     this.lifelineEndY = endHeight
+    this.destroy = destroy
   }
 
   draw (renderer: Renderer): void {
     this.drawable.setTopCenter(this.topCenter)
-    this.drawable.setEndHeight(this.lifelineEndY)
+    this.drawable.setEnd(this.lifelineEndY, this.destroy)
     this.drawable.draw(renderer)
   }
 }

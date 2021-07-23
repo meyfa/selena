@@ -16,7 +16,7 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
       }
       const obj = new LifelineDrawable(head)
       obj.setTopCenter(new Point(25, 75))
-      obj.setEndHeight(175)
+      obj.setEnd(175, false)
       const attr: RenderAttributes = {
         measureText: () => Size.ZERO
       }
@@ -76,7 +76,7 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
       }
       const obj = new LifelineDrawable(head)
       obj.setTopCenter(new Point(50, 100))
-      obj.setEndHeight(185)
+      obj.setEnd(185, false)
       obj.draw(renderer)
     })
   })
