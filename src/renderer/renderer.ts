@@ -49,16 +49,7 @@ export interface Renderer extends RenderAttributes {
   renderBox: (start: Point, size: Size, options?: StrokeOptions) => void
 
   /**
-   * Render a simple line from one point to another.
-   *
-   * @param start The first point.
-   * @param end The second point.
-   * @param options Options for stroking the line. If not provided, sensible defaults will be used.
-   */
-  renderLine: (start: Point, end: Point, options?: StrokeOptions) => void
-
-  /**
-   * Render a polyline, potentially with markers at the end, useful for arrows.
+   * Render a line consisting of a series of points, potentially with markers at the beginning and end.
    *
    * @param points The points of the polyline (first point, [intermediate points, ..., ], last point).
    * @param end1 The marker to place at the first point.

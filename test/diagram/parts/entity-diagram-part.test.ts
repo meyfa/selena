@@ -34,19 +34,19 @@ describe('src/diagram/parts/entity-diagram-part.ts', function () {
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
         renderBox: () => {},
-        renderLine: (start, end) => {
-          expect(start.x).to.equal(150)
-          expect(start.y).to.be.greaterThan(200).and.lessThan(300)
-          expect(end.x).to.equal(150)
-          expect(end.y).to.equal(700)
+        renderPolyline: (points) => {
+          expect(points).to.have.lengthOf(2)
+          expect(points[0].x).to.equal(150)
+          expect(points[0].y).to.be.greaterThan(200).and.lessThan(300)
+          expect(points[1].x).to.equal(150)
+          expect(points[1].y).to.equal(700)
         },
-        renderPolyline: () => {},
         renderPath: () => {},
         renderText: () => {}
       }
       const part = new EntityDiagramPart(new Entity(EntityType.COMPONENT, 'id', 'name'))
       part.setTopCenter(new Point(150, 200))
-      part.setLifelineEnd(700)
+      part.setLifelineEnd(700, false)
       part.draw(renderer)
     })
   })

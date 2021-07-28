@@ -1,7 +1,7 @@
 import { Drawable } from './drawable'
 import { HeadDrawable } from './head-drawable'
 import { Point } from '../../util/geometry/point'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
+import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer'
 import { Size } from '../../util/geometry/size'
 import { LINE_WIDTH_LIFELINES } from '../config'
 import { DestructionDrawable } from './destruction-drawable'
@@ -72,7 +72,7 @@ export class LifelineDrawable implements Drawable {
 
     const lineStart = this.position.translate(0, headSize.height)
     const lineEnd = this.position.withY(this.endHeight)
-    renderer.renderLine(lineStart, lineEnd, {
+    renderer.renderPolyline([lineStart, lineEnd], LineMarker.NONE, LineMarker.NONE, {
       lineWidth: LINE_WIDTH_LIFELINES,
       dashed: true
     })

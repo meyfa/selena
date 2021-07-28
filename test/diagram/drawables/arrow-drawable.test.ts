@@ -54,7 +54,6 @@ describe('src/diagram/drawables/arrow-drawable.ts', function () {
       ]
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: (points, end1, end2, stroke) => {
           expect(points).to.deep.equal(expectedPoints)
           expect(end1).to.equal(LineMarker.ARROW_FULL)
@@ -74,7 +73,6 @@ describe('src/diagram/drawables/arrow-drawable.ts', function () {
     it('renders text', function (done) {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: () => {},
         renderPath: () => expect.fail(),
         renderText: (text, position, fontSize) => {
@@ -97,7 +95,6 @@ describe('src/diagram/drawables/arrow-drawable.ts', function () {
     it('renders dashed if configured', function (done) {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: (points, end1, end2, stroke) => {
           expect(stroke?.dashed).to.be.true
           done()
@@ -117,7 +114,6 @@ describe('src/diagram/drawables/arrow-drawable.ts', function () {
     it('does not render if no points specified', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),

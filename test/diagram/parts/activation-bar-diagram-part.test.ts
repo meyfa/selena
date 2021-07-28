@@ -16,7 +16,6 @@ describe('src/diagram/parts/activation-bar-diagram-part.ts', function () {
           expect(size.height).to.equal(90)
           done()
         },
-        renderLine: () => {},
         renderPolyline: () => {},
         renderPath: () => {},
         renderText: () => {}
