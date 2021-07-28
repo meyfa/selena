@@ -26,7 +26,6 @@ describe('src/diagram/drawables/activation-bar-drawable.ts', function () {
           expect(size).to.deep.equal(new Size(23, 90))
           done()
         },
-        renderLine: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),

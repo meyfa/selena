@@ -37,11 +37,11 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
       }
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => {
+        renderPolyline: (points) => {
           expect(headCalled).to.be.true
+          expect(points).to.have.lengthOf(2)
           done()
         },
-        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),
         measureText: () => Size.ZERO
@@ -65,11 +65,10 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
       }
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: (pos1, pos2) => {
-          expect(pos1).to.deep.equal(new Point(50, 115))
-          expect(pos2).to.deep.equal(new Point(50, 185))
+        renderPolyline: (points) => {
+          expect(points[0]).to.deep.equal(new Point(50, 115))
+          expect(points[1]).to.deep.equal(new Point(50, 185))
         },
-        renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),
         measureText: () => Size.ZERO

@@ -38,7 +38,6 @@ describe('src/diagram/drawables/text-drawable.ts', function () {
     it('calls renderText and nothing else', function (done) {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: (text: string, position: Point, fontSize: number) => {
@@ -56,7 +55,6 @@ describe('src/diagram/drawables/text-drawable.ts', function () {
       const check = (align: TextAlignment, expected: Point): void => {
         const renderer: Renderer = {
           renderBox: () => expect.fail(),
-          renderLine: () => expect.fail(),
           renderPolyline: () => expect.fail(),
           renderPath: () => expect.fail(),
           renderText: (text: string, position: Point) => {

@@ -89,7 +89,6 @@ describe('src/diagram/parts/message-diagram-part.ts', function () {
       const part = new MessageDiagramPart(0, msg, 1, 2, true)
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: () => expect.fail(),
@@ -107,7 +106,6 @@ describe('src/diagram/parts/message-diagram-part.ts', function () {
         const part = new MessageDiagramPart(0, msg, 1, 2, false)
         const renderer: Renderer = {
           renderBox: () => expect.fail(),
-          renderLine: () => expect.fail(),
           renderPolyline: (points, end1, end2, options) => {
             expect(points).to.have.lengthOf(2)
             points.forEach(p => expect(p.y).to.equal(100))

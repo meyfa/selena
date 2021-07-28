@@ -15,7 +15,6 @@ describe('src/diagram/diagram.ts', function () {
       const diag = Diagram.create(new Sequence([], []))
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
-        renderLine: () => {},
         renderPolyline: () => {},
         renderBox: () => {},
         renderPath: () => {},
@@ -39,7 +38,6 @@ describe('src/diagram/diagram.ts', function () {
       const diag = Diagram.create(new Sequence([], []))
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
-        renderLine: () => {},
         renderPolyline: () => {},
         renderBox: () => {},
         renderPath: () => {},
@@ -55,7 +53,6 @@ describe('src/diagram/diagram.ts', function () {
       let prevX = 0
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
-        renderLine: () => {},
         renderPolyline: () => {},
         renderBox: () => {},
         renderPath: () => {},
@@ -79,13 +76,12 @@ describe('src/diagram/diagram.ts', function () {
         ]),
         new Activation(new LostMessage(foo, '2'), undefined, [])
       ]))
-      let arrowCount = 0
+      let lineCount = 0
       let barCount = 0
       const renderer: Renderer = {
         measureText: () => Size.ZERO,
-        renderLine: () => {},
         renderPolyline: () => {
-          ++arrowCount
+          ++lineCount
         },
         renderBox: () => {
           ++barCount
@@ -95,7 +91,7 @@ describe('src/diagram/diagram.ts', function () {
       }
       diag.layout(renderer)
       diag.draw(renderer)
-      expect(arrowCount).to.equal(3)
+      expect(lineCount).to.equal(3 + 2) // arrows + lifelines
       expect(barCount).to.equal(2)
     })
   })

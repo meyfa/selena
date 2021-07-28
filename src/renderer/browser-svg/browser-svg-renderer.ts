@@ -141,19 +141,6 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
     this.addToRender(element)
   }
 
-  renderLine (start: Point, end: Point, options?: StrokeOptions): void {
-    const element = createSvgElement('line')
-    applyAttributes(element, {
-      x1: start.x,
-      y1: start.y,
-      x2: end.x,
-      y2: end.y,
-      stroke: this.foregroundColor,
-      ...convertStrokeToAttributes(options)
-    })
-    this.addToRender(element)
-  }
-
   renderPolyline (points: Point[], end1: LineMarker, end2: LineMarker, options?: StrokeOptions): void {
     if (points.length < 2) return
 

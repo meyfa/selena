@@ -21,7 +21,6 @@ describe('src/diagram/drawables/stick-figure-drawable.ts', function () {
     it('calls renderPath and nothing else', function (done) {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: (data) => {
           expect(data).to.be.a('string').with.length.greaterThan(0)
@@ -39,7 +38,6 @@ describe('src/diagram/drawables/stick-figure-drawable.ts', function () {
       // eslint-disable-next-line prefer-const
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
-        renderLine: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: (data, pos) => {
           expect(pos).to.deep.equal(position)
