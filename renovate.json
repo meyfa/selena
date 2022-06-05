@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:js-lib"
+  ],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "extends": ["schedule:weekly"]
+    }
+  ]
+}
