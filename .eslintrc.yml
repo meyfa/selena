@@ -3,7 +3,7 @@ extends:
   - 'plugin:jsdoc/recommended'
 
 parserOptions:
-  project: './tsconfig.json'
+  project: './tsconfig.eslint.json'
 
 rules:
   # require JSDoc on every standard location, and also on classes, interfaces and enums
