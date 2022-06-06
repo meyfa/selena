@@ -1,10 +1,10 @@
-import { Drawable } from './drawable'
-import { HeadDrawable } from './head-drawable'
-import { Point } from '../../util/geometry/point'
-import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
-import { LINE_WIDTH_LIFELINES } from '../config'
-import { DestructionDrawable } from './destruction-drawable'
+import { Drawable } from './drawable.js'
+import { HeadDrawable } from './head-drawable.js'
+import { Point } from '../../util/geometry/point.js'
+import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
+import { LINE_WIDTH_LIFELINES } from '../config.js'
+import { DestructionDrawable } from './destruction-drawable.js'
 
 /**
  * A drawable for a complete entity lifeline, including a configurable head and the line itself.

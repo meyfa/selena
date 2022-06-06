@@ -1,5 +1,5 @@
-import { Entity } from '../sequence/entity'
-import { Activation } from '../sequence/activation'
+import { Entity } from '../sequence/entity.js'
+import { Activation } from '../sequence/activation.js'
 
 /**
  * This interface enables looking up an Entity by its id.

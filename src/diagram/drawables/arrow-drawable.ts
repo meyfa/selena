@@ -1,10 +1,10 @@
-import { Drawable } from './drawable'
-import { HorizontalTextAlignment, TextAlignment, TextDrawable, VerticalTextAlignment } from './text-drawable'
-import { Point } from '../../util/geometry/point'
-import { BoundingBox } from '../../util/geometry/bounding-box'
-import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
-import { LINE_WIDTH_ARROWS } from '../config'
+import { Drawable } from './drawable.js'
+import { HorizontalTextAlignment, TextAlignment, TextDrawable, VerticalTextAlignment } from './text-drawable.js'
+import { Point } from '../../util/geometry/point.js'
+import { BoundingBox } from '../../util/geometry/bounding-box.js'
+import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
+import { LINE_WIDTH_ARROWS } from '../config.js'
 
 /**
  * Compute horizontal label position depending on the arrow's bounding box and text alignment.

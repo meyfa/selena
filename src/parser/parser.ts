@@ -1,11 +1,11 @@
-import { TokenStream } from '../tokenizer/token-stream'
-import { Sequence } from '../sequence/sequence'
-import { ParserState } from './parser-state'
-import { detectEntity, parseEntity } from './entity/parse-entity'
-import { UnexpectedTokenError } from './errors'
-import { TokenAccessor } from './token-accessor'
-import { TokenType } from '../tokenizer/token'
-import { detectMessage, parseMessage } from './message/parse-message'
+import { TokenStream } from '../tokenizer/token-stream.js'
+import { Sequence } from '../sequence/sequence.js'
+import { ParserState } from './parser-state.js'
+import { detectEntity, parseEntity } from './entity/parse-entity.js'
+import { UnexpectedTokenError } from './errors.js'
+import { TokenAccessor } from './token-accessor.js'
+import { TokenType } from '../tokenizer/token.js'
+import { detectMessage, parseMessage } from './message/parse-message.js'
 
 /**
  * Parse the given stream of tokens into a sequence.

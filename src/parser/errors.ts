@@ -1,4 +1,4 @@
-import { Token, TokenType } from '../tokenizer/token'
+import { Token, TokenType } from '../tokenizer/token.js'
 
 /**
  * A generic error type for everything related to parsing.

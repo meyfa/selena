@@ -1,8 +1,8 @@
-import { DirectRenderer, LineMarker, StrokeOptions } from '../renderer'
-import { Size } from '../../util/geometry/size'
-import { Point } from '../../util/geometry/point'
-import { applyAttributes, AttributeValue, createSvgElement } from './svg-dom'
-import { SvgMarkerManager } from './svg-marker-manager'
+import { DirectRenderer, LineMarker, StrokeOptions } from '../renderer.js'
+import { Size } from '../../util/geometry/size.js'
+import { Point } from '../../util/geometry/point.js'
+import { applyAttributes, AttributeValue, createSvgElement } from './svg-dom.js'
+import { SvgMarkerManager } from './svg-marker-manager.js'
 
 /**
  * Obtain the size of the given piece of text in SVG pixels.

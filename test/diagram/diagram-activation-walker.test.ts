@@ -1,10 +1,9 @@
 import { expect } from 'chai'
-
-import { DiagramActivationWalker } from '../../src/diagram/diagram-activation-walker'
-import { Entity, EntityType } from '../../src/sequence/entity'
-import { Activation } from '../../src/sequence/activation'
-import { CreateMessage, DestroyMessage, LostMessage, ReplyMessage, SyncMessage } from '../../src/sequence/message'
-import { DiagramBuilder } from '../../src/diagram/diagram-builder'
+import { DiagramActivationWalker } from '../../src/diagram/diagram-activation-walker.js'
+import { Entity, EntityType } from '../../src/sequence/entity.js'
+import { Activation } from '../../src/sequence/activation.js'
+import { CreateMessage, DestroyMessage, LostMessage, ReplyMessage, SyncMessage } from '../../src/sequence/message.js'
+import { DiagramBuilder } from '../../src/diagram/diagram-builder.js'
 
 describe('src/diagram/diagram-activation-walker.ts', function () {
   const foo = new Entity(EntityType.COMPONENT, 'foo', 'Foo')

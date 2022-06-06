@@ -1,13 +1,12 @@
 import { expect } from 'chai'
-
-import { detectMessageDescription, parseMessageDescription } from '../../../src/parser/message/parse-message-description'
-import { Token, TokenType } from '../../../src/tokenizer/token'
-import { TokenStream } from '../../../src/tokenizer/token-stream'
-import { TokenAccessor } from '../../../src/parser/token-accessor'
-import { Entity, EntityType } from '../../../src/sequence/entity'
-import { EntityLookup } from '../../../src/parser/parser-state'
-import { MessageBlock, MessageType } from '../../../src/parser/message/message-description'
-import { ParserError } from '../../../src/parser/errors'
+import { detectMessageDescription, parseMessageDescription } from '../../../src/parser/message/parse-message-description.js'
+import { Token, TokenType } from '../../../src/tokenizer/token.js'
+import { TokenStream } from '../../../src/tokenizer/token-stream.js'
+import { TokenAccessor } from '../../../src/parser/token-accessor.js'
+import { Entity, EntityType } from '../../../src/sequence/entity.js'
+import { EntityLookup } from '../../../src/parser/parser-state.js'
+import { MessageBlock, MessageType } from '../../../src/parser/message/message-description.js'
+import { ParserError } from '../../../src/parser/errors.js'
 
 describe('src/parser/message/parse-message-description.ts', function () {
   describe('detectMessageDescription()', function () {

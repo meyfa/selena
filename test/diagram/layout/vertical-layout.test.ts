@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-
-import { VerticalLayout } from '../../../src/diagram/layout/vertical-layout'
+import { VerticalLayout } from '../../../src/diagram/layout/vertical-layout.js'
 
 describe('src/diagram/layout/vertical-layout.ts', function () {
   it('computes empty layout if no parts are specified', function () {

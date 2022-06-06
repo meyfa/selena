@@ -1,12 +1,12 @@
-import { Token, TokenType } from '../../tokenizer/token'
-import { MissingTargetError, UnexpectedMessageBlockError, UnknownObjectError, UnsupportedOptionError } from '../errors'
-import { EntityLookup } from '../parser-state'
-import { unquote } from '../unquote'
-import { detectMessageBlock, parseMessageBlock } from './parse-message-block'
-import { MessageBlock, MessageDescription, MessageType } from './message-description'
-import { TokenAccessor } from '../token-accessor'
-import { keywords, messageOptions } from '../strings'
-import { Entity } from '../../sequence/entity'
+import { Token, TokenType } from '../../tokenizer/token.js'
+import { MissingTargetError, UnexpectedMessageBlockError, UnknownObjectError, UnsupportedOptionError } from '../errors.js'
+import { EntityLookup } from '../parser-state.js'
+import { unquote } from '../unquote.js'
+import { detectMessageBlock, parseMessageBlock } from './parse-message-block.js'
+import { MessageBlock, MessageDescription, MessageType } from './message-description.js'
+import { TokenAccessor } from '../token-accessor.js'
+import { keywords, messageOptions } from '../strings.js'
+import { Entity } from '../../sequence/entity.js'
 
 // I wish Object.values was supported in this ES version
 const AVAILABLE_TYPE_KEYWORDS = Object.keys(messageOptions).map(key => (messageOptions as Record<string, string>)[key])

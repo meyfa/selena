@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-
-import { ActorHeadDrawable } from '../../../src/diagram/drawables/actor-head-drawable'
-import { Size } from '../../../src/util/geometry/size'
-import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
-import { Point } from '../../../src/util/geometry/point'
+import { ActorHeadDrawable } from '../../../src/diagram/drawables/actor-head-drawable.js'
+import { Size } from '../../../src/util/geometry/size.js'
+import { RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
+import { Point } from '../../../src/util/geometry/point.js'
 
 describe('src/diagram/drawables/actor-head-drawable.ts', function () {
   describe('#measure()', function () {

@@ -1,6 +1,6 @@
-import { MessageDescription, MessageType } from '../message-description'
-import { UnexpectedMessageBlockError, UnexpectedTokenError } from '../../errors'
-import { Activation } from '../../../sequence/activation'
+import { MessageDescription, MessageType } from '../message-description.js'
+import { UnexpectedMessageBlockError, UnexpectedTokenError } from '../../errors.js'
+import { Activation } from '../../../sequence/activation.js'
 import {
   AsyncMessage,
   CreateMessage,
@@ -8,8 +8,8 @@ import {
   Message,
   ReplyMessage,
   SyncMessage
-} from '../../../sequence/message'
-import { Entity } from '../../../sequence/entity'
+} from '../../../sequence/message.js'
+import { Entity } from '../../../sequence/entity.js'
 
 /**
  * Regular messages follow a general schema, but they differ in a few aspects.

@@ -1,7 +1,7 @@
-import { Renderer } from '../../renderer/renderer'
-import { ActivationBarDrawable } from '../drawables/activation-bar-drawable'
-import { ACTIVATION_THICKNESS } from '../config'
-import { DiagramPart } from './diagram-part'
+import { Renderer } from '../../renderer/renderer.js'
+import { ActivationBarDrawable } from '../drawables/activation-bar-drawable.js'
+import { ACTIVATION_THICKNESS } from '../config.js'
+import { DiagramPart } from './diagram-part.js'
 
 /**
  * A diagram part representing an activation bar.

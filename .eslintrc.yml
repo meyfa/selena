@@ -1,17 +1,31 @@
 extends:
   - 'standard-with-typescript'
-  - 'plugin:jsdoc/recommended'
 
 parserOptions:
   project: './tsconfig.eslint.json'
 
 rules:
-  # require JSDoc on every standard location, and also on classes, interfaces and enums
-  'jsdoc/require-jsdoc': ['error', {contexts: ['ClassDeclaration', 'TSInterfaceDeclaration', 'TSEnumDeclaration']}]
-  'jsdoc/require-param-type': off
-  'jsdoc/require-returns-type': off
-  # forbid types everywhere, and also in the context of function properties (such as those in interfaces)
-  'jsdoc/no-types': ['error', {contexts: ['TSPropertySignature']}]
-  # explicitly check for returns and params description on interface functions
-  'jsdoc/require-returns-description': ['error', {contexts: ['TSPropertySignature']}]
-  'jsdoc/require-param-description': ['error', {contexts: ['TSPropertySignature']}]
+  # This project requires .js extensions with imports because it is packaged as ESM.
+  import/extensions: [error, always]
+
+overrides:
+  - files: '**/*.{js,ts}'
+    excludedFiles: 'test/**/*.{ts,js}'
+    # Also configure JSDoc checking for any files that are not tests.
+    extends:
+      - 'plugin:jsdoc/recommended'
+    rules:
+      # Require JSDoc on every standard location, and also on classes, interfaces and enums.
+      'jsdoc/require-jsdoc': [error, { contexts: ['ClassDeclaration', 'TSInterfaceDeclaration', 'TSEnumDeclaration'] }]
+      'jsdoc/require-param-type': off
+      'jsdoc/require-returns-type': off
+      # Forbid types everywhere, and also in the context of function properties (such as those in interfaces).
+      'jsdoc/no-types': [error, { contexts: ['TSPropertySignature'] }]
+      # Explicitly check for returns and params description on interface functions.
+      'jsdoc/require-returns-description': [error, { contexts: ['TSPropertySignature'] }]
+      'jsdoc/require-param-description': [error, { contexts: ['TSPropertySignature'] }]
+  - files: 'test/**/*.{ts,js}'
+    rules:
+      no-unused-expressions: off
+      '@typescript-eslint/no-unused-expressions': off
+      '@typescript-eslint/no-floating-promises': off

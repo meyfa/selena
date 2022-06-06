@@ -1,9 +1,9 @@
-import { EntityDiagramPart } from './parts/entity-diagram-part'
-import { MessageDiagramPart } from './parts/message-diagram-part'
-import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part'
-import { Entity } from '../sequence/entity'
-import { LostMessage, Message } from '../sequence/message'
-import { Activation } from '../sequence/activation'
+import { EntityDiagramPart } from './parts/entity-diagram-part.js'
+import { MessageDiagramPart } from './parts/message-diagram-part.js'
+import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part.js'
+import { Entity } from '../sequence/entity.js'
+import { LostMessage, Message } from '../sequence/message.js'
+import { Activation } from '../sequence/activation.js'
 
 /**
  * All of the elements that make up a diagram are contained in objects of this type.

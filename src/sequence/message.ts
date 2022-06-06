@@ -1,4 +1,4 @@
-import { Entity } from './entity'
+import { Entity } from './entity.js'
 
 /**
  * The message style, used for defining which kind of arrow to use.

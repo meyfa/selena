@@ -1,15 +1,16 @@
 import { expect } from 'chai'
-
 import {
-  AsyncMessage, CreateMessage, DestroyMessage,
+  AsyncMessage,
+  CreateMessage,
+  DestroyMessage,
   FoundMessage,
   LostMessage,
   Message,
   MessageStyle,
   ReplyMessage,
   SyncMessage
-} from '../../src/sequence/message'
-import { Entity, EntityType } from '../../src/sequence/entity'
+} from '../../src/sequence/message.js'
+import { Entity, EntityType } from '../../src/sequence/entity.js'
 
 function assertMessage (msg: Message, expected: { from: any, to: any, label: any, style: any }): void {
   expect(msg.from).to.equal(expected.from)

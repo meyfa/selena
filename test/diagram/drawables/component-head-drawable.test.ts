@@ -1,10 +1,9 @@
 import { expect } from 'chai'
-
-import { ComponentHeadDrawable } from '../../../src/diagram/drawables/component-head-drawable'
-import { Size } from '../../../src/util/geometry/size'
-import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
-import { Point } from '../../../src/util/geometry/point'
-import { COMPONENT_HEAD_PADDING_H, COMPONENT_HEAD_PADDING_V } from '../../../src/diagram/config'
+import { ComponentHeadDrawable } from '../../../src/diagram/drawables/component-head-drawable.js'
+import { Size } from '../../../src/util/geometry/size.js'
+import { RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
+import { Point } from '../../../src/util/geometry/point.js'
+import { COMPONENT_HEAD_PADDING_H, COMPONENT_HEAD_PADDING_V } from '../../../src/diagram/config.js'
 
 describe('src/diagram/drawables/component-head-drawable.ts', function () {
   describe('#measure()', function () {

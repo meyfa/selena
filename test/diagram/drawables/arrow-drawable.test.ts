@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-
-import { ArrowDrawable } from '../../../src/diagram/drawables/arrow-drawable'
-import { Size } from '../../../src/util/geometry/size'
-import { LineMarker, RenderAttributes, Renderer } from '../../../src/renderer/renderer'
-import { Point } from '../../../src/util/geometry/point'
+import { ArrowDrawable } from '../../../src/diagram/drawables/arrow-drawable.js'
+import { Size } from '../../../src/util/geometry/size.js'
+import { LineMarker, RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
+import { Point } from '../../../src/util/geometry/point.js'
 
 describe('src/diagram/drawables/arrow-drawable.ts', function () {
   describe('#measure()', function () {

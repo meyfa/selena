@@ -1,5 +1,5 @@
-import { Drawable } from './drawable'
-import { Point } from '../../util/geometry/point'
+import { Drawable } from './drawable.js'
+import { Point } from '../../util/geometry/point.js'
 
 /**
  * An extension to the drawable interface for methods specific to entity heads

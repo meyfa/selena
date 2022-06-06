@@ -1,5 +1,5 @@
-import { Size } from '../util/geometry/size'
-import { Point } from '../util/geometry/point'
+import { Size } from '../util/geometry/size.js'
+import { Point } from '../util/geometry/point.js'
 
 /**
  * Represents markers that can be applied to the ends of lines.

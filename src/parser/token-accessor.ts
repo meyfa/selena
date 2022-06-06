@@ -1,6 +1,6 @@
-import { Token, TokenType } from '../tokenizer/token'
-import { TokenStream } from '../tokenizer/token-stream'
-import { UnexpectedTokenError } from './errors'
+import { Token, TokenType } from '../tokenizer/token.js'
+import { TokenStream } from '../tokenizer/token-stream.js'
+import { UnexpectedTokenError } from './errors.js'
 
 /**
  * This class operates on a TokenStream.

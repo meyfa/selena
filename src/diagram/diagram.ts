@@ -1,13 +1,13 @@
-import { Size } from '../util/geometry/size'
-import { Sequence } from '../sequence/sequence'
-import { RenderAttributes, Renderer } from '../renderer/renderer'
-import { EntityDiagramPart } from './parts/entity-diagram-part'
-import { ENTITY_SPACING, MESSAGE_SPACING } from './config'
-import { DiagramBuilder } from './diagram-builder'
-import { DiagramActivationWalker } from './diagram-activation-walker'
-import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part'
-import { MessageDiagramPart } from './parts/message-diagram-part'
-import { LayoutManager } from './layout/layout-manager'
+import { Size } from '../util/geometry/size.js'
+import { Sequence } from '../sequence/sequence.js'
+import { RenderAttributes, Renderer } from '../renderer/renderer.js'
+import { EntityDiagramPart } from './parts/entity-diagram-part.js'
+import { ENTITY_SPACING, MESSAGE_SPACING } from './config.js'
+import { DiagramBuilder } from './diagram-builder.js'
+import { DiagramActivationWalker } from './diagram-activation-walker.js'
+import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part.js'
+import { MessageDiagramPart } from './parts/message-diagram-part.js'
+import { LayoutManager } from './layout/layout-manager.js'
 
 /**
  * Represents a visual diagram based on some sequence.

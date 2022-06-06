@@ -1,10 +1,10 @@
-import { DiagramPart } from './diagram-part'
-import { Message, MessageStyle } from '../../sequence/message'
-import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer'
-import { ArrowDrawable } from '../drawables/arrow-drawable'
-import { computeArrowPoints } from './compute-arrow-points'
-import { HorizontalTextAlignment, TextAlignment, VerticalTextAlignment } from '../drawables/text-drawable'
-import { ACTIVATION_THICKNESS, MESSAGE_FOUND_WIDTH, MESSAGE_PADDING, MESSAGE_SELF_HEIGHT } from '../config'
+import { DiagramPart } from './diagram-part.js'
+import { Message, MessageStyle } from '../../sequence/message.js'
+import { LineMarker, RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { ArrowDrawable } from '../drawables/arrow-drawable.js'
+import { computeArrowPoints } from './compute-arrow-points.js'
+import { HorizontalTextAlignment, TextAlignment, VerticalTextAlignment } from '../drawables/text-drawable.js'
+import { ACTIVATION_THICKNESS, MESSAGE_FOUND_WIDTH, MESSAGE_PADDING, MESSAGE_SELF_HEIGHT } from '../config.js'
 
 // text alignment specifiers for different types of messages
 

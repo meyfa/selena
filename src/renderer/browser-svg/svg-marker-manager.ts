@@ -1,5 +1,5 @@
-import { LineMarker } from '../renderer'
-import { applyAttributes, createSvgElement } from './svg-dom'
+import { LineMarker } from '../renderer.js'
+import { applyAttributes, createSvgElement } from './svg-dom.js'
 
 /**
  * Specifies a marker id, whether to fill and/or stroke the marker path, and the marker path data.

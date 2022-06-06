@@ -1,8 +1,7 @@
 import { expect } from 'chai'
-
-import { BoundingBox } from '../../../src/util/geometry/bounding-box'
-import { Point } from '../../../src/util/geometry/point'
-import { Size } from '../../../src/util/geometry/size'
+import { BoundingBox } from '../../../src/util/geometry/bounding-box.js'
+import { Point } from '../../../src/util/geometry/point.js'
+import { Size } from '../../../src/util/geometry/size.js'
 
 describe('src/util/geometry/bounding-box.ts', function () {
   describe('constructor', function () {

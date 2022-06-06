@@ -1,10 +1,10 @@
-import { Entity, EntityType } from '../../sequence/entity'
-import { Token, TokenType } from '../../tokenizer/token'
-import { unquote } from '../unquote'
-import { detectEntityOptions, parseEntityOptions } from './parse-entity-options'
-import { keywords } from '../strings'
-import { defaultEntityOptions } from './entity-options'
-import { TokenAccessor } from '../token-accessor'
+import { Entity, EntityType } from '../../sequence/entity.js'
+import { Token, TokenType } from '../../tokenizer/token.js'
+import { unquote } from '../unquote.js'
+import { detectEntityOptions, parseEntityOptions } from './parse-entity-options.js'
+import { keywords } from '../strings.js'
+import { defaultEntityOptions } from './entity-options.js'
+import { TokenAccessor } from '../token-accessor.js'
 
 /**
  * Determine whether the given token marks the beginning of an entity definition.

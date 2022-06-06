@@ -3,8 +3,8 @@ import {
   ComputedConstraintsItem,
   ConstraintLayout,
   ConstraintLayoutOptions
-} from './constraint-layout'
-import { IndexedConstraintLayout } from './indexed-constraint-layout'
+} from './constraint-layout.js'
+import { IndexedConstraintLayout } from './indexed-constraint-layout.js'
 
 /**
  * A type of constraint layout for arbitrary types of item identifiers (identifiers must be unique).

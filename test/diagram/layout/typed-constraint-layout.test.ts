@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-
-import { TypedConstraintLayout } from '../../../src/diagram/layout/typed-constraint-layout'
+import { TypedConstraintLayout } from '../../../src/diagram/layout/typed-constraint-layout.js'
 
 describe('src/diagram/layout/typed-constraint-layout.ts', function () {
   it('computes empty layout for itemCount=0', function () {

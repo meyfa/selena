@@ -1,4 +1,4 @@
-import { Message, MessageStyle } from './message'
+import { Message, MessageStyle } from './message.js'
 
 /**
  * Determine whether the given reply is a valid reply to the given original message.

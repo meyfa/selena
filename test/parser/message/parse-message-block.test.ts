@@ -1,12 +1,11 @@
 import { expect } from 'chai'
-
-import { detectMessageBlock, parseMessageBlock } from '../../../src/parser/message/parse-message-block'
-import { Token, TokenType } from '../../../src/tokenizer/token'
-import { TokenStream } from '../../../src/tokenizer/token-stream'
-import { TokenAccessor } from '../../../src/parser/token-accessor'
-import { ParserError } from '../../../src/parser/errors'
-import { Entity, EntityType } from '../../../src/sequence/entity'
-import { EntityLookup } from '../../../src/parser/parser-state'
+import { detectMessageBlock, parseMessageBlock } from '../../../src/parser/message/parse-message-block.js'
+import { Token, TokenType } from '../../../src/tokenizer/token.js'
+import { TokenStream } from '../../../src/tokenizer/token-stream.js'
+import { TokenAccessor } from '../../../src/parser/token-accessor.js'
+import { ParserError } from '../../../src/parser/errors.js'
+import { Entity, EntityType } from '../../../src/sequence/entity.js'
+import { EntityLookup } from '../../../src/parser/parser-state.js'
 
 describe('src/parser/message/parse-message-block.ts', function () {
   describe('detectMessageBlock()', function () {

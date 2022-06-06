@@ -1,10 +1,9 @@
 import { expect } from 'chai'
-
-import { EntityDiagramPart } from '../../../src/diagram/parts/entity-diagram-part'
-import { Entity, EntityType } from '../../../src/sequence/entity'
-import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
-import { Size } from '../../../src/util/geometry/size'
-import { Point } from '../../../src/util/geometry/point'
+import { EntityDiagramPart } from '../../../src/diagram/parts/entity-diagram-part.js'
+import { Entity, EntityType } from '../../../src/sequence/entity.js'
+import { RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
+import { Size } from '../../../src/util/geometry/size.js'
+import { Point } from '../../../src/util/geometry/point.js'
 
 describe('src/diagram/parts/entity-diagram-part.ts', function () {
   describe('#measureHead()', function () {

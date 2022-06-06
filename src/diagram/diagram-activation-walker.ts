@@ -1,8 +1,8 @@
-import { ActivationWalker } from './activation-walker'
-import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part'
-import { Activation } from '../sequence/activation'
-import { MessageStyle } from '../sequence/message'
-import { DiagramBuilder } from './diagram-builder'
+import { ActivationWalker } from './activation-walker.js'
+import { ActivationBarDiagramPart } from './parts/activation-bar-diagram-part.js'
+import { Activation } from '../sequence/activation.js'
+import { MessageStyle } from '../sequence/message.js'
+import { DiagramBuilder } from './diagram-builder.js'
 
 /**
  * A class that recursively visits activations ("walking") and constructs the required

@@ -1,8 +1,7 @@
 import { expect } from 'chai'
-
-import { ActivationBarDrawable } from '../../../src/diagram/drawables/activation-bar-drawable'
-import { Size } from '../../../src/util/geometry/size'
-import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
+import { ActivationBarDrawable } from '../../../src/diagram/drawables/activation-bar-drawable.js'
+import { Size } from '../../../src/util/geometry/size.js'
+import { RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
 
 describe('src/diagram/drawables/activation-bar-drawable.ts', function () {
   describe('#measure()', function () {

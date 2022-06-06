@@ -1,7 +1,7 @@
-import { Token, TokenType } from '../../tokenizer/token'
-import { keywords } from '../strings'
-import { unquote } from '../unquote'
-import { TokenAccessor } from '../token-accessor'
+import { Token, TokenType } from '../../tokenizer/token.js'
+import { keywords } from '../strings.js'
+import { unquote } from '../unquote.js'
+import { TokenAccessor } from '../token-accessor.js'
 
 /**
  * Determine whether the given token marks the beginning of a return statement.

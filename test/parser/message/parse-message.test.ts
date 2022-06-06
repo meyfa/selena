@@ -1,12 +1,11 @@
 import { expect } from 'chai'
-
-import { detectMessage, parseMessage } from '../../../src/parser/message/parse-message'
-import { Token, TokenType } from '../../../src/tokenizer/token'
-import { TokenStream } from '../../../src/tokenizer/token-stream'
-import { TokenAccessor } from '../../../src/parser/token-accessor'
-import { Entity, EntityType } from '../../../src/sequence/entity'
-import { EntityLookup } from '../../../src/parser/parser-state'
-import { MessageStyle } from '../../../src/sequence/message'
+import { detectMessage, parseMessage } from '../../../src/parser/message/parse-message.js'
+import { Token, TokenType } from '../../../src/tokenizer/token.js'
+import { TokenStream } from '../../../src/tokenizer/token-stream.js'
+import { TokenAccessor } from '../../../src/parser/token-accessor.js'
+import { Entity, EntityType } from '../../../src/sequence/entity.js'
+import { EntityLookup } from '../../../src/parser/parser-state.js'
+import { MessageStyle } from '../../../src/sequence/message.js'
 
 describe('src/parser/message/parse-message.ts', function () {
   describe('detectMessage()', function () {

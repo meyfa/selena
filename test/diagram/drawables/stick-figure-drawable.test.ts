@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-
-import { StickFigureDrawable } from '../../../src/diagram/drawables/stick-figure-drawable'
-import { Size } from '../../../src/util/geometry/size'
-import { RenderAttributes, Renderer } from '../../../src/renderer/renderer'
-import { Point } from '../../../src/util/geometry/point'
+import { StickFigureDrawable } from '../../../src/diagram/drawables/stick-figure-drawable.js'
+import { Size } from '../../../src/util/geometry/size.js'
+import { RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
+import { Point } from '../../../src/util/geometry/point.js'
 
 describe('src/diagram/drawables/stick-figure-drawable.ts', function () {
   describe('#measure()', function () {

@@ -1,8 +1,7 @@
 import { expect } from 'chai'
-
-import * as index from '../index'
-import { TokenStream } from '../src/tokenizer/token-stream'
-import { Token, TokenType } from '../src/tokenizer/token'
+import * as index from '../index.js'
+import { TokenStream } from '../src/tokenizer/token-stream.js'
+import { Token, TokenType } from '../src/tokenizer/token.js'
 
 describe('index.ts', function () {
   describe('#tokenize()', function () {
