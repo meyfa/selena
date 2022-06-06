@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-
-import { DiagramBuilder } from '../../src/diagram/diagram-builder'
-import { Entity, EntityType } from '../../src/sequence/entity'
-import { Activation } from '../../src/sequence/activation'
-import { AsyncMessage, CreateMessage, LostMessage, ReplyMessage, SyncMessage } from '../../src/sequence/message'
+import { DiagramBuilder } from '../../src/diagram/diagram-builder.js'
+import { Entity, EntityType } from '../../src/sequence/entity.js'
+import { Activation } from '../../src/sequence/activation.js'
+import { AsyncMessage, CreateMessage, LostMessage, ReplyMessage, SyncMessage } from '../../src/sequence/message.js'
 
 describe('src/diagram/diagram-builder.ts', function () {
   const foo = new Entity(EntityType.COMPONENT, 'foo', 'Foo')

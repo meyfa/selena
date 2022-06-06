@@ -1,7 +1,7 @@
-import { Drawable } from './drawable'
-import { Size } from '../../util/geometry/size'
-import { Point } from '../../util/geometry/point'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
+import { Drawable } from './drawable.js'
+import { Size } from '../../util/geometry/size.js'
+import { Point } from '../../util/geometry/point.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
 
 /**
  * A Drawable that draws a rectangular box with a strong outline.

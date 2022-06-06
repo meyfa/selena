@@ -1,5 +1,5 @@
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
 
 /**
  * A Drawable is something that can be measured (has an intrinsic Size)

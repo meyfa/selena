@@ -1,8 +1,8 @@
-import { Size } from '../../util/geometry/size'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Drawable } from './drawable'
-import { BoxDrawable } from './box-drawable'
-import { Point } from '../../util/geometry/point'
+import { Size } from '../../util/geometry/size.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Drawable } from './drawable.js'
+import { BoxDrawable } from './box-drawable.js'
+import { Point } from '../../util/geometry/point.js'
 
 /**
  * A Drawable that draws a simple box, but offers easier configuration for purposes of rendering activation bars

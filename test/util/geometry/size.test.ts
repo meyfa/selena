@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-
-import { Size } from '../../../src/util/geometry/size'
+import { Size } from '../../../src/util/geometry/size.js'
 
 describe('src/util/geometry/size.ts', function () {
   describe('ZERO', function () {

@@ -1,5 +1,5 @@
-import { Point } from '../../util/geometry/point'
-import { ACTIVATION_THICKNESS, MESSAGE_FOUND_WIDTH, MESSAGE_SELF_HEIGHT, MESSAGE_SELF_WIDTH } from '../config'
+import { Point } from '../../util/geometry/point.js'
+import { ACTIVATION_THICKNESS, MESSAGE_FOUND_WIDTH, MESSAGE_SELF_HEIGHT, MESSAGE_SELF_WIDTH } from '../config.js'
 
 /**
  * The amount each nested activation bar is indented relative to the previous one.

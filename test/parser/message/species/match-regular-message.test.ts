@@ -1,12 +1,11 @@
 import { expect } from 'chai'
-
-import { matchRegularMessage } from '../../../../src/parser/message/species/match-regular-message'
-import { MessageDescription, MessageType } from '../../../../src/parser/message/message-description'
-import { Entity, EntityType } from '../../../../src/sequence/entity'
-import { ParserError } from '../../../../src/parser/errors'
-import { Token, TokenType } from '../../../../src/tokenizer/token'
-import { Activation } from '../../../../src/sequence/activation'
-import { MessageStyle, SyncMessage } from '../../../../src/sequence/message'
+import { matchRegularMessage } from '../../../../src/parser/message/species/match-regular-message.js'
+import { MessageDescription, MessageType } from '../../../../src/parser/message/message-description.js'
+import { Entity, EntityType } from '../../../../src/sequence/entity.js'
+import { ParserError } from '../../../../src/parser/errors.js'
+import { Token, TokenType } from '../../../../src/tokenizer/token.js'
+import { Activation } from '../../../../src/sequence/activation.js'
+import { MessageStyle, SyncMessage } from '../../../../src/sequence/message.js'
 
 describe('src/parser/message/species/match-regular-message.ts', function () {
   const evidenceToken = new Token(TokenType.ARROW, 0, '->')

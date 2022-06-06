@@ -1,12 +1,12 @@
-import { Entity } from '../../sequence/entity'
-import { Token, TokenType } from '../../tokenizer/token'
-import { Activation } from '../../sequence/activation'
-import { AlreadyReturnedError, UnexpectedTokenError } from '../errors'
-import { detectMessage, parseMessage } from './parse-message'
-import { detectReturn, parseReturn } from './parse-return'
-import { EntityLookup } from '../parser-state'
-import { TokenAccessor } from '../token-accessor'
-import { MessageBlock } from './message-description'
+import { Entity } from '../../sequence/entity.js'
+import { Token, TokenType } from '../../tokenizer/token.js'
+import { Activation } from '../../sequence/activation.js'
+import { AlreadyReturnedError, UnexpectedTokenError } from '../errors.js'
+import { detectMessage, parseMessage } from './parse-message.js'
+import { detectReturn, parseReturn } from './parse-return.js'
+import { EntityLookup } from '../parser-state.js'
+import { TokenAccessor } from '../token-accessor.js'
+import { MessageBlock } from './message-description.js'
 
 /**
  * This class helps construct a MessageBlock from activations and a return value.

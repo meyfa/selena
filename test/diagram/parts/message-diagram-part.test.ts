@@ -1,17 +1,18 @@
 import { expect } from 'chai'
-
 import {
   AsyncMessage,
-  CreateMessage, DestroyMessage, FoundMessage,
+  CreateMessage,
+  DestroyMessage,
+  FoundMessage,
   LostMessage,
   Message,
   ReplyMessage,
   SyncMessage
-} from '../../../src/sequence/message'
-import { Entity, EntityType } from '../../../src/sequence/entity'
-import { MessageDiagramPart } from '../../../src/diagram/parts/message-diagram-part'
-import { LineMarker, RenderAttributes, Renderer } from '../../../src/renderer/renderer'
-import { Size } from '../../../src/util/geometry/size'
+} from '../../../src/sequence/message.js'
+import { Entity, EntityType } from '../../../src/sequence/entity.js'
+import { MessageDiagramPart } from '../../../src/diagram/parts/message-diagram-part.js'
+import { LineMarker, RenderAttributes, Renderer } from '../../../src/renderer/renderer.js'
+import { Size } from '../../../src/util/geometry/size.js'
 
 describe('src/diagram/parts/message-diagram-part.ts', function () {
   const foo = new Entity(EntityType.COMPONENT, 'foo', 'Foo')

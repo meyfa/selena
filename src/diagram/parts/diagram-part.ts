@@ -1,4 +1,4 @@
-import { Renderer } from '../../renderer/renderer'
+import { Renderer } from '../../renderer/renderer.js'
 
 /**
  * A diagram part is usually a complex visual element that includes dynamic content

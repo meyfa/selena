@@ -1,7 +1,7 @@
-import { Drawable } from './drawable'
-import { Point } from '../../util/geometry/point'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
+import { Drawable } from './drawable.js'
+import { Point } from '../../util/geometry/point.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
 
 const DESTRUCTION_PATH = 'M-13,-13 L13,13 M-13,13 L13,-13'
 

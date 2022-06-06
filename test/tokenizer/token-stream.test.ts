@@ -1,8 +1,7 @@
 import { expect } from 'chai'
-
-import { TokenStream } from '../../src/tokenizer/token-stream'
-import { Token, TokenType } from '../../src/tokenizer/token'
-import { EndOfStreamError } from '../../src/tokenizer/errors'
+import { TokenStream } from '../../src/tokenizer/token-stream.js'
+import { Token, TokenType } from '../../src/tokenizer/token.js'
+import { EndOfStreamError } from '../../src/tokenizer/errors.js'
 
 describe('src/tokenizer/token-stream.ts', function () {
   describe('#hasNext()', function () {

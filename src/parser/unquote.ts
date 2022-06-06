@@ -1,4 +1,4 @@
-import { Token, TokenType } from '../tokenizer/token'
+import { Token, TokenType } from '../tokenizer/token.js'
 
 /**
  * Unquote the given string token, returning its true value.

@@ -1,10 +1,10 @@
-import { HeadDrawable } from './head-drawable'
-import { HorizontalTextAlignment, TextAlignment, TextDrawable, VerticalTextAlignment } from './text-drawable'
-import { Point } from '../../util/geometry/point'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
-import { BoxDrawable } from './box-drawable'
-import { COMPONENT_HEAD_PADDING_H, COMPONENT_HEAD_PADDING_V } from '../config'
+import { HeadDrawable } from './head-drawable.js'
+import { HorizontalTextAlignment, TextAlignment, TextDrawable, VerticalTextAlignment } from './text-drawable.js'
+import { Point } from '../../util/geometry/point.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
+import { BoxDrawable } from './box-drawable.js'
+import { COMPONENT_HEAD_PADDING_H, COMPONENT_HEAD_PADDING_V } from '../config.js'
 
 const TEXT_ALIGN: TextAlignment = {
   h: HorizontalTextAlignment.CENTER,

@@ -1,8 +1,8 @@
-import { Drawable } from './drawable'
-import { Point } from '../../util/geometry/point'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
-import { FONT_SIZE } from '../config'
+import { Drawable } from './drawable.js'
+import { Point } from '../../util/geometry/point.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
+import { FONT_SIZE } from '../config.js'
 
 /**
  * Enum specifying horizontal positioning of text relative to a given point.

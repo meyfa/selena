@@ -1,9 +1,9 @@
-import { MessageDescription, MessageType } from '../message-description'
-import { UnexpectedMessageBlockError, UnexpectedTokenError, UnsupportedOptionError } from '../../errors'
-import { Activation } from '../../../sequence/activation'
-import { LostMessage } from '../../../sequence/message'
-import { Entity } from '../../../sequence/entity'
-import { messageOptions } from '../../strings'
+import { MessageDescription, MessageType } from '../message-description.js'
+import { UnexpectedMessageBlockError, UnexpectedTokenError, UnsupportedOptionError } from '../../errors.js'
+import { Activation } from '../../../sequence/activation.js'
+import { LostMessage } from '../../../sequence/message.js'
+import { Entity } from '../../../sequence/entity.js'
+import { messageOptions } from '../../strings.js'
 
 /**
  * Try to match a "lost message" from the given description.

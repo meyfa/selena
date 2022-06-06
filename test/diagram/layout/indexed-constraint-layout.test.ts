@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-
-import { IndexedConstraintLayout } from '../../../src/diagram/layout/indexed-constraint-layout'
+import { IndexedConstraintLayout } from '../../../src/diagram/layout/indexed-constraint-layout.js'
 
 describe('src/diagram/layout/indexed-constraint-layout.ts', function () {
   it('computes empty layout for itemCount=0', function () {

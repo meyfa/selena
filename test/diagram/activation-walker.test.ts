@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-
-import { ActivationWalker } from '../../src/diagram/activation-walker'
-import { Activation } from '../../src/sequence/activation'
-import { Entity, EntityType } from '../../src/sequence/entity'
-import { LostMessage, SyncMessage } from '../../src/sequence/message'
+import { ActivationWalker } from '../../src/diagram/activation-walker.js'
+import { Activation } from '../../src/sequence/activation.js'
+import { Entity, EntityType } from '../../src/sequence/entity.js'
+import { LostMessage, SyncMessage } from '../../src/sequence/message.js'
 
 interface MockWalkerConfig {
   shouldActivate?: (node: Activation) => boolean

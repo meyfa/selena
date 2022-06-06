@@ -1,7 +1,7 @@
-import { Drawable } from './drawable'
-import { Point } from '../../util/geometry/point'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
+import { Drawable } from './drawable.js'
+import { Point } from '../../util/geometry/point.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
 
 const STICK_FIGURE_PATH = 'M0,0 a8,8,0,1,0,0,16  M0,0 a8,8,0,1,1,0,16  M0,16 v20  M-15,22 h30  M-10,46 l10,-10 l10,10'
 

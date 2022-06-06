@@ -3,7 +3,7 @@ import {
   ComputedConstraintsItem,
   ConstraintLayout,
   ConstraintLayoutOptions
-} from './constraint-layout'
+} from './constraint-layout.js'
 
 /**
  * Holds the constraints for a single item (before they are computed).

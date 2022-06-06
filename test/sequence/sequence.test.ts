@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-
-import { Sequence } from '../../src/sequence/sequence'
-import { Entity, EntityType } from '../../src/sequence/entity'
-import { Activation } from '../../src/sequence/activation'
-import { FoundMessage } from '../../src/sequence/message'
+import { Sequence } from '../../src/sequence/sequence.js'
+import { Entity, EntityType } from '../../src/sequence/entity.js'
+import { Activation } from '../../src/sequence/activation.js'
+import { FoundMessage } from '../../src/sequence/message.js'
 
 describe('src/sequence/sequence.ts', function () {
   it('has a working constructor', function () {

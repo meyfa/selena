@@ -1,5 +1,5 @@
-import { Activation } from '../sequence/activation'
-import { CountMap } from '../util/count-map'
+import { Activation } from '../sequence/activation.js'
+import { CountMap } from '../util/count-map.js'
 
 /**
  * This class can be extended to enable any kind of action on the tree-like Activation data structure.

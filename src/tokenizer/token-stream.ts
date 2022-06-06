@@ -1,5 +1,5 @@
-import { Token } from './token'
-import { EndOfStreamError } from './errors'
+import { Token } from './token.js'
+import { EndOfStreamError } from './errors.js'
 
 /**
  * A stream of tokens that allows for sequential processing.

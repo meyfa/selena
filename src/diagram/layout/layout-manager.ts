@@ -1,13 +1,13 @@
-import { EntityDiagramPart } from '../parts/entity-diagram-part'
-import { RenderAttributes } from '../../renderer/renderer'
-import { ComputedVerticalLayout, VerticalLayout } from './vertical-layout'
-import { MessageDiagramPart } from '../parts/message-diagram-part'
-import { ActivationBarDiagramPart } from '../parts/activation-bar-diagram-part'
-import { Size } from '../../util/geometry/size'
-import { TypedConstraintLayout } from './typed-constraint-layout'
-import { ComputedConstraints, ComputedConstraintsItem, ConstraintLayout } from './constraint-layout'
-import { Point } from '../../util/geometry/point'
-import { Message, MessageStyle } from '../../sequence/message'
+import { EntityDiagramPart } from '../parts/entity-diagram-part.js'
+import { RenderAttributes } from '../../renderer/renderer.js'
+import { ComputedVerticalLayout, VerticalLayout } from './vertical-layout.js'
+import { MessageDiagramPart } from '../parts/message-diagram-part.js'
+import { ActivationBarDiagramPart } from '../parts/activation-bar-diagram-part.js'
+import { Size } from '../../util/geometry/size.js'
+import { TypedConstraintLayout } from './typed-constraint-layout.js'
+import { ComputedConstraints, ComputedConstraintsItem, ConstraintLayout } from './constraint-layout.js'
+import { Point } from '../../util/geometry/point.js'
+import { Message, MessageStyle } from '../../sequence/message.js'
 
 /**
  * Options for a layout manager.

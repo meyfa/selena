@@ -1,13 +1,13 @@
-import { Entity } from '../../sequence/entity'
-import { Activation } from '../../sequence/activation'
-import { Token } from '../../tokenizer/token'
-import { UnexpectedTokenError } from '../errors'
-import { EntityLookup } from '../parser-state'
-import { detectMessageDescription, parseMessageDescription } from './parse-message-description'
-import { TokenAccessor } from '../token-accessor'
-import { matchFoundMessage } from './species/match-found-message'
-import { matchLostMessage } from './species/match-lost-message'
-import { matchRegularMessage } from './species/match-regular-message'
+import { Entity } from '../../sequence/entity.js'
+import { Activation } from '../../sequence/activation.js'
+import { Token } from '../../tokenizer/token.js'
+import { UnexpectedTokenError } from '../errors.js'
+import { EntityLookup } from '../parser-state.js'
+import { detectMessageDescription, parseMessageDescription } from './parse-message-description.js'
+import { TokenAccessor } from '../token-accessor.js'
+import { matchFoundMessage } from './species/match-found-message.js'
+import { matchLostMessage } from './species/match-lost-message.js'
+import { matchRegularMessage } from './species/match-regular-message.js'
 
 /**
  * Determine whether the given token marks the beginning of a message.

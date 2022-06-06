@@ -1,13 +1,12 @@
 import { expect } from 'chai'
-
-import { Diagram } from '../../src/diagram/diagram'
-import { Sequence } from '../../src/sequence/sequence'
-import { Renderer } from '../../src/renderer/renderer'
-import { Size } from '../../src/util/geometry/size'
-import { Entity, EntityType } from '../../src/sequence/entity'
-import { Point } from '../../src/util/geometry/point'
-import { Activation } from '../../src/sequence/activation'
-import { AsyncMessage, LostMessage, SyncMessage } from '../../src/sequence/message'
+import { Diagram } from '../../src/diagram/diagram.js'
+import { Sequence } from '../../src/sequence/sequence.js'
+import { Renderer } from '../../src/renderer/renderer.js'
+import { Size } from '../../src/util/geometry/size.js'
+import { Entity, EntityType } from '../../src/sequence/entity.js'
+import { Point } from '../../src/util/geometry/point.js'
+import { Activation } from '../../src/sequence/activation.js'
+import { AsyncMessage, LostMessage, SyncMessage } from '../../src/sequence/message.js'
 
 describe('src/diagram/diagram.ts', function () {
   describe('#layout()', function () {

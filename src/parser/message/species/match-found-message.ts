@@ -1,8 +1,8 @@
-import { MessageDescription, MessageType } from '../message-description'
-import { MissingTargetError, UnsupportedOptionError, UnsupportedReturnError } from '../../errors'
-import { messageOptions } from '../../strings'
-import { Activation } from '../../../sequence/activation'
-import { FoundMessage } from '../../../sequence/message'
+import { MessageDescription, MessageType } from '../message-description.js'
+import { MissingTargetError, UnsupportedOptionError, UnsupportedReturnError } from '../../errors.js'
+import { messageOptions } from '../../strings.js'
+import { Activation } from '../../../sequence/activation.js'
+import { FoundMessage } from '../../../sequence/message.js'
 
 /**
  * Try to match a "found message" from the given description.

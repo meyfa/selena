@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-
-import { Point } from '../../../src/util/geometry/point'
+import { Point } from '../../../src/util/geometry/point.js'
 
 describe('src/util/geometry/point.ts', function () {
   describe('ORIGIN', function () {

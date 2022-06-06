@@ -2,7 +2,7 @@
   "name": "selena",
   "version": "0.2.0",
   "description": "A textual language that compiles to UML sequence diagrams.",
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -13,8 +13,8 @@
     "build": "npm run clean && tsc",
     "lint": "tsc --noEmit && eslint --ignore-path .gitignore .",
     "lint-fix": "tsc --noEmit && eslint --fix --ignore-path .gitignore .",
-    "test": "mocha --require ts-node/register --recursive \"test/**/*.test.*\"",
-    "coverage": "c8 --reporter=lcov --all --include \"src/**/*.ts\" npm test",
+    "test": "mocha --recursive \"test/**/*.test.*\"",
+    "coverage": "c8 --reporter=lcov --reporter=text --all --include \"src/**/*.ts\" npm test",
     "prepare": "npm run build"
   },
   "repository": {

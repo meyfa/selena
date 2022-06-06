@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-
-import { CountMap } from '../../src/util/count-map'
+import { CountMap } from '../../src/util/count-map.js'
 
 describe('src/util/count-map.ts', function () {
   it('returns 0 by default', function () {

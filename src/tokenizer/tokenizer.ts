@@ -1,8 +1,8 @@
-import { Token, TokenType } from './token'
-import { TokenStream } from './token-stream'
-import { UnknownTokenTypeError, UnterminatedStringError } from './errors'
-import { regexpIndexOf } from '../util/regexp-index-of'
-import { findEndOfLine } from '../util/find-end-of-line'
+import { Token, TokenType } from './token.js'
+import { TokenStream } from './token-stream.js'
+import { UnknownTokenTypeError, UnterminatedStringError } from './errors.js'
+import { regexpIndexOf } from '../util/regexp-index-of.js'
+import { findEndOfLine } from '../util/find-end-of-line.js'
 
 /**
  * This record stores the values of each of the fixed token types.

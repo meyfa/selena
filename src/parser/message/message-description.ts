@@ -1,6 +1,6 @@
-import { Entity } from '../../sequence/entity'
-import { Token } from '../../tokenizer/token'
-import { Activation } from '../../sequence/activation'
+import { Entity } from '../../sequence/entity.js'
+import { Token } from '../../tokenizer/token.js'
+import { Activation } from '../../sequence/activation.js'
 
 /**
  * The script can specify a message "type", which is a subset of MessageStyle.

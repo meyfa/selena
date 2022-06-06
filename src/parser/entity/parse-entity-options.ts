@@ -1,8 +1,8 @@
-import { Token, TokenType } from '../../tokenizer/token'
-import { DuplicateOptionError, UnsupportedOptionError } from '../errors'
-import { entityOptions } from '../strings'
-import { defaultEntityOptions, EntityOptions } from './entity-options'
-import { TokenAccessor } from '../token-accessor'
+import { Token, TokenType } from '../../tokenizer/token.js'
+import { DuplicateOptionError, UnsupportedOptionError } from '../errors.js'
+import { entityOptions } from '../strings.js'
+import { defaultEntityOptions, EntityOptions } from './entity-options.js'
+import { TokenAccessor } from '../token-accessor.js'
 
 /**
  * Given an option string and an options object, apply the string to the object.

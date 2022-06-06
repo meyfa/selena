@@ -1,8 +1,7 @@
 import { expect } from 'chai'
-
-import { ActivationBarDiagramPart } from '../../../src/diagram/parts/activation-bar-diagram-part'
-import { Renderer } from '../../../src/renderer/renderer'
-import { Size } from '../../../src/util/geometry/size'
+import { ActivationBarDiagramPart } from '../../../src/diagram/parts/activation-bar-diagram-part.js'
+import { Renderer } from '../../../src/renderer/renderer.js'
+import { Size } from '../../../src/util/geometry/size.js'
 
 describe('src/diagram/parts/activation-bar-diagram-part.ts', function () {
   describe('#draw()', function () {

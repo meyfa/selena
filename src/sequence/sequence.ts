@@ -1,5 +1,5 @@
-import { Entity } from './entity'
-import { Activation } from './activation'
+import { Entity } from './entity.js'
+import { Activation } from './activation.js'
 
 /**
  * A sequence, consisting of entities and activations.

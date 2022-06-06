@@ -1,12 +1,12 @@
-import { Entity, EntityType } from '../../sequence/entity'
-import { LifelineDrawable } from '../drawables/lifeline-drawable'
-import { HeadDrawable } from '../drawables/head-drawable'
-import { ActorHeadDrawable } from '../drawables/actor-head-drawable'
-import { ComponentHeadDrawable } from '../drawables/component-head-drawable'
-import { RenderAttributes, Renderer } from '../../renderer/renderer'
-import { Size } from '../../util/geometry/size'
-import { Point } from '../../util/geometry/point'
-import { DiagramPart } from './diagram-part'
+import { Entity, EntityType } from '../../sequence/entity.js'
+import { LifelineDrawable } from '../drawables/lifeline-drawable.js'
+import { HeadDrawable } from '../drawables/head-drawable.js'
+import { ActorHeadDrawable } from '../drawables/actor-head-drawable.js'
+import { ComponentHeadDrawable } from '../drawables/component-head-drawable.js'
+import { RenderAttributes, Renderer } from '../../renderer/renderer.js'
+import { Size } from '../../util/geometry/size.js'
+import { Point } from '../../util/geometry/point.js'
+import { DiagramPart } from './diagram-part.js'
 
 /**
  * Create a head drawable for the given type of entity, configured with the given display name.

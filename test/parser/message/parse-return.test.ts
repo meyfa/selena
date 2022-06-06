@@ -1,10 +1,9 @@
 import { expect } from 'chai'
-
-import { detectReturn, parseReturn } from '../../../src/parser/message/parse-return'
-import { Token, TokenType } from '../../../src/tokenizer/token'
-import { TokenStream } from '../../../src/tokenizer/token-stream'
-import { TokenAccessor } from '../../../src/parser/token-accessor'
-import { ParserError } from '../../../src/parser/errors'
+import { detectReturn, parseReturn } from '../../../src/parser/message/parse-return.js'
+import { Token, TokenType } from '../../../src/tokenizer/token.js'
+import { TokenStream } from '../../../src/tokenizer/token-stream.js'
+import { TokenAccessor } from '../../../src/parser/token-accessor.js'
+import { ParserError } from '../../../src/parser/errors.js'
 
 describe('src/parser/message/parse-return.ts', function () {
   describe('detectReturn()', function () {
