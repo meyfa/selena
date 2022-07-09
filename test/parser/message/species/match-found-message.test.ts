@@ -33,7 +33,7 @@ describe('src/parser/message/species/match-found-message.ts', function () {
     const desc: MessageDescription = {
       type: MessageType.SYNC,
       fromOutside: true,
-      target: target,
+      target,
       label: 'label',
       block: {
         returnValue: undefined,
@@ -65,7 +65,7 @@ describe('src/parser/message/species/match-found-message.ts', function () {
     const desc: MessageDescription = {
       type: MessageType.ASYNC,
       fromOutside: true,
-      target: target,
+      target,
       label: '',
       block: undefined,
       evidence: {
@@ -101,7 +101,7 @@ describe('src/parser/message/species/match-found-message.ts', function () {
     const desc: MessageDescription = {
       type: MessageType.SYNC,
       fromOutside: true,
-      target: target,
+      target,
       label: '',
       block: {
         returnValue: 'return',

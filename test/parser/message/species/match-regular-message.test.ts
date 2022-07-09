@@ -16,7 +16,7 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
     const desc: MessageDescription = {
       type: MessageType.SYNC,
       fromOutside: true,
-      target: target,
+      target,
       label: '',
       block: undefined,
       evidence: {
@@ -51,9 +51,9 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
   it('creates activation if everything is valid (no block)', function () {
     const check = (type: MessageType, expectedStyle: MessageStyle): void => {
       const desc: MessageDescription = {
-        type: type,
+        type,
         fromOutside: false,
-        target: target,
+        target,
         label: 'label',
         block: undefined,
         evidence: {
@@ -84,9 +84,9 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
     const check = (type: MessageType, expectedStyle: MessageStyle): void => {
       const child = new Activation(new SyncMessage(target, active, 'child'), undefined, [])
       const desc: MessageDescription = {
-        type: type,
+        type,
         fromOutside: false,
-        target: target,
+        target,
         label: 'label',
         block: {
           returnValue: 'return value',
@@ -127,9 +127,9 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
   it('throws if block exists for CREATE or DESTROY', function () {
     const check = (type: MessageType): void => {
       const desc: MessageDescription = {
-        type: type,
+        type,
         fromOutside: false,
-        target: target,
+        target,
         label: 'label',
         block: {
           returnValue: undefined,
@@ -155,9 +155,9 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
   it('applies default label for CREATE and DESTROY if none specified', function () {
     const check = (type: MessageType, expectedLabel: string): void => {
       const desc: MessageDescription = {
-        type: type,
+        type,
         fromOutside: false,
-        target: target,
+        target,
         label: '',
         block: undefined,
         evidence: {
@@ -182,7 +182,7 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
     const desc: MessageDescription = {
       type: MessageType.SYNC,
       fromOutside: false,
-      target: target,
+      target,
       label: '',
       block: undefined,
       evidence: {

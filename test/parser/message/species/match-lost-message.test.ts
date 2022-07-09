@@ -34,7 +34,7 @@ describe('src/parser/message/species/match-lost-message.ts', function () {
     const desc: MessageDescription = {
       type: MessageType.SYNC,
       fromOutside: false,
-      target: target,
+      target,
       label: '',
       block: undefined,
       evidence: {

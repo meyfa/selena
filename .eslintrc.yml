@@ -1,17 +1,12 @@
 extends:
-  - 'standard-with-typescript'
+  - '@meyfa/eslint-config'
 
 parserOptions:
   project: './tsconfig.eslint.json'
 
-rules:
-  # This project requires .js extensions with imports because it is packaged as ESM.
-  import/extensions: [error, always]
-
 overrides:
-  - files: '**/*.{js,ts}'
-    excludedFiles: 'test/**/*.{ts,js}'
-    # Also configure JSDoc checking for any files that are not tests.
+  # Also configure JSDoc checking for any files that are not tests.
+  - files: 'src/**/*.{js,ts}'
     extends:
       - 'plugin:jsdoc/recommended'
     rules:
@@ -24,8 +19,3 @@ overrides:
       # Explicitly check for returns and params description on interface functions.
       'jsdoc/require-returns-description': [error, { contexts: ['TSPropertySignature'] }]
       'jsdoc/require-param-description': [error, { contexts: ['TSPropertySignature'] }]
-  - files: 'test/**/*.{ts,js}'
-    rules:
-      no-unused-expressions: off
-      '@typescript-eslint/no-unused-expressions': off
-      '@typescript-eslint/no-floating-promises': off
