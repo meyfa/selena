@@ -2,7 +2,7 @@ extends:
   - '@meyfa/eslint-config'
 
 parserOptions:
-  project: './tsconfig.eslint.json'
+  project: './tsconfig.lint.json'
 
 overrides:
   # Also configure JSDoc checking for any files that are not tests.
