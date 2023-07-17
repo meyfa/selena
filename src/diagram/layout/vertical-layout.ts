@@ -58,7 +58,7 @@ export interface MessagePosition {
  * As soon as this is done, the layout can be computed.
  */
 export class VerticalLayout {
-  private readonly entityInfo: Map<string, VerticalEntityInfo> = new Map()
+  private readonly entityInfo = new Map<string, VerticalEntityInfo>()
   private readonly messageInfo: VerticalMessageInfo[] = []
 
   private readonly messageSpacing: number
@@ -131,7 +131,7 @@ export class VerticalLayout {
   }
 
   private computeEntityOffsets (messagePositions: MessagePosition[]): Map<string, number> {
-    const result: Map<string, number> = new Map()
+    const result = new Map<string, number>()
     for (const [id, info] of this.entityInfo) {
       const y = info.creator != null
         ? messagePositions[info.creator].top - info.headHeight / 2

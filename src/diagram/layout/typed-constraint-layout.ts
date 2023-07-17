@@ -17,7 +17,7 @@ export class TypedConstraintLayout<T> implements ConstraintLayout<T> {
   private readonly proxied: ConstraintLayout<number>
 
   private readonly ids: T[]
-  private readonly indices: Map<T, number> = new Map()
+  private readonly indices = new Map<T, number>()
 
   constructor (ids: T[], options: ConstraintLayoutOptions) {
     this.proxied = new IndexedConstraintLayout(ids.length, options)
@@ -45,7 +45,7 @@ export class TypedConstraintLayout<T> implements ConstraintLayout<T> {
   compute (): ComputedConstraints<T> {
     const { items, totalDimensions } = this.proxied.compute()
 
-    const typedItems: Map<T, ComputedConstraintsItem> = new Map()
+    const typedItems = new Map<T, ComputedConstraintsItem>()
     for (const [index, item] of items) {
       typedItems.set(this.ids[index], item)
     }

@@ -75,7 +75,7 @@ export class SvgMarkerManager {
   private readonly defs: SVGDefsElement
   private readonly markerColor: string
 
-  private readonly created: Set<LineMarker> = new Set()
+  private readonly created = new Set<LineMarker>()
 
   constructor (defs: SVGDefsElement, markerColor: string) {
     this.defs = defs

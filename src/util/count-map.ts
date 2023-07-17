@@ -4,7 +4,7 @@
  * The count cannot reach values below 0.
  */
 export class CountMap<K> {
-  private readonly counts: Map<K, number> = new Map()
+  private readonly counts = new Map<K, number>()
 
   /**
    * Obtain the count for the given key.
