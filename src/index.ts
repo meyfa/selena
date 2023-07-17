@@ -33,5 +33,5 @@ export { Size } from './util/geometry/size.js'
 export { Point } from './util/geometry/point.js'
 export { Diagram } from './diagram/diagram.js'
 
-export { RenderAttributes, Renderer, DirectRenderer, LineMarker, StrokeOptions } from './renderer/renderer.js'
+export type { RenderAttributes, Renderer, DirectRenderer, LineMarker, StrokeOptions } from './renderer/renderer.js'
 export { BrowserSvgRenderer } from './renderer/browser-svg/browser-svg-renderer.js'
