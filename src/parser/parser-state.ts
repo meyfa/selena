@@ -20,7 +20,7 @@ export interface EntityLookup {
  */
 export class ParserState implements EntityLookup {
   private readonly entities: Entity[] = []
-  private readonly entityMap: Map<string, Entity> = new Map()
+  private readonly entityMap = new Map<string, Entity>()
 
   private readonly rootActivations: Activation[] = []
 
