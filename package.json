@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/meyfa/selena#readme",
   "devDependencies": {
-    "@meyfa/eslint-config": "3.0.1",
+    "@meyfa/eslint-config": "4.0.0",
     "@types/chai": "4.3.5",
     "@types/mocha": "10.0.1",
     "c8": "8.0.0",
