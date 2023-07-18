@@ -33,6 +33,9 @@
     "url": "https://github.com/meyfa/selena/issues"
   },
   "homepage": "https://github.com/meyfa/selena#readme",
+  "engines": {
+    "node": ">=18.16.1"
+  },
   "devDependencies": {
     "@meyfa/eslint-config": "4.0.0",
     "@types/chai": "4.3.5",
