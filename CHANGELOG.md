@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/meyfa/selena/compare/v0.4.0...v0.4.1) (2023-07-18)
+
+
+### Bug Fixes
+
+* Export LineMarker enum as value ([#150](https://github.com/meyfa/selena/issues/150)) ([211384b](https://github.com/meyfa/selena/commit/211384b20ba0f04f27a747fd46e41985d83e6e21))
+
 ## [0.4.0](https://github.com/meyfa/selena/compare/v0.3.0...v0.4.0) (2023-07-18)
 
 
