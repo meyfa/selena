@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/meyfa/selena/compare/v0.4.1...v0.4.2) (2023-07-23)
+
+
+### Miscellaneous Chores
+
+* Publish with provenance ([#152](https://github.com/meyfa/selena/issues/152)) ([33ca3a0](https://github.com/meyfa/selena/commit/33ca3a0b59c2786518406e78b0617e95a3fbd5e1))
+
 ## [0.4.1](https://github.com/meyfa/selena/compare/v0.4.0...v0.4.1) (2023-07-18)
 
 

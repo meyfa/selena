@@ -1,6 +1,6 @@
 {
   "name": "selena",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A textual language that compiles to UML sequence diagrams.",
   "type": "module",
   "main": "dist/index.js",
