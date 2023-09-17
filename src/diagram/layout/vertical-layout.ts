@@ -165,8 +165,8 @@ export class VerticalLayout {
     }
     // if messages are present, the final message might be further down than any entity
     // (the case where the last message is a CREATE message is already handled by the loop above)
-    if (messagePositions.length > 0) {
-      const last = messagePositions[messagePositions.length - 1]
+    const last = messagePositions.at(-1)
+    if (last != null) {
       max = Math.max(max, last.bottom)
     }
     return max

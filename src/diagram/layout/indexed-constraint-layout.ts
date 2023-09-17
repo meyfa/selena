@@ -35,8 +35,8 @@ function convertArrayToMap<T> (array: T[]): Map<number, T> {
  * @returns The total size.
  */
 function computeTotalDimensions (computed: ComputedConstraintsItem[]): number {
-  if (computed.length > 0) {
-    const last = computed[computed.length - 1]
+  const last = computed.at(-1)
+  if (last != null) {
     return last.start + last.dimension
   }
   return 0
