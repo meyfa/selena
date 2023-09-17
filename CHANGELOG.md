@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.3](https://github.com/meyfa/selena/compare/v0.4.2...v0.4.3) (2023-09-17)
+
+
+### Bug Fixes
+
+* Set `name` properties of custom Error subclasses ([#167](https://github.com/meyfa/selena/issues/167)) ([50c5295](https://github.com/meyfa/selena/commit/50c5295ca63c3fe76c655a3f75cd87a6515febfa))
+* Use `Array.prototype.at()` to get the last element ([#169](https://github.com/meyfa/selena/issues/169)) ([e9eed1c](https://github.com/meyfa/selena/commit/e9eed1cd5ab984ec01a25af53157d5f93d03fe95))
+
 ## [0.4.2](https://github.com/meyfa/selena/compare/v0.4.1...v0.4.2) (2023-07-23)
 
 
