@@ -114,12 +114,12 @@ describe('src/diagram/activation-walker.ts', function () {
         return true
       },
       pre (node, fromLevel, toLevel) {
-        const level = parseInt(node.message.label)
+        const level = Number.parseInt(node.message.label, 10)
         expect(fromLevel).to.equal(level)
         expect(toLevel).to.equal(level + 1)
       },
       post (node, fromLevel, toLevel) {
-        const level = parseInt(node.message.label)
+        const level = Number.parseInt(node.message.label, 10)
         expect(fromLevel).to.equal(level)
         expect(toLevel).to.equal(level + 1)
       }
