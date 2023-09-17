@@ -6,6 +6,7 @@ export class TokenizerError extends Error {
 
   constructor (position: number, message: string) {
     super(message)
+    this.name = 'TokenizerError'
     this.position = position
   }
 }
@@ -16,6 +17,7 @@ export class TokenizerError extends Error {
 export class UnknownTokenTypeError extends TokenizerError {
   constructor (position: number) {
     super(position, 'unable to determine token type')
+    this.name = 'UnknownTokenTypeError'
   }
 }
 
@@ -25,6 +27,7 @@ export class UnknownTokenTypeError extends TokenizerError {
 export class UnterminatedStringError extends TokenizerError {
   constructor (position: number) {
     super(position, 'unterminated string')
+    this.name = 'UnterminatedStringError'
   }
 }
 
@@ -34,5 +37,6 @@ export class UnterminatedStringError extends TokenizerError {
 export class EndOfStreamError extends TokenizerError {
   constructor (position: number) {
     super(position, 'end of stream reached')
+    this.name = 'EndOfStreamError'
   }
 }

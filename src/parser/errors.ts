@@ -9,6 +9,7 @@ export class ParserError extends Error {
 
   constructor (token: Token, message: string) {
     super(message)
+    this.name = 'ParserError'
     this.token = token
   }
 }
@@ -22,6 +23,7 @@ export class UnexpectedTokenError extends ParserError {
 
   constructor (actual: Token, expectedType?: TokenType, expectedValue?: string) {
     super(actual, UnexpectedTokenError.formatMessage(actual, expectedType, expectedValue))
+    this.name = 'UnexpectedTokenError'
     this.expectedType = expectedType
   }
 
@@ -43,6 +45,7 @@ export class UnexpectedTokenError extends ParserError {
 export class UnsupportedOptionError extends ParserError {
   constructor (token: Token, option: string, supported: string[]) {
     super(token, `unsupported option ${option}, valid options are: ${supported.join(', ')}`)
+    this.name = 'UnsupportedOptionError'
   }
 }
 
@@ -52,6 +55,7 @@ export class UnsupportedOptionError extends ParserError {
 export class DuplicateOptionError extends ParserError {
   constructor (token: Token, option: string) {
     super(token, `duplicate option ${option}`)
+    this.name = 'DuplicateOptionError'
   }
 }
 
@@ -61,6 +65,7 @@ export class DuplicateOptionError extends ParserError {
 export class UnexpectedMessageBlockError extends ParserError {
   constructor (token: Token) {
     super(token, 'this message type cannot have a message block')
+    this.name = 'UnexpectedMessageBlockError'
   }
 }
 
@@ -70,6 +75,7 @@ export class UnexpectedMessageBlockError extends ParserError {
 export class MissingTargetError extends ParserError {
   constructor (token: Token) {
     super(token, 'expected object target for this message')
+    this.name = 'MissingTargetError'
   }
 }
 
@@ -79,6 +85,7 @@ export class MissingTargetError extends ParserError {
 export class UnknownObjectError extends ParserError {
   constructor (token: Token, objectId: string) {
     super(token, `object "${objectId}" not defined`)
+    this.name = 'UnknownObjectError'
   }
 }
 
@@ -88,6 +95,7 @@ export class UnknownObjectError extends ParserError {
 export class AlreadyReturnedError extends ParserError {
   constructor (token: Token) {
     super(token, 'there cannot be any code after a return statement')
+    this.name = 'AlreadyReturnedError'
   }
 }
 
@@ -97,5 +105,6 @@ export class AlreadyReturnedError extends ParserError {
 export class UnsupportedReturnError extends ParserError {
   constructor (token: Token) {
     super(token, 'return is not supported on this message')
+    this.name = 'UnsupportedReturnError'
   }
 }
