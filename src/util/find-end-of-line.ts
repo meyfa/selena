@@ -2,7 +2,6 @@
  * Return the index of the next end-of-line character. An end-of-line character is either '\n' or '\r'.
  * If no such character exists, the line is assumed to end at the string end, and str.length is returned.
  *
- *
  * @param str The subject.
  * @param position Optionally, a start index.
  * @returns The position of the next end-of-line character, or, in absence of one, str.length.
