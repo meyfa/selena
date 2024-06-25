@@ -38,11 +38,11 @@
   "devDependencies": {
     "@meyfa/eslint-config": "5.1.0",
     "@types/chai": "4.3.14",
-    "@types/mocha": "10.0.6",
+    "@types/mocha": "10.0.7",
     "c8": "9.1.0",
     "chai": "5.1.1",
     "eslint": "8.57.0",
-    "mocha": "10.4.0",
+    "mocha": "10.5.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.2"
   }
