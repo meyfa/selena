@@ -74,7 +74,7 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
   private markers: SvgMarkerManager | undefined
 
   constructor (hPadding: number, vPadding: number) {
-    if (window == null || window.document == null) {
+    if (window?.document == null) {
       throw new Error('cannot use this renderer outside the browser')
     }
 

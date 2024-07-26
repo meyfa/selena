@@ -34,7 +34,7 @@ export class UnexpectedTokenError extends ParserError {
       }
       return `unexpected token <${actual.type}>, expected <${expectedType}>`
     }
-    const expType = expectedType == null ? actual.type : expectedType
+    const expType = expectedType ?? actual.type
     return `unexpected token <${actual.type}> '${actual.value}', expected <${expType}> '${expectedValue}'`
   }
 }
