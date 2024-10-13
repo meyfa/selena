@@ -27,7 +27,7 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
         block: evidenceToken
       }
     }
-    expect(matchRegularMessage(desc, active)).to.be.undefined
+    expect(matchRegularMessage(desc, active)).to.equal(undefined)
   })
 
   it('returns undefined if target is undefined', function () {
@@ -45,7 +45,7 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
         block: evidenceToken
       }
     }
-    expect(matchRegularMessage(desc, active)).to.be.undefined
+    expect(matchRegularMessage(desc, active)).to.equal(undefined)
   })
 
   it('creates activation if everything is valid (no block)', function () {
@@ -66,8 +66,7 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
       }
       const result = matchRegularMessage(desc, active)
       expect(result).to.be.an('object')
-      const activation = result as Activation
-      expect(activation.message).to.include({
+      expect(result?.message).to.be.an('object').and.include({
         style: expectedStyle,
         from: active,
         to: target,
@@ -105,20 +104,19 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
       }
       const result = matchRegularMessage(desc, active)
       expect(result).to.be.an('object')
-      const activation = result as Activation
-      expect(activation.message).to.include({
+      expect(result?.message).to.be.an('object').and.include({
         style: expectedStyle,
         from: active,
         to: target,
         label: 'label'
       })
-      expect(activation.reply).to.include({
+      expect(result?.reply).to.be.an('object').and.include({
         style: MessageStyle.REPLY,
         from: target,
         to: active,
         label: 'return value'
       })
-      expect(activation.children).to.deep.equal([child])
+      expect(result?.children).to.deep.equal([child])
     }
     check(MessageType.SYNC, MessageStyle.SYNC)
     check(MessageType.ASYNC, MessageStyle.ASYNC)
@@ -170,8 +168,7 @@ describe('src/parser/message/species/match-regular-message.ts', function () {
       }
       const result = matchRegularMessage(desc, active)
       expect(result).to.be.an('object')
-      const activation = result as Activation
-      expect(activation.message.label).to.equal(expectedLabel)
+      expect(result?.message.label).to.equal(expectedLabel)
     }
     check(MessageType.CREATE, '«create»')
     check(MessageType.DESTROY, '«destroy»')

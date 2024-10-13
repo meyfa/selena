@@ -50,9 +50,9 @@ describe('src/parser/parser-state.ts', function () {
       const entity1 = new Entity(EntityType.ACTOR, 'foo', 'Foo')
       const entity2 = new Entity(EntityType.ACTOR, 'bar', 'Bar')
       const obj = new ParserState()
-      expect(obj.lookupEntity('bar')).to.be.undefined
+      expect(obj.lookupEntity('bar')).to.equal(undefined)
       obj.insertEntity(entity1)
-      expect(obj.lookupEntity('bar')).to.be.undefined
+      expect(obj.lookupEntity('bar')).to.equal(undefined)
       obj.insertEntity(entity2)
       expect(obj.lookupEntity('bar')).to.equal(entity2)
     })

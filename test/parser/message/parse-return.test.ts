@@ -9,17 +9,17 @@ describe('src/parser/message/parse-return.ts', function () {
   describe('detectReturn()', function () {
     it('returns true if given keyword "return"', function () {
       const token = new Token(TokenType.WORD, 0, 'return')
-      expect(detectReturn(token)).to.be.true
+      expect(detectReturn(token)).to.equal(true)
     })
 
     it('returns false if given a different keyword', function () {
       const token = new Token(TokenType.WORD, 0, 'foo')
-      expect(detectReturn(token)).to.be.false
+      expect(detectReturn(token)).to.equal(false)
     })
 
     it('returns false if given a different token type', function () {
       const token = new Token(TokenType.STRING, 0, '"return"')
-      expect(detectReturn(token)).to.be.false
+      expect(detectReturn(token)).to.equal(false)
     })
   })
 

@@ -4,7 +4,6 @@ import { MessageDescription, MessageType } from '../../../../src/parser/message/
 import { Entity, EntityType } from '../../../../src/sequence/entity.js'
 import { ParserError } from '../../../../src/parser/errors.js'
 import { Token, TokenType } from '../../../../src/tokenizer/token.js'
-import { Activation } from '../../../../src/sequence/activation.js'
 import { MessageStyle } from '../../../../src/sequence/message.js'
 
 describe('src/parser/message/species/match-lost-message.ts', function () {
@@ -27,7 +26,7 @@ describe('src/parser/message/species/match-lost-message.ts', function () {
         block: evidenceToken
       }
     }
-    expect(matchLostMessage(desc, active)).to.be.undefined
+    expect(matchLostMessage(desc, active)).to.equal(undefined)
   })
 
   it('returns undefined if target is not undefined', function () {
@@ -45,7 +44,7 @@ describe('src/parser/message/species/match-lost-message.ts', function () {
         block: evidenceToken
       }
     }
-    expect(matchLostMessage(desc, active)).to.be.undefined
+    expect(matchLostMessage(desc, active)).to.equal(undefined)
   })
 
   it('creates activation if everything is valid', function () {
@@ -65,8 +64,7 @@ describe('src/parser/message/species/match-lost-message.ts', function () {
     }
     const result = matchLostMessage(desc, active)
     expect(result).to.be.an('object')
-    const activation = result as Activation
-    expect(activation.message).to.include({
+    expect(result?.message).to.be.an('object').and.include({
       style: MessageStyle.LOST,
       from: active,
       to: undefined,

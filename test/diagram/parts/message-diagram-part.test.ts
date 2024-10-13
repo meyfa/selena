@@ -28,7 +28,7 @@ describe('src/diagram/parts/message-diagram-part.ts', function () {
     it('returns undefined for other message styles', function () {
       const msg = new SyncMessage(foo, bar, '')
       const part = new MessageDiagramPart(0, msg, 1, 0, false)
-      expect(part.getCreate()).to.be.undefined
+      expect(part.getCreate()).to.equal(undefined)
     })
   })
 
@@ -109,7 +109,7 @@ describe('src/diagram/parts/message-diagram-part.ts', function () {
           renderBox: () => expect.fail(),
           renderPolyline: (points, end1, end2, options) => {
             expect(points).to.have.lengthOf(2)
-            points.forEach(p => expect(p.y).to.equal(100))
+            points.forEach((p) => expect(p.y).to.equal(100))
             expect(end1).to.equal(marker1)
             expect(end2).to.equal(marker2)
             expect(options?.dashed).to.equal(dash)

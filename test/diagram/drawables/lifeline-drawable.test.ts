@@ -30,14 +30,14 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
         setTopCenter: () => {},
         measure: () => new Size(40, 15),
         draw: () => {
-          expect(headCalled).to.be.false
+          expect(headCalled).to.equal(false)
           headCalled = true
         }
       }
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderPolyline: (points) => {
-          expect(headCalled).to.be.true
+          expect(headCalled).to.equal(true)
           expect(points).to.have.lengthOf(2)
           done()
         },
@@ -59,7 +59,7 @@ describe('src/diagram/drawables/lifeline-drawable.ts', function () {
         },
         measure: () => new Size(40, 15),
         draw: () => {
-          expect(topCenterCalled).to.be.true
+          expect(topCenterCalled).to.equal(true)
         }
       }
       const renderer: Renderer = {

@@ -57,7 +57,7 @@ describe('src/diagram/drawables/arrow-drawable.ts', function () {
           expect(points).to.deep.equal(expectedPoints)
           expect(end1).to.equal(LineMarker.ARROW_FULL)
           expect(end2).to.equal(LineMarker.CIRCLE_FULL)
-          expect(stroke?.dashed).to.be.false
+          expect(stroke?.dashed).to.equal(false)
           done()
         },
         renderPath: () => expect.fail(),
@@ -95,7 +95,7 @@ describe('src/diagram/drawables/arrow-drawable.ts', function () {
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderPolyline: (points, end1, end2, stroke) => {
-          expect(stroke?.dashed).to.be.true
+          expect(stroke?.dashed).to.equal(true)
           done()
         },
         renderPath: () => expect.fail(),

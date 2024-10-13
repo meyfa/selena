@@ -25,13 +25,13 @@ describe('src/diagram/drawables/component-head-drawable.ts', function () {
       let boxCalled = false
       const renderer: Renderer = {
         renderBox: () => {
-          expect(boxCalled).to.be.false
+          expect(boxCalled).to.equal(false)
           boxCalled = true
         },
         renderPolyline: () => expect.fail(),
         renderPath: () => expect.fail(),
         renderText: (text: string) => {
-          expect(boxCalled).to.be.true
+          expect(boxCalled).to.equal(true)
           expect(text).to.equal(' foo bar ')
           done()
         },

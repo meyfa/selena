@@ -11,22 +11,22 @@ describe('src/parser/message/parse-message.ts', function () {
   describe('detectMessage()', function () {
     it('returns true if given arrow', function () {
       const token = new Token(TokenType.ARROW, 0, '->')
-      expect(detectMessage(token)).to.be.true
+      expect(detectMessage(token)).to.equal(true)
     })
 
     it('returns true if given "*"', function () {
       const token = new Token(TokenType.WORD, 0, '*')
-      expect(detectMessage(token)).to.be.true
+      expect(detectMessage(token)).to.equal(true)
     })
 
     it('returns false if given a different word', function () {
       const token = new Token(TokenType.WORD, 0, '**')
-      expect(detectMessage(token)).to.be.false
+      expect(detectMessage(token)).to.equal(false)
     })
 
     it('returns false if given a different token type', function () {
       const token = new Token(TokenType.STRING, 0, '"->"')
-      expect(detectMessage(token)).to.be.false
+      expect(detectMessage(token)).to.equal(false)
     })
   })
 
@@ -54,7 +54,7 @@ describe('src/parser/message/parse-message.ts', function () {
         to: bar,
         label: 'label'
       })
-      expect(parsed.reply).to.be.undefined
+      expect(parsed.reply).to.equal(undefined)
     })
 
     it('parses lost message with label', function () {
@@ -71,7 +71,7 @@ describe('src/parser/message/parse-message.ts', function () {
         to: undefined,
         label: 'label'
       })
-      expect(parsed.reply).to.be.undefined
+      expect(parsed.reply).to.equal(undefined)
     })
 
     it('parses regular message with type and label', function () {

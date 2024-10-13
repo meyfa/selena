@@ -8,12 +8,12 @@ describe('src/parser/entity/parse-entity-options.ts', function () {
   describe('detectEntityOptions()', function () {
     it('returns true if given left paren', function () {
       const token = new Token(TokenType.PAREN_LEFT, 0, '(')
-      expect(detectEntityOptions(token)).to.be.true
+      expect(detectEntityOptions(token)).to.equal(true)
     })
 
     it('returns false if given a different token type', function () {
       const token = new Token(TokenType.WORD, 0, 'foo')
-      expect(detectEntityOptions(token)).to.be.false
+      expect(detectEntityOptions(token)).to.equal(false)
     })
   })
 
@@ -24,7 +24,7 @@ describe('src/parser/entity/parse-entity-options.ts', function () {
         new Token(TokenType.PAREN_RIGHT, 1, ')')
       ]))
       const parsed = parseEntityOptions(tokens)
-      expect(parsed.isActor).to.be.false
+      expect(parsed.isActor).to.equal(false)
     })
 
     it('parses actor option', function () {
@@ -34,7 +34,7 @@ describe('src/parser/entity/parse-entity-options.ts', function () {
         new Token(TokenType.PAREN_RIGHT, 6, ')')
       ]))
       const parsed = parseEntityOptions(tokens)
-      expect(parsed.isActor).to.be.true
+      expect(parsed.isActor).to.equal(true)
     })
 
     it('throws for invalid option', function () {
