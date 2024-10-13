@@ -27,7 +27,8 @@ export class TypedConstraintLayout<T> implements ConstraintLayout<T> {
 
   private toIndex (id: T): number {
     // assume the entry exists
-    return this.indices.get(id) as number
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.indices.get(id)!
   }
 
   applyDimension (id: T, dim: number): void {

@@ -5,7 +5,7 @@ import { MessageDiagramPart } from '../parts/message-diagram-part.js'
 import { ActivationBarDiagramPart } from '../parts/activation-bar-diagram-part.js'
 import { Size } from '../../util/geometry/size.js'
 import { TypedConstraintLayout } from './typed-constraint-layout.js'
-import { ComputedConstraints, ComputedConstraintsItem, ConstraintLayout } from './constraint-layout.js'
+import { ComputedConstraints, ConstraintLayout } from './constraint-layout.js'
 import { Point } from '../../util/geometry/point.js'
 import { Message, MessageStyle } from '../../sequence/message.js'
 
@@ -133,7 +133,8 @@ export class LayoutManager {
     const { h, v } = this.requireComputed()
 
     for (const e of entities) {
-      const posH = h.items.get(e.entity.id) as ComputedConstraintsItem
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const posH = h.items.get(e.entity.id)!
       const posV = v.entityOffsets.get(e.entity.id) ?? 0
       const destroyedAt = this.findDestroyHeight(messages, e.entity.id)
       e.setTopCenter(new Point(posH.center, posV))
@@ -157,11 +158,13 @@ export class LayoutManager {
     for (const m of messages) {
       m.setTop(v.messagePositions[m.index].top)
       if (m.message.from != null) {
-        const pos = h.items.get(m.message.from.id) as ComputedConstraintsItem
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const pos = h.items.get(m.message.from.id)!
         m.setSourceLifelineX(pos.center)
       }
       if (m.message.to != null) {
-        const pos = h.items.get(m.message.to.id) as ComputedConstraintsItem
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const pos = h.items.get(m.message.to.id)!
         m.setTargetLifelineX(pos.center)
         m.setTargetHeadWidth(pos.dimension)
       }
@@ -172,7 +175,8 @@ export class LayoutManager {
     const { h, v } = this.requireComputed()
 
     for (const a of activations) {
-      const pos = h.items.get(a.entityId) as ComputedConstraintsItem
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const pos = h.items.get(a.entityId)!
       a.setLifelineX(pos.center)
       a.setTop(v.messagePositions[a.startMessageId].bottom)
       if (a.endMessageId != null) {
