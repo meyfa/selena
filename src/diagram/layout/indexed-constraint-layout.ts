@@ -91,7 +91,7 @@ export class IndexedConstraintLayout implements ConstraintLayout<number> {
       }
       offset += item.dim / 2
       for (const [otherIndex, between] of item.preConstraints) {
-        const otherPos = computed[otherIndex]
+        const otherPos = computed.at(otherIndex)
         // default to 0 for otherIndex===-1, which happens for first item
         offset = Math.max(offset, (otherPos?.center ?? 0) + between)
       }

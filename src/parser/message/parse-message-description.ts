@@ -9,7 +9,7 @@ import { keywords, messageOptions } from '../strings.js'
 import { Entity } from '../../sequence/entity.js'
 
 // I wish Object.values was supported in this ES version
-const AVAILABLE_TYPE_KEYWORDS = Object.keys(messageOptions).map(key => (messageOptions as Record<string, string>)[key])
+const AVAILABLE_TYPE_KEYWORDS = Object.keys(messageOptions).map((key) => (messageOptions as Record<string, string>)[key])
 
 const TYPE_OPTIONS: ReadonlyMap<string, MessageType> = new Map([
   [messageOptions.sync, MessageType.SYNC],

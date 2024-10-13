@@ -117,10 +117,10 @@ export class MessageDiagramPart implements DiagramPart {
 
   private readonly drawable: ArrowDrawable
 
-  private offsetY: number = 0
-  private fromX: number = 0
-  private toX: number = 0
-  private toHeadWidth: number = 0
+  private offsetY = 0
+  private fromX = 0
+  private toX = 0
+  private toHeadWidth = 0
 
   constructor (index: number, message: Message, fromLevel: number, toLevel: number, hidden: boolean) {
     this.index = index
