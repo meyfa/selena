@@ -74,6 +74,7 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
   private markers: SvgMarkerManager | undefined
 
   constructor (hPadding: number, vPadding: number) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (window?.document == null) {
       throw new Error('cannot use this renderer outside the browser')
     }
