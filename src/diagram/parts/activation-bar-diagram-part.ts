@@ -19,9 +19,9 @@ export class ActivationBarDiagramPart implements DiagramPart {
 
   private readonly drawable: ActivationBarDrawable
 
-  private top: number = 0
-  private bottom: number = 0
-  private lifelineX: number = 0
+  private top = 0
+  private bottom = 0
+  private lifelineX = 0
 
   constructor (startMessageId: number, entityId: string, level: number) {
     this.startMessageId = startMessageId

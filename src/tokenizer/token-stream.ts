@@ -8,7 +8,7 @@ import { EndOfStreamError } from './errors.js'
  */
 export class TokenStream {
   private readonly tokens: Token[]
-  private nextPointer: number = 0
+  private nextPointer = 0
 
   constructor (tokens: Token[]) {
     this.tokens = tokens

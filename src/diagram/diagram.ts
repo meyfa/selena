@@ -27,7 +27,7 @@ export class Diagram {
     this.messages = messages
     this.activationBars = activationBars
 
-    const entityIds = entities.map(e => e.entity.id)
+    const entityIds = entities.map((e) => e.entity.id)
     this.layoutManager = new LayoutManager(entityIds, messages.length, {
       entityMargin: ENTITY_SPACING,
       messageSpacing: MESSAGE_SPACING
@@ -42,10 +42,10 @@ export class Diagram {
    */
   static create (sequence: Sequence): Diagram {
     const builder = new DiagramBuilder()
-    sequence.entities.forEach(e => builder.addEntity(e))
+    sequence.entities.forEach((e) => builder.addEntity(e))
 
     const walker = new DiagramActivationWalker(builder)
-    sequence.activations.forEach(a => walker.walk(a))
+    sequence.activations.forEach((a) => walker.walk(a))
 
     const { entities, messages, activationBars } = builder.build()
     return new Diagram(entities, messages, activationBars)
@@ -80,8 +80,8 @@ export class Diagram {
     if (!this.layoutManager.isComputed()) {
       throw new Error('layout not yet computed')
     }
-    this.entities.forEach(obj => obj.draw(renderer))
-    this.activationBars.forEach(obj => obj.draw(renderer))
-    this.messages.forEach(obj => obj.draw(renderer))
+    this.entities.forEach((obj) => obj.draw(renderer))
+    this.activationBars.forEach((obj) => obj.draw(renderer))
+    this.messages.forEach((obj) => obj.draw(renderer))
   }
 }

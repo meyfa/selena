@@ -67,8 +67,8 @@ function convertStrokeToAttributes (options?: StrokeOptions): Record<string, Att
 export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
   private readonly hPadding: number
   private readonly vPadding: number
-  private foregroundColor: string = '#000'
-  private backgroundColor: string = '#FFF'
+  private foregroundColor = '#000'
+  private backgroundColor = '#FFF'
 
   private svg: SVGSVGElement | undefined
   private markers: SvgMarkerManager | undefined
@@ -146,7 +146,7 @@ export class BrowserSvgRenderer implements DirectRenderer<SVGSVGElement> {
 
     const line = createSvgElement('polyline')
     applyAttributes(line, {
-      points: points.map(p => `${p.x},${p.y}`).join(' '),
+      points: points.map((p) => `${p.x},${p.y}`).join(' '),
       'marker-start': this.markers?.referenceMarker(end1),
       'marker-end': this.markers?.referenceMarker(end2),
       fill: 'none',

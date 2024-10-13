@@ -34,7 +34,7 @@ export abstract class ActivationWalker<S> {
 
     // pre -> (recurse) -> post
     const state = this.pre(node, fromLevel, toLevel, toLevel > 0)
-    node.children.forEach(child => this.walkRecursively(child, levels))
+    node.children.forEach((child) => this.walkRecursively(child, levels))
     this.post(node, fromLevel, toLevel, state)
 
     // if level was incremented, decrement it again (make use of the fact that toLevel===0 iff it was not activated)
@@ -48,7 +48,6 @@ export abstract class ActivationWalker<S> {
    *
    * @param node The current node.
    * @returns Whether the node should become activated.
-   * @protected
    */
   protected abstract shouldActivate (node: Activation): boolean
 
@@ -65,7 +64,6 @@ export abstract class ActivationWalker<S> {
    * @param toLevel The number of activations the message target now has due to the message; always 0 if not activated.
    * @param active Whether the target was activated by the message.
    * @returns The computed state.
-   * @protected
    */
   protected abstract pre (node: Activation, fromLevel: number, toLevel: number, active: boolean): S
 
@@ -81,7 +79,6 @@ export abstract class ActivationWalker<S> {
    * @param fromLevel The number of activations the message source had when sending the message.
    * @param toLevel The number of activations the message target now has due to the message; always 0 if not activated.
    * @param state The state computed during pre-order traversal.
-   * @protected
    */
   protected abstract post (node: Activation, fromLevel: number, toLevel: number, state: S): void
 }

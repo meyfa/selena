@@ -29,8 +29,8 @@ export class EntityDiagramPart implements DiagramPart {
 
   private readonly drawable: LifelineDrawable
   private topCenter: Point = Point.ORIGIN
-  private lifelineEndY: number = 0
-  private destroy: boolean = false
+  private lifelineEndY = 0
+  private destroy = false
 
   constructor (entity: Entity) {
     this.entity = entity

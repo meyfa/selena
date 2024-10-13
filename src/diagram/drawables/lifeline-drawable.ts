@@ -13,7 +13,7 @@ export class LifelineDrawable implements Drawable {
   private readonly head: HeadDrawable
 
   private position: Point = Point.ORIGIN
-  private endHeight: number = 0
+  private endHeight = 0
   private endDrawable: DestructionDrawable | undefined
 
   constructor (head: HeadDrawable) {
