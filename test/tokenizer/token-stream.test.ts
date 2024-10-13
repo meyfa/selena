@@ -6,14 +6,14 @@ import { EndOfStreamError } from '../../src/tokenizer/errors.js'
 describe('src/tokenizer/token-stream.ts', function () {
   describe('#hasNext()', function () {
     it('returns false for empty stream', function () {
-      expect(new TokenStream([]).hasNext()).to.be.false
+      expect(new TokenStream([]).hasNext()).to.equal(false)
     })
 
     it('returns true for non-empty stream', function () {
       const tokens = [
         new Token(TokenType.WORD, 0, 'test')
       ]
-      expect(new TokenStream(tokens).hasNext()).to.be.true
+      expect(new TokenStream(tokens).hasNext()).to.equal(true)
     })
   })
 
@@ -35,7 +35,7 @@ describe('src/tokenizer/token-stream.ts', function () {
       ]
       const obj = new TokenStream(tokens)
       expect(obj.peek()).to.equal(obj.peek())
-      expect(obj.hasNext()).to.be.true
+      expect(obj.hasNext()).to.equal(true)
     })
   })
 
@@ -59,7 +59,7 @@ describe('src/tokenizer/token-stream.ts', function () {
       const stream = new TokenStream(tokens)
       expect(stream.next()).to.equal(tokens[0])
       expect(stream.next()).to.equal(tokens[1])
-      expect(stream.hasNext()).to.be.false
+      expect(stream.hasNext()).to.equal(false)
       expect(() => stream.next()).to.throw(EndOfStreamError)
     })
   })

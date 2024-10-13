@@ -9,17 +9,17 @@ describe('src/parser/entity/parse-entity.ts', function () {
   describe('detectEntity()', function () {
     it('returns true if given keyword "object"', function () {
       const token = new Token(TokenType.WORD, 0, 'object')
-      expect(detectEntity(token)).to.be.true
+      expect(detectEntity(token)).to.equal(true)
     })
 
     it('returns false if given a different keyword', function () {
       const token = new Token(TokenType.WORD, 0, 'foo')
-      expect(detectEntity(token)).to.be.false
+      expect(detectEntity(token)).to.equal(false)
     })
 
     it('returns false if given a different token type', function () {
       const token = new Token(TokenType.STRING, 0, '"object"')
-      expect(detectEntity(token)).to.be.false
+      expect(detectEntity(token)).to.equal(false)
     })
   })
 

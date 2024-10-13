@@ -11,12 +11,12 @@ describe('src/parser/message/parse-message-block.ts', function () {
   describe('detectMessageBlock()', function () {
     it('returns true if given block_left', function () {
       const token = new Token(TokenType.BLOCK_LEFT, 0, '{')
-      expect(detectMessageBlock(token)).to.be.true
+      expect(detectMessageBlock(token)).to.equal(true)
     })
 
     it('returns false if given a different token type', function () {
       const token = new Token(TokenType.STRING, 0, '"{"')
-      expect(detectMessageBlock(token)).to.be.false
+      expect(detectMessageBlock(token)).to.equal(false)
     })
   })
 
@@ -64,9 +64,9 @@ describe('src/parser/message/parse-message-block.ts', function () {
       expect(parsed.activations[0].message.to).to.equal(foo)
       expect(parsed.activations[1].message.from).to.equal(foo)
       expect(parsed.activations[1].message.to).to.equal(bar)
-      expect(parsed.activations[2].message.from).to.be.undefined
+      expect(parsed.activations[2].message.from).to.equal(undefined)
       expect(parsed.activations[2].message.to).to.equal(bar)
-      expect(parsed.returnValue).to.be.undefined
+      expect(parsed.returnValue).to.equal(undefined)
     })
 
     it('parses block with return statement', function () {

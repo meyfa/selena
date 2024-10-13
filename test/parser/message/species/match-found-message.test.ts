@@ -4,7 +4,6 @@ import { MessageDescription, MessageType } from '../../../../src/parser/message/
 import { Entity, EntityType } from '../../../../src/sequence/entity.js'
 import { ParserError } from '../../../../src/parser/errors.js'
 import { Token, TokenType } from '../../../../src/tokenizer/token.js'
-import { Activation } from '../../../../src/sequence/activation.js'
 import { MessageStyle } from '../../../../src/sequence/message.js'
 
 describe('src/parser/message/species/match-found-message.ts', function () {
@@ -26,7 +25,7 @@ describe('src/parser/message/species/match-found-message.ts', function () {
         block: evidenceToken
       }
     }
-    expect(matchFoundMessage(desc)).to.be.undefined
+    expect(matchFoundMessage(desc)).to.equal(undefined)
   })
 
   it('creates activation if everything is valid', function () {
@@ -52,8 +51,7 @@ describe('src/parser/message/species/match-found-message.ts', function () {
     }
     const result = matchFoundMessage(desc)
     expect(result).to.be.an('object')
-    const activation = result as Activation
-    expect(activation.message).to.include({
+    expect(result?.message).to.be.an('object').and.include({
       style: MessageStyle.FOUND,
       from: undefined,
       to: target,

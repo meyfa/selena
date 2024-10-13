@@ -9,13 +9,13 @@ describe('src/tokenizer/tokenizer.ts', function () {
     it('returns empty stream for empty input', function () {
       const result = tokenize('')
       expect(result).to.be.an.instanceOf(TokenStream)
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
 
     it('returns empty stream for whitespace', function () {
       const result = tokenize('   \n   ')
       expect(result).to.be.an.instanceOf(TokenStream)
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
 
     it('detects all token types correctly if placed in sequence', function () {
@@ -87,21 +87,21 @@ describe('src/tokenizer/tokenizer.ts', function () {
     it('detects line comments (only input)', function () {
       const result = tokenize('# line comment')
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '# line comment' })
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
 
     it('detects line comments (after words)', function () {
       const result = tokenize('foo # line comment')
       expect(result.next()).to.include({ type: TokenType.WORD, value: 'foo' })
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '# line comment' })
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
 
     it('detects line comments (after strings)', function () {
       const result = tokenize('"foo bar" # line comment')
       expect(result.next()).to.include({ type: TokenType.STRING, value: '"foo bar"' })
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '# line comment' })
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
 
     it('detects line comments (multiple consecutive)', function () {
@@ -109,7 +109,7 @@ describe('src/tokenizer/tokenizer.ts', function () {
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '# line comment' })
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '#another' })
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '#yet another' })
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
 
     it('does not include newline characters in comments', function () {
@@ -121,7 +121,7 @@ describe('src/tokenizer/tokenizer.ts', function () {
     it('detects line comments containing # character', function () {
       const result = tokenize('# foo#bar #')
       expect(result.next()).to.include({ type: TokenType.COMMENT, value: '# foo#bar #' })
-      expect(result.hasNext()).to.be.false
+      expect(result.hasNext()).to.equal(false)
     })
   })
 })

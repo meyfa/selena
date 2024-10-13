@@ -34,7 +34,6 @@ describe('src/diagram/drawables/stick-figure-drawable.ts', function () {
 
     it('renders at correct position set by #setTopCenter()', function () {
       const position = new Point(42.25, 37.75)
-      // eslint-disable-next-line prefer-const
       const renderer: Renderer = {
         renderBox: () => expect.fail(),
         renderPolyline: () => expect.fail(),

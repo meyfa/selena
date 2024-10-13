@@ -43,7 +43,7 @@ describe('src/parser/parser.ts', function () {
     expect(parsed.entities).to.have.lengthOf(1)
     expect(parsed.entities[0].id).to.equal('foo')
     expect(parsed.activations).to.have.lengthOf(1)
-    expect(parsed.activations[0].message.from).to.be.undefined
+    expect(parsed.activations[0].message.from).to.equal(undefined)
     expect(parsed.activations[0].message.to).to.equal(parsed.entities[0])
     expect(parsed.activations[0].message.label).to.equal('message')
   })

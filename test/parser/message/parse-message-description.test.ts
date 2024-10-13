@@ -5,29 +5,29 @@ import { TokenStream } from '../../../src/tokenizer/token-stream.js'
 import { TokenAccessor } from '../../../src/parser/token-accessor.js'
 import { Entity, EntityType } from '../../../src/sequence/entity.js'
 import { EntityLookup } from '../../../src/parser/parser-state.js'
-import { MessageBlock, MessageType } from '../../../src/parser/message/message-description.js'
+import { MessageType } from '../../../src/parser/message/message-description.js'
 import { ParserError } from '../../../src/parser/errors.js'
 
 describe('src/parser/message/parse-message-description.ts', function () {
   describe('detectMessageDescription()', function () {
     it('returns true if given arrow', function () {
       const token = new Token(TokenType.ARROW, 0, '->')
-      expect(detectMessageDescription(token)).to.be.true
+      expect(detectMessageDescription(token)).to.equal(true)
     })
 
     it('returns true if given "*"', function () {
       const token = new Token(TokenType.WORD, 0, '*')
-      expect(detectMessageDescription(token)).to.be.true
+      expect(detectMessageDescription(token)).to.equal(true)
     })
 
     it('returns false if given a different word', function () {
       const token = new Token(TokenType.WORD, 0, '**')
-      expect(detectMessageDescription(token)).to.be.false
+      expect(detectMessageDescription(token)).to.equal(false)
     })
 
     it('returns false if given a different token type', function () {
       const token = new Token(TokenType.STRING, 0, '"->"')
-      expect(detectMessageDescription(token)).to.be.false
+      expect(detectMessageDescription(token)).to.equal(false)
     })
   })
 
@@ -209,7 +209,8 @@ describe('src/parser/message/parse-message-description.ts', function () {
         label: ''
       })
       expect(parsed.block).to.be.an('object')
-      const block = parsed.block as MessageBlock
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const block = parsed.block!
       expect(block.returnValue).to.equal('ret')
       expect(block.activations).to.have.lengthOf(1)
       expect(block.activations[0].message.from).to.equal(foo)

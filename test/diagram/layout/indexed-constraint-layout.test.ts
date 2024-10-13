@@ -98,9 +98,9 @@ describe('src/diagram/layout/indexed-constraint-layout.ts', function () {
       expect(computed.items.get(2)).to.deep.equal({ start: 340, center: 340 + 80 / 2, dimension: 80 })
     }
     // test this in different ways that should all behave the same
-    check(layout => layout.applyBetween(0, 1, 300))
-    check(layout => layout.applyBetween(1, 0, 300))
-    check(layout => layout.applyBefore(1, 300))
+    check((layout) => layout.applyBetween(0, 1, 300))
+    check((layout) => layout.applyBetween(1, 0, 300))
+    check((layout) => layout.applyBefore(1, 300))
   })
 
   it('can apply spacing between adjacent item centers (1-2, 2-1)', function () {
@@ -119,9 +119,9 @@ describe('src/diagram/layout/indexed-constraint-layout.ts', function () {
       expect(computed.items.get(2)).to.deep.equal({ start: 310, center: 310 + 80 / 2, dimension: 80 })
     }
     // test this in different ways that should all behave the same
-    check(layout => layout.applyBetween(1, 2, 300))
-    check(layout => layout.applyBetween(2, 1, 300))
-    check(layout => layout.applyBefore(2, 300))
+    check((layout) => layout.applyBetween(1, 2, 300))
+    check((layout) => layout.applyBetween(2, 1, 300))
+    check((layout) => layout.applyBefore(2, 300))
   })
 
   it('can apply spacing between non-adjacent item centers (0-2, 2-0)', function () {
@@ -140,8 +140,8 @@ describe('src/diagram/layout/indexed-constraint-layout.ts', function () {
       expect(computed.items.get(2)).to.deep.equal({ start: 270, center: 270 + 80 / 2, dimension: 80 })
     }
     // test this in different ways that should all behave the same
-    check(layout => layout.applyBetween(0, 2, 300))
-    check(layout => layout.applyBetween(2, 0, 300))
+    check((layout) => layout.applyBetween(0, 2, 300))
+    check((layout) => layout.applyBetween(2, 0, 300))
   })
 
   it('does nothing when setting space between item and itself', function () {

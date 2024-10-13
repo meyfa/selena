@@ -8,14 +8,14 @@ describe('src/parser/token-accessor.ts', function () {
   describe('#hasNext()', function () {
     it('returns false for empty stream', function () {
       const stream = new TokenStream([])
-      expect(new TokenAccessor(stream).hasNext()).to.be.false
+      expect(new TokenAccessor(stream).hasNext()).to.equal(false)
     })
 
     it('returns true for non-empty stream', function () {
       const stream = new TokenStream([
         new Token(TokenType.WORD, 0, 'test')
       ])
-      expect(new TokenAccessor(stream).hasNext()).to.be.true
+      expect(new TokenAccessor(stream).hasNext()).to.equal(true)
     })
 
     it('returns false for streams containing only skipped tokens', function () {
@@ -23,7 +23,7 @@ describe('src/parser/token-accessor.ts', function () {
         new Token(TokenType.COMMENT, 0, '#test'),
         new Token(TokenType.COMMENT, 7, '#test')
       ])
-      expect(new TokenAccessor(stream, [TokenType.COMMENT]).hasNext()).to.be.false
+      expect(new TokenAccessor(stream, [TokenType.COMMENT]).hasNext()).to.equal(false)
     })
 
     it('returns true for streams containing non-skipped tokens after skipped tokens', function () {
@@ -32,7 +32,7 @@ describe('src/parser/token-accessor.ts', function () {
         new Token(TokenType.COMMENT, 7, '#test'),
         new Token(TokenType.WORD, 14, 'foo')
       ])
-      expect(new TokenAccessor(stream, [TokenType.COMMENT]).hasNext()).to.be.true
+      expect(new TokenAccessor(stream, [TokenType.COMMENT]).hasNext()).to.equal(true)
     })
   })
 
@@ -75,14 +75,14 @@ describe('src/parser/token-accessor.ts', function () {
       const stream = new TokenStream(tokens)
       const obj = new TokenAccessor(stream)
       expect(obj.peek()).to.equal(obj.peek())
-      expect(obj.hasNext()).to.be.true
+      expect(obj.hasNext()).to.equal(true)
     })
   })
 
   describe('#popOptional()', function () {
     it('returns undefined if called on empty stream', function () {
       const stream = new TokenStream([])
-      expect(new TokenAccessor(stream).popOptional(TokenType.WORD)).to.be.undefined
+      expect(new TokenAccessor(stream).popOptional(TokenType.WORD)).to.equal(undefined)
     })
 
     it('returns undefined if called on streams containing only skipped tokens', function () {
@@ -90,7 +90,7 @@ describe('src/parser/token-accessor.ts', function () {
         new Token(TokenType.COMMENT, 0, '#test'),
         new Token(TokenType.COMMENT, 7, '#test')
       ])
-      expect(new TokenAccessor(stream, [TokenType.COMMENT]).popOptional(TokenType.COMMENT)).to.be.undefined
+      expect(new TokenAccessor(stream, [TokenType.COMMENT]).popOptional(TokenType.COMMENT)).to.equal(undefined)
     })
 
     it('returns undefined when requesting a skipped token', function () {
@@ -99,7 +99,7 @@ describe('src/parser/token-accessor.ts', function () {
         new Token(TokenType.COMMENT, 7, '#test'),
         new Token(TokenType.WORD, 14, 'foo')
       ])
-      expect(new TokenAccessor(stream, [TokenType.COMMENT]).popOptional(TokenType.COMMENT)).to.be.undefined
+      expect(new TokenAccessor(stream, [TokenType.COMMENT]).popOptional(TokenType.COMMENT)).to.equal(undefined)
     })
 
     it('returns token if type matches', function () {
@@ -123,7 +123,7 @@ describe('src/parser/token-accessor.ts', function () {
         new Token(TokenType.WORD, 0, 'test')
       ]
       const stream = new TokenStream(tokens)
-      expect(new TokenAccessor(stream).popOptional(TokenType.PAREN_LEFT)).to.be.undefined
+      expect(new TokenAccessor(stream).popOptional(TokenType.PAREN_LEFT)).to.equal(undefined)
     })
 
     it('returns undefined if type matches, but value does not', function () {
@@ -131,7 +131,7 @@ describe('src/parser/token-accessor.ts', function () {
         new Token(TokenType.WORD, 0, 'test')
       ]
       const stream = new TokenStream(tokens)
-      expect(new TokenAccessor(stream).popOptional(TokenType.WORD, 'foo')).to.be.undefined
+      expect(new TokenAccessor(stream).popOptional(TokenType.WORD, 'foo')).to.equal(undefined)
     })
 
     it('advances the stream, but only on a match', function () {
@@ -141,9 +141,9 @@ describe('src/parser/token-accessor.ts', function () {
       const stream = new TokenStream(tokens)
       const obj = new TokenAccessor(stream)
       obj.popOptional(TokenType.PAREN_LEFT)
-      expect(obj.hasNext()).to.be.true
+      expect(obj.hasNext()).to.equal(true)
       obj.popOptional(TokenType.WORD)
-      expect(obj.hasNext()).to.be.false
+      expect(obj.hasNext()).to.equal(false)
     })
 
     it('works multiple times in a row', function () {
@@ -154,13 +154,13 @@ describe('src/parser/token-accessor.ts', function () {
       ]
       const stream = new TokenStream(tokens)
       const obj = new TokenAccessor(stream)
-      expect(obj.popOptional(TokenType.EQUALS)).to.be.undefined
+      expect(obj.popOptional(TokenType.EQUALS)).to.equal(undefined)
       expect(obj.popOptional(TokenType.WORD)).to.equal(tokens[0])
-      expect(obj.popOptional(TokenType.EQUALS)).to.be.undefined
+      expect(obj.popOptional(TokenType.EQUALS)).to.equal(undefined)
       expect(obj.popOptional(TokenType.PAREN_LEFT)).to.equal(tokens[1])
-      expect(obj.popOptional(TokenType.EQUALS)).to.be.undefined
+      expect(obj.popOptional(TokenType.EQUALS)).to.equal(undefined)
       expect(obj.popOptional(TokenType.PAREN_RIGHT)).to.equal(tokens[2])
-      expect(obj.hasNext()).to.be.false
+      expect(obj.hasNext()).to.equal(false)
     })
   })
 
@@ -217,7 +217,7 @@ describe('src/parser/token-accessor.ts', function () {
       const stream = new TokenStream(tokens)
       const obj = new TokenAccessor(stream)
       obj.pop(TokenType.WORD)
-      expect(obj.hasNext()).to.be.false
+      expect(obj.hasNext()).to.equal(false)
     })
   })
 })

@@ -31,11 +31,11 @@ describe('src/diagram/drawables/actor-head-drawable.ts', function () {
         renderBox: () => expect.fail(),
         renderPolyline: () => expect.fail(),
         renderPath: () => {
-          expect(pathCalled).to.be.false
+          expect(pathCalled).to.equal(false)
           pathCalled = true
         },
         renderText: (text: string) => {
-          expect(pathCalled).to.be.true
+          expect(pathCalled).to.equal(true)
           expect(text).to.equal(' foo bar ')
           done()
         },
