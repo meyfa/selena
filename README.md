@@ -1,8 +1,6 @@
 # Selena
 
 [![CI](https://github.com/meyfa/selena/actions/workflows/main.yml/badge.svg)](https://github.com/meyfa/selena/actions/workflows/main.yml)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6179ac4c66d16f325fb6/test_coverage)](https://codeclimate.com/github/meyfa/selena/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6179ac4c66d16f325fb6/maintainability)](https://codeclimate.com/github/meyfa/selena/maintainability)
 
 **Selena** is a textual language that compiles to UML sequence diagrams.
 It is written in (mostly) object-oriented TypeScript.
