@@ -5,6 +5,7 @@
     "module": "ES2020",
     "strict": true,
     "declaration": true,
+    "skipLibCheck": true,
     "outDir": "./dist"
   },
   "exclude": [
